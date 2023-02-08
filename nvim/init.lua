@@ -22,10 +22,34 @@ vim.opt.hlsearch = false           -- do not highlight matches
 vim.opt.ignorecase = true          -- ignore case in searches by default
 vim.opt.smartcase = true           -- but make it case sensitive if an uppercase is entered
 
+-- Create a new autocmd groupname
+-- explnation: When we write to init.lua file.
+--             Run `source <afile> | PackerCompile` automatically
+-- Hint: <afile> - replaced with the filename of the buffer being manipulated
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost init.lua source <afile> | PackerCompile
+  augroup end
+]])
 
 -----------------
 -- Packer.nvim --
 -----------------
+-- Bootstrapping for Packer.vim
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
+
+local packer_bootstrap = ensure_packer()
+
 return require('packer').startup(function(use)
   -- Packer.nvim hints
   --     after = string or list,           -- Specifies plugins to load before this plugin. See "sequencing" below
@@ -72,5 +96,12 @@ return require('packer').startup(function(use)
 
   -- [LeaderF] fuzzy finder
   use { 'Yggdroot/LeaderF', run = ':LeaderfInstallCExtension' }
+
+  -- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 end)
+
 
