@@ -16,5 +16,5 @@ After getting familiar with more and more dotfiles, I also thought I should use 
     - Git integration: [vim-fugitive](https://github.com/tpope/vim-fugitive)
     - Code comment helper: [vim-commentary](https://github.com/tpope/vim-commentary)
     - Markdown: [vim-markdown](https://github.com/preservim/vim-markdown)
-
+    - Fuzzy finder: [LeaderF](https://github.com/Yggdroot/LeaderF)
 
