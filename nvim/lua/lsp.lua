@@ -11,7 +11,7 @@ require('mason').setup({
 
 require('mason-lspconfig').setup({
     -- A list of servers to automatically install if they're not already installed
-    ensure_installed = { 'pylsp', 'gopls', 'sumneko_lua', 'rust_analyzer' },
+    ensure_installed = { 'pylsp', 'gopls', 'sumneko_lua', 'bashls', 'rust_analyzer' },
 })
 
 
@@ -88,6 +88,8 @@ lspconfig.sumneko_lua.setup({
     },
   },
 })
+
+lspconfig.bashls.setup({})
 
 lspconfig.rust_analyzer.setup({
     on_attach = on_attach,

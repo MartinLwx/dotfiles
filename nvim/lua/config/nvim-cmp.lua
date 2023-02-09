@@ -14,8 +14,6 @@ cmp.setup({
     -- Use <C-k/j> to switch in items
     ['<C-k>'] = cmp.mapping.select_prev_item(),
     ['<C-j>'] = cmp.mapping.select_next_item(),
-    -- Use <Esc> to stop completion
-    ['<Esc>'] = cmp.mapping.abort(),
     -- Use <CR>(Enter) to confirm selection
     -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     ['<CR>'] = cmp.mapping.confirm({ select = true }), 
