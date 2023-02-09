@@ -32,7 +32,7 @@ cmp.setup({
             -- Hint: if the completion menu is visible select next one
             if cmp.visible() then
                 cmp.select_next_item()
-            elseif luasnip.expand_or_locally_jump() then
+            elseif luasnip.expand_or_locally_jumpable() then
                 -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
                 -- they way you will only jump inside the snippet region
                 luasnip.expand_or_jump()

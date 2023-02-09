@@ -90,6 +90,10 @@ return require('packer').startup(function(use)
         -- Fuzzy finder
         use { 'Yggdroot/LeaderF', run = ':LeaderfInstallCExtension' }
 
+        -- Better terminal integration
+        -- tag = string,                -- Specifies a git tag to use. Supports '*' for "latest tag"
+        use { "akinsho/toggleterm.nvim", tag = '*', config = [[require('config.toggleterm')]] }
+
         -- Automatically set up your configuration after cloning packer.nvim
         -- Put this at the end after all plugins
         if packer_bootstrap then
