@@ -74,7 +74,15 @@ return require('packer').startup(function(use)
   --     3. `gcu` to undo comment
   use 'tpope/vim-commentary'
 
+  -- Show indentation and blankline
   use { 'lukas-reineke/indent-blankline.nvim', config = [[require('config.indent-blankline')]] }
+
+  -- Status line
+  use {
+      'nvim-lualine/lualine.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+      config = [[require('config.lualine')]],
+  }
 
   -- Markdown support
   use { 'preservim/vim-markdown', ft = { 'markdown' } }

@@ -23,3 +23,4 @@ After getting familiar with more and more dotfiles, I also thought I should use 
     - Markdown: [vim-markdown](https://github.com/preservim/vim-markdown)
     - Fuzzy finder: [LeaderF](https://github.com/Yggdroot/LeaderF)
     - Identation indicator: [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)
+    - Status line: [lualin.nvim](https://github.com/nvim-lualine/lualine.nvim)
