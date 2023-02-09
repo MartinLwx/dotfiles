@@ -44,38 +44,41 @@ return require('packer').startup(function(use)
   use { 'williamboman/mason-lspconfig.nvim'}
   use { 'neovim/nvim-lspconfig' }
 
-  -- [nvim-cmp] auto-completion engine
+  -- [lspkind]
+  use { 'onsails/lspkind.nvim', event = 'VimEnter' }
+
+  -- [nvim-cmp] 
   -- Note: 
   --     the default search path for `require` is ~/.config/nvim/lua
   --     use a `.` as a path seperator
   --     the suffix `.lua` is not needed
-  use { 'hrsh7th/nvim-cmp', config = [[require('config.nvim-cmp')]] }    
-  use { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' } 
+  use { 'hrsh7th/nvim-cmp', after = 'lspkind.nvim', config = [[require('config.nvim-cmp')]] }
+  use { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' }
   use { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' }        -- buffer auto-completion
   use { 'hrsh7th/cmp-path', after = 'nvim-cmp' }          -- path auto-completion
   use { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' }       -- cmdline auto-completion
 
 
-  -- [LuaSnip] code snippet engine
+  -- [LuaSnip] 
   use 'L3MON4D3/LuaSnip'
-  use 'saadparwaiz1/cmp_luasnip'
+  use { 'saadparwaiz1/cmp_luasnip', after = { 'nvim-cmp', 'LuaSnip' } }
 
-  -- [monokai] my colorscheme choice
+  -- [monokai] 
   use 'tanvirtin/monokai.nvim'
 
-  -- [vim-fugitive] run git command in Nvim
+  -- [vim-fugitive] 
   use 'tpope/vim-fugitive'
 
-  -- [vim-commentary] code comment helper
+  -- [vim-commentary] 
   --     1. `gcc` to comment a line
   --     2. select lines in visual mode and run `gc`
   --     3. `gcu` to undo comment
   use 'tpope/vim-commentary'
 
-  -- [vim-markdown] syntax highlightint, matching rules and mappings
+  -- [vim-markdown] 
   use { 'preservim/vim-markdown', ft = { 'markdown' } }
 
-  -- [LeaderF] fuzzy finder
+  -- [LeaderF] 
   use { 'Yggdroot/LeaderF', run = ':LeaderfInstallCExtension' }
 
   -- Automatically set up your configuration after cloning packer.nvim

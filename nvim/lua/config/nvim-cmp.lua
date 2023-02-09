@@ -1,5 +1,7 @@
 local cmp = require("cmp")
 
+local lspkind = require('lspkind')
+
 cmp.setup({
   snippet = {
     -- REQUIRED - you must specify a snippet engine
@@ -16,7 +18,7 @@ cmp.setup({
     ['<C-j>'] = cmp.mapping.select_next_item(),
     -- Use <CR>(Enter) to confirm selection
     -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), 
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
 
     -- A super tab
     -- source: https://github.com/LunarVim/LunarVim/blob/277079ff453fcd951447110fbc745e2241e0490f/lua/lvim/core/cmp.lua
@@ -49,16 +51,19 @@ cmp.setup({
   -- Let's configure the item's appearance
   -- source: https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance
   formatting = {
-      -- Set order from left to right in each item
-      -- Hint: see `:h complete-items
-      --   kind: single letter indicating the type of completion
-      --   abbr: abbreviation of "word"; when not empty it is used in the menu instead of "word"
-      --   menu: extra text for the popup menu, displayed after "word" or "abbr"
-      fields = { 'abbr', 'menu' },
-
       -- customize the appearance of the completion menu
-      format = function(entry, vim_item)
-          vim_item.menu = ({
+      format = lspkind.cmp_format({
+          -- show only symbol annotations
+          mode = 'symbol_text',
+          -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+          maxwidth = 100,
+          -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+          ellipsis_char = '...',
+
+          -- The function below will be called before any actual modifications from lspkind
+          -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+          before = function (entry, vim_item)
+              vim_item.menu = ({
               nvim_lsp = '[Lsp]',
               luasnip = '[Luasnip]',
               buffer = '[File]',
@@ -66,6 +71,7 @@ cmp.setup({
           })[entry.source.name]
           return vim_item
       end,
+      })
   },
 
   -- Set source precedence

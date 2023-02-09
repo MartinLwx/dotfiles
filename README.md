@@ -9,11 +9,13 @@ After getting familiar with more and more dotfiles, I also thought I should use 
     - window management
 - Neovim
     - Package manager: [packer.nvim](https://github.com/wbthomason/packer.nvim)
-    - Auto-completion engine: [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
-    - LSP support:
-        - [mason.nvim](https://github.com/williamboman/mason.nvim)
-        - [mason-lspconfig](https://github.com/williamboman/mason-lspconfig.nvim)
-        - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
+    - Auto-completion 
+        - Completion sources: [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
+        - Vscode-like pictograms: [lspkind.nvim](https://github.com/onsails/lspkind.nvim)
+        - LSP support:
+            - [mason.nvim](https://github.com/williamboman/mason.nvim)
+            - [mason-lspconfig](https://github.com/williamboman/mason-lspconfig.nvim)
+            - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
     - Code snippet engine: [Luasnip](https://github.com/L3MON4D3/LuaSnip)
     - Colorscheme: [monokai](https://github.com/tanvirtin/monokai.nvim)
     - Git integration: [vim-fugitive](https://github.com/tpope/vim-fugitive)
