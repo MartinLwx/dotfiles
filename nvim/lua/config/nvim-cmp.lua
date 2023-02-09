@@ -1,5 +1,11 @@
-local cmp = require("cmp")
+local has_words_before = function()
+    unpack = unpack or table.unpack
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
 
+local luasnip = require("luasnip")
+local cmp = require("cmp")
 local lspkind = require('lspkind')
 
 cmp.setup({
@@ -21,22 +27,21 @@ cmp.setup({
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
 
         -- A super tab
-        -- source: https://github.com/LunarVim/LunarVim/blob/277079ff453fcd951447110fbc745e2241e0490f/lua/lvim/core/cmp.lua
+        -- sourc: https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
         ["<Tab>"] = cmp.mapping(function(fallback)
             -- Hint: if the completion menu is visible select next one
             if cmp.visible() then
                 cmp.select_next_item()
-            elseif luasnip.expand_or_locally_jumpable() then
+            elseif luasnip.expand_or_locally_jump() then
+                -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+                -- they way you will only jump inside the snippet region
                 luasnip.expand_or_jump()
-            elseif jumpable(1) then
-                luasnip.jump(1)
             elseif has_words_before() then
-                -- cmp.complete()
-                fallback()
+                cmp.complete()
             else
                 fallback()
             end
-        end, { "i", "s" }), -- i - insert mode; s - selction mode
+        end, { "i", "s" }), -- i - insert mode; s - select mode
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
