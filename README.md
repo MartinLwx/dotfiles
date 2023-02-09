@@ -22,3 +22,4 @@ After getting familiar with more and more dotfiles, I also thought I should use 
     - Code comment helper: [vim-commentary](https://github.com/tpope/vim-commentary)
     - Markdown: [vim-markdown](https://github.com/preservim/vim-markdown)
     - Fuzzy finder: [LeaderF](https://github.com/Yggdroot/LeaderF)
+    - Identation indicator: [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)

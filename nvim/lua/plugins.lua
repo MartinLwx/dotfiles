@@ -35,19 +35,18 @@ vim.cmd([[
 --     ft = string or list,              -- Specifies filetypes which load this plugin.
 --     run = string, function, or table, -- Specify operations to be run after successful installs/updates of a plugin
 return require('packer').startup(function(use)
-
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  -- [nvim-lspconfig] 
+  -- LSP manager
   use { 'williamboman/mason.nvim' }
   use { 'williamboman/mason-lspconfig.nvim'}
   use { 'neovim/nvim-lspconfig' }
 
-  -- [lspkind]
+  -- Vscode-like pictograms
   use { 'onsails/lspkind.nvim', event = 'VimEnter' }
 
-  -- [nvim-cmp] 
+  -- Auto-completion engine
   -- Note: 
   --     the default search path for `require` is ~/.config/nvim/lua
   --     use a `.` as a path seperator
@@ -59,26 +58,28 @@ return require('packer').startup(function(use)
   use { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' }       -- cmdline auto-completion
 
 
-  -- [LuaSnip] 
+  -- Code snippet engine
   use 'L3MON4D3/LuaSnip'
   use { 'saadparwaiz1/cmp_luasnip', after = { 'nvim-cmp', 'LuaSnip' } }
 
-  -- [monokai] 
+  -- Colorscheme
   use 'tanvirtin/monokai.nvim'
 
-  -- [vim-fugitive] 
+  -- Git integration
   use 'tpope/vim-fugitive'
 
-  -- [vim-commentary] 
+  -- Code comment helper
   --     1. `gcc` to comment a line
   --     2. select lines in visual mode and run `gc`
   --     3. `gcu` to undo comment
   use 'tpope/vim-commentary'
 
-  -- [vim-markdown] 
+  use { 'lukas-reineke/indent-blankline.nvim', config = [[require('config.indent-blankline')]] }
+
+  -- Markdown support
   use { 'preservim/vim-markdown', ft = { 'markdown' } }
 
-  -- [LeaderF] 
+  -- Fuzzy finder
   use { 'Yggdroot/LeaderF', run = ':LeaderfInstallCExtension' }
 
   -- Automatically set up your configuration after cloning packer.nvim
