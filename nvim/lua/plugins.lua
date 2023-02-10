@@ -74,6 +74,16 @@ return require('packer').startup(function(use)
         --     3. `gcu` to undo comment
         use 'tpope/vim-commentary'
 
+        -- Treesitter-integration
+        use {
+            'nvim-treesitter/nvim-treesitter',
+            run = function()
+                local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+                ts_update()
+            end,
+            config = [[require('config.nvim-treesitter')]],
+        }
+
         -- Show indentation and blankline
         use { 'lukas-reineke/indent-blankline.nvim', config = [[require('config.indent-blankline')]] }
 

@@ -25,3 +25,4 @@ After getting familiar with more and more dotfiles, I also thought I should use 
     - Identation indicator: [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)
     - Status line: [lualin.nvim](https://github.com/nvim-lualine/lualine.nvim)
     - Better terminal support: [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)
+    - Treesitter integration: [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
