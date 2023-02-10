@@ -19,6 +19,7 @@ After getting familiar with more and more dotfiles, I also thought I should use 
     - Code snippet engine: [Luasnip](https://github.com/L3MON4D3/LuaSnip)
     - Colorscheme: [monokai](https://github.com/tanvirtin/monokai.nvim)
     - Git integration: [vim-fugitive](https://github.com/tpope/vim-fugitive)
+    - Git dcorations: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
     - Code comment helper: [vim-commentary](https://github.com/tpope/vim-commentary)
     - Markdown: [vim-markdown](https://github.com/preservim/vim-markdown)
     - Fuzzy finder: [LeaderF](https://github.com/Yggdroot/LeaderF)

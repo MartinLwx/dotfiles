@@ -68,6 +68,9 @@ return require('packer').startup(function(use)
         -- Git integration
         use 'tpope/vim-fugitive'
 
+        -- Git decorations
+        use { 'lewis6991/gitsigns.nvim', config = [[require('config.gitsigns')]] }
+
         -- Autopairs: [], (), "", '', etc
         -- it relies on nvim-cmp
         use {
