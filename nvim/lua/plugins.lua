@@ -111,6 +111,15 @@ return require('packer').startup(function(use)
         -- Fuzzy finder
         use { 'Yggdroot/LeaderF', run = ':LeaderfInstallCExtension' }
 
+        -- File explorer
+        use {
+            'nvim-tree/nvim-tree.lua',
+            requires = {
+                'nvim-tree/nvim-web-devicons', -- optional, for file icons
+            },
+            config = [[require('config.nvim-tree')]]
+        }
+
         -- Better terminal integration
         -- tag = string,                -- Specifies a git tag to use. Supports '*' for "latest tag"
         use { "akinsho/toggleterm.nvim", tag = '*', config = [[require('config.toggleterm')]] }

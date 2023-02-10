@@ -23,6 +23,7 @@ After getting familiar with more and more dotfiles, I also thought I should use 
     - Code comment helper: [vim-commentary](https://github.com/tpope/vim-commentary)
     - Markdown: [vim-markdown](https://github.com/preservim/vim-markdown)
     - Fuzzy finder: [LeaderF](https://github.com/Yggdroot/LeaderF)
+    - File explorer: [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua)
     - Identation indicator: [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)
     - Status line: [lualin.nvim](https://github.com/nvim-lualine/lualine.nvim)
     - Better terminal support: [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)
