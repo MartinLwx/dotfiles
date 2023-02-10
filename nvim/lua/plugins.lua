@@ -68,6 +68,14 @@ return require('packer').startup(function(use)
         -- Git integration
         use 'tpope/vim-fugitive'
 
+        -- Autopairs: [], (), "", '', etc
+        -- it relies on nvim-cmp
+        use {
+            "windwp/nvim-autopairs",
+            after = 'nvim-cmp',
+            config = [[require('config.nvim-autopairs')]],
+        }
+
         -- Code comment helper
         --     1. `gcc` to comment a line
         --     2. select lines in visual mode and run `gc`
