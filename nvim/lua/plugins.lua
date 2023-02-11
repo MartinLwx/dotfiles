@@ -105,14 +105,6 @@ return require('packer').startup(function(use)
             config = [[require('config.lualine')]],
         }
 
-        -- Tabpage integration
-        use {
-            'akinsho/bufferline.nvim',
-            tag = "v3.*",
-            requires = 'nvim-tree/nvim-web-devicons',
-            config = [[require('config.bufferline')]]
-        }
-
         -- Markdown support
         use { 'preservim/vim-markdown', ft = { 'markdown' } }
 
