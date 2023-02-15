@@ -108,6 +108,9 @@ return require('packer').startup(function(use)
         -- Markdown support
         use { 'preservim/vim-markdown', ft = { 'markdown' } }
 
+        -- Smart indentation for Python
+        use { "Vimjas/vim-python-pep8-indent", ft = { "python" } }
+
         -- Fuzzy finder
         use { 'Yggdroot/LeaderF', run = ':LeaderfInstallCExtension' }
 

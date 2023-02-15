@@ -11,7 +11,7 @@ require('mason').setup({
 
 require('mason-lspconfig').setup({
     -- A list of servers to automatically install if they're not already installed
-    ensure_installed = { 'pylsp', 'gopls', 'sumneko_lua', 'bashls', 'rust_analyzer' },
+    ensure_installed = { 'pylsp', 'gopls', 'lua_ls', 'bashls', 'rust_analyzer' },
 })
 
 
@@ -55,6 +55,16 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
+-- Hint: The `settings` table is sent in `on_init` via a `workspace/didChangeConfiguration` notification
+-- from the Nvim client to the language server.
+-- `pyright.disableLanguageServices`: `boolean`
+-- require('lspconfig').pyright.setup {
+--     settings = {
+--         pyright = {
+--             disableLanguageServices = true,
+--         }
+--     }
+-- }
 
 -- Configure each language
 lspconfig.pylsp.setup({
@@ -65,8 +75,7 @@ lspconfig.gopls.setup({
     on_attach = on_attach,
 })
 
-lspconfig.sumneko_lua.setup({
-    on_attach = on_attach,
+lspconfig.lua_ls.setup {
     settings = {
         Lua = {
             runtime = {
@@ -87,10 +96,18 @@ lspconfig.sumneko_lua.setup({
             },
         },
     },
-})
+}
 
 lspconfig.bashls.setup({})
 
+-- source: https://rust-analyzer.github.io/manual.html#nvim-lsp
 lspconfig.rust_analyzer.setup({
     on_attach = on_attach,
+    settings = {
+        ['rust-analyzer'] = {
+            inlayHints = {
+                closingBraceHints = true, -- Whether to show inlay hints after a closing } to indicate what item it belongs to.
+            }
+        }
+    }
 })

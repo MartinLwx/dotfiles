@@ -22,6 +22,7 @@ After getting familiar with more and more dotfiles, I also thought I should use 
     - Git dcorations: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
     - Code comment helper: [vim-commentary](https://github.com/tpope/vim-commentary)
     - Markdown: [vim-markdown](https://github.com/preservim/vim-markdown)
+    - PEP8 style indentation in Python: [vim-python-pep8-indent](https://github.com/Vimjas/vim-python-pep8-indent)
     - Fuzzy finder: [LeaderF](https://github.com/Yggdroot/LeaderF)
     - File explorer: [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua)
     - Identation indicator: [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)
