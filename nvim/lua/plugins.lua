@@ -108,6 +108,15 @@ return require('packer').startup(function(use)
         -- Markdown support
         use { 'preservim/vim-markdown', ft = { 'markdown' } }
 
+        -- Markdown previewer
+        -- It require nodejs and yarn. Use homebrew to install first
+        use {
+            "iamcco/markdown-preview.nvim",
+            run = "cd app && npm install",
+            setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+            ft = { "markdown" },
+        }
+
         -- Smart indentation for Python
         use { "Vimjas/vim-python-pep8-indent", ft = { "python" } }
 
@@ -121,6 +130,16 @@ return require('packer').startup(function(use)
                 'nvim-tree/nvim-web-devicons', -- optional, for file icons
             },
             config = [[require('config.nvim-tree')]]
+        }
+
+        -- Smart motion
+        use {
+            'phaazon/hop.nvim',
+            branch = 'v2', -- optional but strongly recommended
+            config = function()
+                -- you can configure Hop the way you like here; see :h hop-config
+                require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+            end
         }
 
         -- Better terminal integration
