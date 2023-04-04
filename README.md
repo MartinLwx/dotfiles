@@ -24,7 +24,6 @@ After getting familiar with more and more dotfiles, I also thought I should use 
     - Markdown: [vim-markdown](https://github.com/preservim/vim-markdown)
     - Markdown previewer: [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
     - PEP8 style indentation in Python: [vim-python-pep8-indent](https://github.com/Vimjas/vim-python-pep8-indent)
-    - Fuzzy finder: [LeaderF](https://github.com/Yggdroot/LeaderF)
     - File explorer: [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua)
     - Identation indicator: [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)
     - Status line: [lualin.nvim](https://github.com/nvim-lualine/lualine.nvim)

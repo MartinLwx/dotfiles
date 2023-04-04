@@ -120,9 +120,6 @@ return require('packer').startup(function(use)
         -- Smart indentation for Python
         use { "Vimjas/vim-python-pep8-indent", ft = { "python" } }
 
-        -- Fuzzy finder
-        use { 'Yggdroot/LeaderF', run = ':LeaderfInstallCExtension' }
-
         -- File explorer
         use {
             'nvim-tree/nvim-tree.lua',
