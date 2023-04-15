@@ -52,7 +52,14 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
     vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-    vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+    vim.keymap.set('n', '<space>f', function()
+        vim.lsp.buf.format({
+            async = true,
+            filter = function (client)
+                return client.name == "null-ls"
+            end
+        })
+    end, bufopts)
 end
 
 -- Hint: The `settings` table is sent in `on_init` via a `workspace/didChangeConfiguration` notification

@@ -43,6 +43,15 @@ return require('packer').startup(function(use)
         use { 'williamboman/mason-lspconfig.nvim' }
         use { 'neovim/nvim-lspconfig' }
 
+        -- Add hooks to LSP to support Linter && Formatter
+        use { 'nvim-lua/plenary.nvim' }
+        use {
+            'jay-babu/mason-null-ls.nvim',
+            after = 'plenary.nvim',
+            requires = { 'jose-elias-alvarez/null-ls.nvim' },
+            config=[[require('config.mason-null-ls')]]
+        }
+
         -- Vscode-like pictograms
         use { 'onsails/lspkind.nvim', event = 'VimEnter' }
 
@@ -81,8 +90,7 @@ return require('packer').startup(function(use)
 
         -- Code comment helper
         --     1. `gcc` to comment a line
-        --     2. select lines in visual mode and run `gc`
-        --     3. `gcu` to undo comment
+        --     2. select lines in visual mode and run `gc` to comment/uncomment lines
         use 'tpope/vim-commentary'
 
         -- Treesitter-integration
