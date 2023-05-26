@@ -62,18 +62,10 @@ local on_attach = function(client, bufnr)
     end, bufopts)
 end
 
--- Hint: The `settings` table is sent in `on_init` via a `workspace/didChangeConfiguration` notification
--- from the Nvim client to the language server.
--- `pyright.disableLanguageServices`: `boolean`
--- require('lspconfig').pyright.setup {
---     settings = {
---         pyright = {
---             disableLanguageServices = true,
---         }
---     }
--- }
-
 -- Configure each language
+-- How to add LSP for a specific language?
+-- 1. use `:Mason` to install corresponding LSP
+-- 2. add configuration below
 lspconfig.pylsp.setup({
     on_attach = on_attach,
 })
@@ -83,6 +75,7 @@ lspconfig.gopls.setup({
 })
 
 lspconfig.lua_ls.setup {
+    on_attach = on_attach,
     settings = {
         Lua = {
             runtime = {
@@ -117,4 +110,8 @@ lspconfig.rust_analyzer.setup({
             }
         }
     }
+})
+
+lspconfig.clangd.setup({
+    on_attach = on_attach,
 })
