@@ -1,4 +1,9 @@
-require('lualine').setup {
+local is_ok, lualine = pcall(require, 'lualine')
+if not is_ok then
+    return
+end
+
+lualine.setup {
     options = {
         icons_enabled = true,
         theme = 'material',

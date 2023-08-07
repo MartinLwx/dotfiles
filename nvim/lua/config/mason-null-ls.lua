@@ -1,5 +1,14 @@
-require("mason").setup()
-local null_ls = require("null-ls")
+local mason_ok, mason = pcall(require, "mason")
+if not mason_ok then
+	return
+end
+
+mason.setup()
+
+local null_ls_ok, null_ls = pcall(require, "null-ls")
+if not null_ls_ok then
+	return
+end
 
 local sources = {
 	null_ls.builtins.formatting.black.with({ extra_args = { "--target-version", "py310" } }),
@@ -13,7 +22,12 @@ null_ls.setup({
 	sources = sources,
 })
 
-require("mason-null-ls").setup({
+local mason_null_ls_ok, mason_null_ls = pcall(require, "mason-null-ls")
+if not mason_null_ls_ok then
+	return
+end
+
+mason_null_ls.setup({
 	-- A list of sources to install if they're not already installed.
 	-- This setting has no relation with the `automatic_installation` setting.
 	ensure_installed = {
