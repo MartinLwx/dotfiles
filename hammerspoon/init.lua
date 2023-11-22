@@ -1,2 +1,3 @@
-require('config')
-require('window')
+require("config")
+require("window")
+require("slowQuit")

@@ -5,9 +5,20 @@ After getting familiar with more and more dotfiles, I also thought I should use 
 
 ## What is inside ?
 
-- hammerspoon
-    - window management
-- Neovim
+- **Hammerspoon**
+    - Window management
+        - Full screen  - <kbd>⌘ Command</kbd> + <kbd>⌥ Option</kbd> + <kbd>f</kdb>
+        - Center       - <kbd>⌘ Command</kbd> + <kbd>⌥ Option</kbd> + <kbd>c</kdb>
+        - Left half    - <kbd>⌘ Command</kbd> + <kbd>⌥ Option</kbd> + <kbd>←</kdb>
+        - Right half   - <kbd>⌘ Command</kbd> + <kbd>⌥ Option</kbd> + <kbd>→</kdb>
+        - Top half     - <kbd>⌘ Command</kbd> + <kbd>⌥ Option</kbd> + <kbd>↑</kdb>
+        - Bottom half  - <kbd>⌘ Command</kbd> + <kbd>⌥ Option</kbd> + <kbd>↓</kdb>
+        - Top left     - <kbd>⌘ Command</kbd> + <kbd>⌥ Option</kbd> + <kbd>⌃ Control</kbd> + <kbd>u</kdb>
+        - Top right    - <kbd>⌘ Command</kbd> + <kbd>⌥ Option</kbd> + <kbd>⌃ Control</kbd> + <kbd>i</kdb>
+        - Bottom left  - <kbd>⌘ Command</kbd> + <kbd>⌥ Option</kbd> + <kbd>⌃ Control</kbd> + <kbd>j</kdb>
+        - Bottom right - <kbd>⌘ Command</kbd> + <kbd>⌥ Option</kbd> + <kbd>⌃ Control</kbd> + <kbd>k</kdb>
+    - Hold to quit any app - <kbd>⌘ Command</kbd> + <kbd>q</kbd>
+- **Neovim**
     - Package manager: [packer.nvim](https://github.com/wbthomason/packer.nvim)
     - Auto-completion 
         - Completion sources: [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
