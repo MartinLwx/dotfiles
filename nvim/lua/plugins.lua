@@ -46,7 +46,7 @@ return require("packer").startup(function(use)
 	use({
 		"jay-babu/mason-null-ls.nvim",
 		after = "plenary.nvim",
-		requires = { "jose-elias-alvarez/null-ls.nvim" },
+		requires = { "nvimtools/none-ls.nvim" },
 		config = [[require('config.mason-null-ls')]],
 	})
 

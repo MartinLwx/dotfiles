@@ -27,7 +27,7 @@ After getting familiar with more and more dotfiles, I also thought I should use 
             - [mason.nvim](https://github.com/williamboman/mason.nvim)
             - [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)
             - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
-            - [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)
+            - [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)
             - [mason-null-ls.nvim](https://github.com/jay-babu/mason-null-ls.nvim)
     - Code snippet engine: [Luasnip](https://github.com/L3MON4D3/LuaSnip)
     - Colorscheme: [monokai](https://github.com/tanvirtin/monokai.nvim)
