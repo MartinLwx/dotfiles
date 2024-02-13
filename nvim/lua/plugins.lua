@@ -134,12 +134,13 @@ return require("packer").startup(function(use)
 	})
 
 	-- Smart motion
+	-- Usage: Enter 2-character search pattern then press a label character to
+	-- pick your target. Initiate the sesarch with `s`(forward) or `S`(backward)
 	use({
-		"phaazon/hop.nvim",
-		branch = "v2", -- optional but strongly recommended
+		"ggandor/leap.nvim",
 		config = function()
-			-- you can configure Hop the way you like here; see :h hop-config
-			require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
+			-- See `:h leap-custom-mappings` for more details
+			require("leap").create_default_mappings()
 		end,
 	})
 

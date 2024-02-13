@@ -44,5 +44,5 @@ After getting familiar with more and more dotfiles, I also thought I should use 
     - Better terminal support: [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)
     - Treesitter integration: [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
     - Autopairs: [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
-    - Easy motion: [hop.nvim](https://github.com/phaazon/hop.nvim)
+    - Easy motion: [leap.nvim](https://github.com/ggandor/leap.nvim)
     - Surrounding: [nvim-surround](https://github.com/kylechui/nvim-surround)
