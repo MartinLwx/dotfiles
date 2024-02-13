@@ -148,20 +148,32 @@ return require("packer").startup(function(use)
 	-- ------------------------------------------------------------------
 	-- Old text                    Command         New text
 	-- ------------------------------------------------------------------
-	-- surr*ound_words             ysiw)           (surround_words)
-	-- *make strings               ys$"            "make strings"
-	-- [delete ar*ound me!]        ds]             delete around me!
-	-- remove <b>HTML t*ags</b>    dst             remove HTML tags
-	-- 'change quot*es'            cs'"            "change quotes"
-	-- <b>or tag* types</b>        csth1<CR>       <h1>or tag types</h1>
-	-- delete(functi*on calls)     dsf             function calls
+	-- surr*ound_words             gziw)           (surround_words)
+	-- *make strings               gz$"            "make strings"
+	-- [delete ar*ound me!]        gzd]            delete around me!
+	-- remove <b>HTML t*ags</b>    gzdt            remove HTML tags
+	-- 'change quot*es'            gzc'"           "change quotes"
+	-- delete(functi*on calls)     gzcf            function calls
 	-- ------------------------------------------------------------------
 	use({
 		"kylechui/nvim-surround",
 		tag = "*", -- Use for stability; omit to use `main` branch for the latest features
 		config = function()
 			require("nvim-surround").setup({
-				-- Configuration here, or leave empty to use defaults
+				-- To solve the conflicts with leap.nvim
+				-- See: https://github.com/ggandor/leap.nvim/discussions/59
+				keymaps = {
+					insert = "<C-g>z",
+					insert_line = "gC-ggZ",
+					normal = "gz",
+					normal_cur = "gZ",
+					normal_line = "gzgz",
+					normal_cur_line = "gZgZ",
+					visual = "gz",
+					visual_line = "gZ",
+					delete = "gzd",
+					change = "gzc",
+				},
 			})
 		end,
 	})
