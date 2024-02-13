@@ -29,15 +29,19 @@ After getting familiar with more and more dotfiles, I also thought I should use 
             - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
             - [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)
             - [mason-null-ls.nvim](https://github.com/jay-babu/mason-null-ls.nvim)
-    - Code snippet engine: [Luasnip](https://github.com/L3MON4D3/LuaSnip)
-    - Colorscheme: [monokai](https://github.com/tanvirtin/monokai.nvim)
-    - Git integration: [vim-fugitive](https://github.com/tpope/vim-fugitive)
-    - Git dcorations: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
-    - Code comment helper: [vim-commentary](https://github.com/tpope/vim-commentary)
+    - Git related
+        - Git integration: [vim-fugitive](https://github.com/tpope/vim-fugitive)
+        - Git dcorations: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
     - Markdown tools:
         - Markdown: [vim-markdown](https://github.com/preservim/vim-markdown)
         - Markdown previewer: [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
-    - PEP8 style indentation in Python: [vim-python-pep8-indent](https://github.com/Vimjas/vim-python-pep8-indent)
+    - Programming languages specific
+        - PEP8 style indentation in Python: [vim-python-pep8-indent](https://github.com/Vimjas/vim-python-pep8-indent)
+    - Stylish
+        - Colorscheme: [monokai](https://github.com/tanvirtin/monokai.nvim)
+    - Fuzzy finders: [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
+    - Code snippet engine: [Luasnip](https://github.com/L3MON4D3/LuaSnip)
+    - Code comment helper: [vim-commentary](https://github.com/tpope/vim-commentary)
     - File explorer: [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua)
     - Identation indicator: [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)
     - Status line: [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)

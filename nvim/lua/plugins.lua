@@ -182,6 +182,14 @@ return require("packer").startup(function(use)
 	-- tag = string,                -- Specifies a git tag to use. Supports '*' for "latest tag"
 	use({ "akinsho/toggleterm.nvim", tag = "*", config = [[require('config.toggleterm')]] })
 
+	-- Fuzzy finder
+	use({
+		"nvim-telescope/telescope.nvim",
+		branch = "0.1.x",
+		requires = { "nvim-lua/plenary.nvim" },
+        config = [[require('config.telescope')]]
+	})
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if packer_bootstrap then
