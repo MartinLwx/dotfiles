@@ -32,7 +32,7 @@ mason_null_ls.setup({
 	-- Sources found installed in mason will automatically be setup for null-ls.
 	automatic_setup = true,
 	handlers = {
-		-- Hint: see https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTIN_CONFIG.md
+		-- Hint: see https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md
 		--       to see what sources are available
 		-- Hint: see https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTIN_CONFIG.md
 		--       to check what we can configure for each source
@@ -48,7 +48,14 @@ mason_null_ls.setup({
 				-- Add more arguments to a source's defaults
 				-- Default: { "--enable-outside-detected-project", "--name", "$FILENAME", "-" }
 				-- Type `ocamlformat --help` in your terminal to check more args
-				extra_args = { "--if-then-else", "vertical" },
+				extra_args = {
+					"--if-then-else",
+					"vertical",
+					"--break-cases",
+					"fit-or-vertical",
+					"--type-decl",
+					"sparse",
+				},
 			}))
 		end,
 	},

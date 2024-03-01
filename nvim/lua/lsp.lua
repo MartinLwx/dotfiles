@@ -106,7 +106,8 @@ lspconfig.rust_analyzer.setup({
 	settings = {
 		["rust-analyzer"] = {
 			inlayHints = {
-				closingBraceHints = true, -- Whether to show inlay hints after a closing } to indicate what item it belongs to.
+				-- Whether to show inlay hints after a closing } to indicate what item it belongs to.
+				closingBraceHints = true,
 			},
 		},
 	},
