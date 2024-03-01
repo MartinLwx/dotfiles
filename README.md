@@ -19,7 +19,7 @@ After getting familiar with more and more dotfiles, I also thought I should use 
         - Bottom right - <kbd>⌘ Command</kbd> + <kbd>⌥ Option</kbd> + <kbd>⌃ Control</kbd> + <kbd>k</kdb>
     - Hold to quit any app - <kbd>⌘ Command</kbd> + <kbd>q</kbd>
 - **Neovim**
-    - Package manager: [packer.nvim](https://github.com/wbthomason/packer.nvim)
+    - Package manager: [lazy.nvim](https://github.com/folke/lazy.nvim)
     - Auto-completion 
         - Completion sources: [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
         - Vscode-like pictograms: [lspkind.nvim](https://github.com/onsails/lspkind.nvim)
