@@ -96,6 +96,14 @@ require("lazy").setup({
 			require("config.nvim-treesitter")
 		end,
 	},
+	-- Nvim-treesitter text objects
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		dependencies = "nvim-treesitter/nvim-treesitter",
+        config = function ()
+            require("config.nvim-treesitter-textobjects")
+        end
+	},
 	-- Show indentation and blankline
 	{
 		"lukas-reineke/indent-blankline.nvim",

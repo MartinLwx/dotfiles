@@ -35,10 +35,12 @@ After getting familiar with more and more dotfiles, I also thought I should use 
     - Markdown tools:
         - Markdown: [vim-markdown](https://github.com/preservim/vim-markdown)
         - Markdown previewer: [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
-    - Programming languages specific
-        - PEP8 style indentation in Python: [vim-python-pep8-indent](https://github.com/Vimjas/vim-python-pep8-indent)
+    - Programming languages
+        - Treesitter integration: [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+        - Syntax aware text-object: [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
     - Stylish
         - Colorscheme: [monokai](https://github.com/tanvirtin/monokai.nvim)
+    - PEP8 style indentation in Python: [vim-python-pep8-indent](https://github.com/Vimjas/vim-python-pep8-indent)
     - Fuzzy finders: [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
     - Code snippet engine: [Luasnip](https://github.com/L3MON4D3/LuaSnip)
     - Code comment helper: [vim-commentary](https://github.com/tpope/vim-commentary)
@@ -46,7 +48,6 @@ After getting familiar with more and more dotfiles, I also thought I should use 
     - Identation indicator: [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)
     - Status line: [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
     - Better terminal support: [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)
-    - Treesitter integration: [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
     - Autopairs: [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
     - Easy motion: [leap.nvim](https://github.com/ggandor/leap.nvim)
     - Surrounding: [nvim-surround](https://github.com/kylechui/nvim-surround)
