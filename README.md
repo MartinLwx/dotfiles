@@ -1,10 +1,11 @@
-# dotfiles
-I agree with the statement - [*Your dotfiles will most likely be the longest project you ever work on.*](https://www.anishathalye.com/2014/08/03/managing-your-dotfiles/). That is one of my motivations of creating this repo.
+# Motivations
+> [*Your dotfiles will most likely be the longest project you ever work on.*](https://www.anishathalye.com/2014/08/03/managing-your-dotfiles/)
 
-After getting familiar with more and more dotfiles, I also thought I should use Git to manage them :)
+Managing dotfiles without a version control system is a chore. That's why I created this GitHub repo :)
 
 ## What is inside ?
 
+- **Kitty**
 - **Hammerspoon**
     - Window management
         - Full screen  - <kbd>⌘ Command</kbd> + <kbd>⌥ Option</kbd> + <kbd>f</kdb>
