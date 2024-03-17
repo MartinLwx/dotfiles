@@ -15,13 +15,14 @@ vim.opt.rtp:prepend(lazypath)
 
 -- After installation, run `checkhealth lazy` to see if everything goes right
 -- Hints:
---     build: it will be executed when a plugin is installed or updated
---     config: it will be executed when the plugin loads
+--     build: It will be executed when a plugin is installed or updated
+--     config: It will be executed when the plugin loads
 --     event: Lazy-load on event
 --     dependencies: A list of plugin names or plugin specs that should be loaded when the plugin loads
 --     ft: Lazy-load on filetype
 --     cmd: Lazy-load on command
---     init: functions are always executed during startup
+--     init: Functions are always executed during startup
+--     opts: The table will be passed to the require(...).setup(opts)
 require("lazy").setup({
 	-- LSP manager
 	"williamboman/mason.nvim",
@@ -67,6 +68,23 @@ require("lazy").setup({
 	},
 	-- Colorscheme
 	"tanvirtin/monokai.nvim",
+	-- Better UI
+    -- Run `:checkhealth noice` to check for common issues
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		opts = {
+			-- add any options here
+		},
+		dependencies = {
+			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+			"MunifTanjim/nui.nvim",
+			-- OPTIONAL:
+			--   `nvim-notify` is only needed, if you want to use the notification view.
+			--   If not available, we use `mini` as the fallback
+			"rcarriga/nvim-notify",
+		},
+	},
 	-- Git integration
 	"tpope/vim-fugitive",
 	-- Git decorations
@@ -100,9 +118,9 @@ require("lazy").setup({
 	{
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		dependencies = "nvim-treesitter/nvim-treesitter",
-        config = function ()
-            require("config.nvim-treesitter-textobjects")
-        end
+		config = function()
+			require("config.nvim-treesitter-textobjects")
+		end,
 	},
 	-- Show indentation and blankline
 	{
@@ -122,15 +140,13 @@ require("lazy").setup({
 	-- Markdown support
 	{ "preservim/vim-markdown", ft = { "markdown" } },
 	-- Markdown previewer
-	-- NOTE: It require nodejs and yarn. Use homebrew to install first
 	{
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-		build = "cd app && yarn install",
-		init = function()
-			vim.g.mkdp_filetypes = { "markdown" }
-		end,
 		ft = { "markdown" },
+		build = function()
+			vim.fn["mkdp#util#install"]()
+		end,
 	},
 	-- File explorer
 	{

@@ -41,6 +41,7 @@ Managing dotfiles without a version control system is a chore. That's why I crea
         - Syntax aware text-object: [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
     - Stylish
         - Colorscheme: [monokai](https://github.com/tanvirtin/monokai.nvim)
+        - Better UI for messages/cmdline/popupmenu: [noice.nvim](https://github.com/folke/noice.nvim)
     - PEP8 style indentation in Python: [vim-python-pep8-indent](https://github.com/Vimjas/vim-python-pep8-indent)
     - Fuzzy finders: [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
     - Code snippet engine: [Luasnip](https://github.com/L3MON4D3/LuaSnip)
