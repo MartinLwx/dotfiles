@@ -22,6 +22,13 @@ vim.opt.rtp:prepend(lazypath)
 --     ft: Lazy-load on filetype
 --     cmd: Lazy-load on command
 --     init: Functions are always executed during startup
+--     branch: string?
+--             Branch of the repository
+--     main: string?
+--           Specify the main module to use for config() or opts()
+--           , in case it can not be determined automatically.
+--     keys: string? | string[] | LazyKeysSpec table
+--           Lazy-load on key mapping
 --     opts: The table will be passed to the require(...).setup(opts)
 require("lazy").setup({
 	-- LSP manager
@@ -69,7 +76,7 @@ require("lazy").setup({
 	-- Colorscheme
 	"tanvirtin/monokai.nvim",
 	-- Better UI
-    -- Run `:checkhealth noice` to check for common issues
+	-- Run `:checkhealth noice` to check for common issues
 	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
@@ -125,6 +132,7 @@ require("lazy").setup({
 	-- Show indentation and blankline
 	{
 		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
 		config = function()
 			require("config.indent-blankline")
 		end,
@@ -220,6 +228,46 @@ require("lazy").setup({
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			require("config.telescope")
+		end,
+	},
+	{
+		"folke/trouble.nvim",
+		branch = "dev",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		keys = {
+			{
+				"<leader>xx",
+				"<cmd>Trouble diagnostics toggle<cr>",
+				desc = "Diagnostics (Trouble)",
+			},
+			{
+				"<leader>xX",
+				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+				desc = "Buffer Diagnostics (Trouble)",
+			},
+			{
+				"<leader>cs",
+				"<cmd>Trouble symbols toggle focus=false<cr>",
+				desc = "Symbols (Trouble)",
+			},
+			{
+				"<leader>cl",
+				"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+				desc = "LSP Definitions / references / ... (Trouble)",
+			},
+			{
+				"<leader>xL",
+				"<cmd>Trouble loclist toggle<cr>",
+				desc = "Location List (Trouble)",
+			},
+			{
+				"<leader>xQ",
+				"<cmd>Trouble qflist toggle<cr>",
+				desc = "Quickfix List (Trouble)",
+			},
+		},
+		opts = function()
+			require("config.trouble")
 		end,
 	},
 })

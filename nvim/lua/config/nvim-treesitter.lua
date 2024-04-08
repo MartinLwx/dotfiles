@@ -28,6 +28,7 @@ configs.setup({
 		"go",
 		"comment", -- for tags like TODO:, FIXME(user)
 		"diff", -- git diff
+		"markdown_inline",
 	},
 	-- Install parsers synchronously (only applied to `ensure_installed`)
 	sync_install = false,
@@ -75,10 +76,10 @@ configs.setup({
 		-- scope_incremental: in visual mode, increment to the upper scope
 		-- node_decremental: in visual mode, decrement to the previous named node.
 		keymaps = {
-			init_selection = "gnn",
-			node_incremental = "grn",
-			scope_incremental = "grc",
-			node_decremental = "grm",
+			init_selection = "gss",
+			node_incremental = "gsi",
+			scope_incremental = "gsc",
+			node_decremental = "gsd",
 		},
 	},
 })

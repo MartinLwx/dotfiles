@@ -1,18 +1,14 @@
 -- load options
-require('options')        
-
+require("options")
 
 -- load keymappings
-require('keymaps')
-
+require("keymaps")
 
 -- load Packervim
-require('plugins')
-
+require("plugins")
 
 -- Set colorscheme
-require('colorscheme')
-
+require("colorscheme")
 
 -- Set LSP
-require('lsp')
+require("lsp")
