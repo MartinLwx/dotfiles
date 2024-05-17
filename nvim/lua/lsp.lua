@@ -35,6 +35,11 @@ local on_attach = function(client, bufnr)
 	-- Enable completion triggered by <c-x><c-o>
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
+	if client.name == "rust_analyzer" then
+		-- This requires Neovim 0.10 or later
+		vim.lsp.inlay_hint.enable()
+	end
+
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
 	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
@@ -102,14 +107,6 @@ lspconfig.bashls.setup({})
 -- source: https://rust-analyzer.github.io/manual.html#nvim-lsp
 lspconfig.rust_analyzer.setup({
 	on_attach = on_attach,
-	settings = {
-		["rust-analyzer"] = {
-			inlayHints = {
-				-- Whether to show inlay hints after a closing } to indicate what item it belongs to.
-				closingBraceHints = true,
-			},
-		},
-	},
 })
 
 lspconfig.clangd.setup({
