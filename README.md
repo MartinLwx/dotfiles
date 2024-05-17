@@ -45,7 +45,6 @@ Managing dotfiles without a version control system is a chore. That's why I crea
     - Code editing
         - A pretty list for showing diagnostics: [trouble.nvim](https://github.com/folke/trouble.nvim)
         - Autopairs: [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
-        - Code comment helper: [vim-commentary](https://github.com/tpope/vim-commentary)
         - Identation indicator: [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)
         - Easy motion: [leap.nvim](https://github.com/ggandor/leap.nvim)
         - Surrounding: [nvim-surround](https://github.com/kylechui/nvim-surround)

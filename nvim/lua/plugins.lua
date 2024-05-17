@@ -18,7 +18,9 @@ vim.opt.rtp:prepend(lazypath)
 --     build: It will be executed when a plugin is installed or updated
 --     config: It will be executed when the plugin loads
 --     event: Lazy-load on event
---     dependencies: A list of plugin names or plugin specs that should be loaded when the plugin loads
+--     dependencies: table
+--                   A list of plugin names or plugin specs that should be loaded when the plugin loads.
+--                   Dependencies are always lazy-loaded unless specified otherwise.
 --     ft: Lazy-load on filetype
 --     cmd: Lazy-load on command
 --     init: Functions are always executed during startup
@@ -59,15 +61,17 @@ require("lazy").setup({
 	-- Auto-completion engine
 	{
 		"hrsh7th/nvim-cmp",
-		dependencies = { "lspkind.nvim" },
+		dependencies = {
+			"lspkind.nvim",
+			"hrsh7th/cmp-nvim-lsp", -- lsp auto-completion
+			"hrsh7th/cmp-buffer", -- buffer auto-completion
+			"hrsh7th/cmp-path", -- path auto-completion
+			"hrsh7th/cmp-cmdline", -- cmdline auto-completion
+		},
 		config = function()
 			require("config.nvim-cmp")
 		end,
 	},
-	{ "hrsh7th/cmp-nvim-lsp", dependencies = { "nvim-cmp" } },
-	{ "hrsh7th/cmp-buffer", dependencies = { "nvim-cmp" } }, -- buffer auto-completion
-	{ "hrsh7th/cmp-path", dependencies = { "nvim-cmp" } }, -- path auto-completion
-	{ "hrsh7th/cmp-cmdline", dependencies = { "nvim-cmp" } }, -- cmdline auto-completion
 	-- Code snippet engine
 	{
 		"L3MON4D3/LuaSnip",
@@ -109,10 +113,6 @@ require("lazy").setup({
 			require("config.nvim-autopairs")
 		end,
 	},
-	-- Code comment helper
-	--     1. `gcc` to comment a line
-	--     2. select lines in visual mode and run `gc` to comment/uncomment lines
-	"tpope/vim-commentary",
 	-- Treesitter-integration
 	{
 		"nvim-treesitter/nvim-treesitter",
