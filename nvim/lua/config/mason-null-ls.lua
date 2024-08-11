@@ -43,6 +43,9 @@ mason_null_ls.setup({
 		stylua = function(source_name, methods)
 			null_ls.register(null_ls.builtins.formatting.stylua)
 		end,
+		rubyformat = function(source_name, methods)
+			null_ls.register(null_ls.builtins.formatting.rubyfmt)
+		end,
 		ocamlformat = function(source_name, methods)
 			null_ls.register(null_ls.builtins.formatting.ocamlformat.with({
 				-- Add more arguments to a source's defaults

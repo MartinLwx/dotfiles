@@ -67,9 +67,10 @@ local on_attach = function(client, bufnr)
 	end, bufopts)
 end
 
--- How to add a LSP for a specific language?
+-- How to add a LSP for a specific programming language?
 -- 1. Use `:Mason` to install the corresponding LSP.
--- 2. Add configuration below.
+-- 2. Add the configuration below.
+-- Name Reference: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 lspconfig.pylsp.setup({
 	on_attach = on_attach,
 })
@@ -114,5 +115,9 @@ lspconfig.clangd.setup({
 })
 
 lspconfig.ocamllsp.setup({
+	on_attach = on_attach,
+})
+
+lspconfig.ruby_lsp.setup({
 	on_attach = on_attach,
 })
