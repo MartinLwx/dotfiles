@@ -46,6 +46,9 @@ mason_null_ls.setup({
 		rubyformat = function(source_name, methods)
 			null_ls.register(null_ls.builtins.formatting.rubyfmt)
 		end,
+		clangformat = function(source_name, methods)
+			null_ls.register(null_ls.builtins.formatting.clang_format)
+		end,
 		ocamlformat = function(source_name, methods)
 			null_ls.register(null_ls.builtins.formatting.ocamlformat.with({
 				-- Add more arguments to a source's defaults

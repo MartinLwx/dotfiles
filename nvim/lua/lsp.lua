@@ -11,7 +11,7 @@ require("mason").setup({
 
 require("mason-lspconfig").setup({
 	-- A list of servers to automatically install if they're not already installed
-	ensure_installed = { "pylsp", "lua_ls", "bashls", "rust_analyzer" },
+	ensure_installed = { "pylsp", "lua_ls", "bashls" },
 })
 
 -- Set different settings for different languages' LSP
@@ -69,8 +69,8 @@ end
 
 -- How to add a LSP for a specific programming language?
 -- 1. Use `:Mason` to install the corresponding LSP.
--- 2. Add the configuration below.
--- Name Reference: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+-- 2. Add the configuration below. The syntax is `lspconfig.<name>.setup(...)`
+-- Hint (find <name> here) : https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 lspconfig.pylsp.setup({
 	on_attach = on_attach,
 })
@@ -119,5 +119,16 @@ lspconfig.ocamllsp.setup({
 })
 
 lspconfig.ruby_lsp.setup({
+	on_attach = on_attach,
+})
+
+-- For CMake User (assumption: ./build is the build directory)
+--     $ cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+--     $ ln -s ./build/compile_commands.json .
+-- If you don't use any build tool
+--     Put compile_commands.json in the root directory of your project
+--     The compile_commands.json contains *build flags* (-I ...)
+-- see: https://clangd.llvm.org/installation#compile_commandsjson
+lspconfig.clangd.setup({
 	on_attach = on_attach,
 })
