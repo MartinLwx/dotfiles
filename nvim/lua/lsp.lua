@@ -1,4 +1,5 @@
--- Note: The order matters: mason -> mason-lspconfig -> lspconfig
+-- Note: The order matters: require("mason") -> require("mason-lspconfig") -> require("lspconfig")
+
 require("mason").setup({
 	ui = {
 		icons = {
@@ -10,19 +11,19 @@ require("mason").setup({
 })
 
 require("mason-lspconfig").setup({
-	-- A list of servers to automatically install if they're not already installed
+	-- A list of servers to automatically install if they're not already installed.
 	ensure_installed = { "pylsp", "lua_ls", "bashls" },
 })
 
--- Set different settings for different languages' LSP
+-- Set different settings for different languages' LSP.
 -- LSP list: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- How to use setup({}): https://github.com/neovim/nvim-lspconfig/wiki/Understanding-setup-%7B%7D
---     - the settings table is sent to the LSP
---     - on_attach: a lua callback function to run after LSP attaches to a given buffer
+--     - the settings table is sent to the LSP.
+--     - on_attach: a lua callback function to run after LSP attaches to a given buffer.
 local lspconfig = require("lspconfig")
 
--- Customized on_attach function
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
+-- Customized on_attach function.
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions.
 local opts = { noremap = true, silent = true }
 vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
@@ -30,13 +31,13 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
 -- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
+-- after the language server attaches to the current buffer.
 local on_attach = function(client, bufnr)
 	-- Enable completion triggered by <c-x><c-o>
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
 	if client.name == "rust_analyzer" then
-		-- This requires Neovim 0.10 or later
+		-- WARNING: This feature requires Neovim 0.10 or later.
 		vim.lsp.inlay_hint.enable()
 	end
 
@@ -84,18 +85,18 @@ lspconfig.lua_ls.setup({
 	settings = {
 		Lua = {
 			runtime = {
-				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim).
 				version = "LuaJIT",
 			},
 			diagnostics = {
-				-- Get the language server to recognize the `vim` global
+				-- Get the language server to recognize the `vim` global.
 				globals = { "vim" },
 			},
 			workspace = {
-				-- Make the server aware of Neovim runtime files
+				-- Make the server aware of Neovim runtime files.
 				library = vim.api.nvim_get_runtime_file("", true),
 			},
-			-- Do not send telemetry data containing a randomized but unique identifier
+			-- Do not send telemetry data containing a randomized but unique identifier.
 			telemetry = {
 				enable = false,
 			},
@@ -105,8 +106,8 @@ lspconfig.lua_ls.setup({
 
 lspconfig.bashls.setup({})
 
--- source: https://rust-analyzer.github.io/manual.html#nvim-lsp
 lspconfig.rust_analyzer.setup({
+	-- source: https://rust-analyzer.github.io/manual.html#nvim-lsp
 	on_attach = on_attach,
 })
 
@@ -122,13 +123,13 @@ lspconfig.ruby_lsp.setup({
 	on_attach = on_attach,
 })
 
--- For CMake User (assumption: ./build is the build directory)
---     $ cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1
---     $ ln -s ./build/compile_commands.json .
--- If you don't use any build tool
---     Put compile_commands.json in the root directory of your project
---     The compile_commands.json contains *build flags* (-I ...)
--- see: https://clangd.llvm.org/installation#compile_commandsjson
+-- Case 1. For CMake User
+--     $ cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON .
+-- Case 2. For Bazel User, use https://github.com/hedronvision/bazel-compile-commands-extractor
+-- Case 3. If you don't use any build tool and all files in a project use the same build flags
+--     Place your compiler flags in the compile_flags.txt file, located in the root directory
+--     of your project. Each line in the file should contain a single compiler flag.
+-- src: https://clangd.llvm.org/installation#compile_commandsjson
 lspconfig.clangd.setup({
 	on_attach = on_attach,
 })
