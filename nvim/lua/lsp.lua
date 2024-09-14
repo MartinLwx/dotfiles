@@ -60,9 +60,12 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "<space>f", function()
 		vim.lsp.buf.format({
 			async = true,
-			-- Only request null-ls for formatting
+			-- Predicate used to filter clients. Receives a client as
+			-- argument and must return a boolean. Clients matching the
+			-- predicate are included.
 			filter = function(client)
-				return client.name == "null-ls"
+				-- NOTE: If an LSP contains a formatter, we don't need to use null-ls at all.
+				return client.name == "null-ls" or client.name == "hls"
 			end,
 		})
 	end, bufopts)
@@ -131,5 +134,9 @@ lspconfig.ruby_lsp.setup({
 --     of your project. Each line in the file should contain a single compiler flag.
 -- src: https://clangd.llvm.org/installation#compile_commandsjson
 lspconfig.clangd.setup({
+	on_attach = on_attach,
+})
+
+lspconfig.hls.setup({
 	on_attach = on_attach,
 })
