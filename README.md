@@ -53,3 +53,4 @@ Managing dotfiles without a version control system is a chore. That's why I crea
     - File explorer: [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua)
     - Status line: [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
     - Better terminal support: [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)
+    - Editor Performance: [faster.nvim](https://github.com/pteroctopus/faster.nvim)

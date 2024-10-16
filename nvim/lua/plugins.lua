@@ -230,6 +230,10 @@ require("lazy").setup({
 			require("config.telescope")
 		end,
 	},
+	-- Improve the performance of big file
+	{
+		"pteroctopus/faster.nvim",
+	},
 	{
 		"folke/trouble.nvim",
 		branch = "dev",
