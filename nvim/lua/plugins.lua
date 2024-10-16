@@ -48,7 +48,7 @@ require("lazy").setup({
 		config = function()
 			-- Note:
 			--     the default search path for `require` is ~/.config/nvim/lua
-			--     use a `.` as a path seperator
+			--     use a `.` as a path separator
 			--     the suffix `.lua` is not needed
 			require("config.mason-null-ls")
 		end,
@@ -85,10 +85,10 @@ require("lazy").setup({
 		"folke/noice.nvim",
 		event = "VeryLazy",
 		opts = {
-			-- add any options here
+			-- Add any options here
 		},
 		dependencies = {
-			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+			-- If you lazy-load any plugin below, make sure to add proper `module="..."` entries
 			"MunifTanjim/nui.nvim",
 			-- OPTIONAL:
 			--   `nvim-notify` is only needed, if you want to use the notification view.
@@ -167,7 +167,7 @@ require("lazy").setup({
 		end,
 	},
 	-- Smart motion
-	-- Usage: Enter 2-character search pattern then press a label character to
+	-- Usage: Enter a 2-character search pattern then press a label character to
 	--        pick your target.
 	--        Initiate the sesarch with `s`(forward) or `S`(backward)
 	{

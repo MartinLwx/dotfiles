@@ -32,7 +32,7 @@ Managing dotfiles without a version control system is a chore. That's why I crea
             - [mason-null-ls.nvim](https://github.com/jay-babu/mason-null-ls.nvim)
     - Git related
         - Git integration: [vim-fugitive](https://github.com/tpope/vim-fugitive)
-        - Git dcorations: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
+        - Git decorations: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
     - Markdown tools:
         - Markdown: [vim-markdown](https://github.com/preservim/vim-markdown)
         - Markdown previewer: [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
@@ -45,7 +45,7 @@ Managing dotfiles without a version control system is a chore. That's why I crea
     - Code editing
         - A pretty list for showing diagnostics: [trouble.nvim](https://github.com/folke/trouble.nvim)
         - Autopairs: [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
-        - Identation indicator: [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)
+        - Indentation indicator: [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)
         - Easy motion: [leap.nvim](https://github.com/ggandor/leap.nvim)
         - Surrounding: [nvim-surround](https://github.com/kylechui/nvim-surround)
     - Fuzzy finders: [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
