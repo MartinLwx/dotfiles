@@ -29,7 +29,7 @@ mason_null_ls.setup({
 	-- Can also be an exclusion list.
 	-- Example: `automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }`
 	automatic_installation = false,
-	-- Sources found installed in mason will automatically be setup for null-ls.
+	-- Sources found installed in mason will automatically be set up for null-ls.
 	automatic_setup = true,
 	handlers = {
 		-- Hint: see https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md

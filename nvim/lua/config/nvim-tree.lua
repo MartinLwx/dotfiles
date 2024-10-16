@@ -13,7 +13,7 @@ end
 --
 -- Although care was taken to ensure correctness and completeness, your review is required.
 --
--- Please check for the following issues in auto generated content:
+-- Please check for the following issues in auto-generated content:
 --   "Mappings removed" is as you expect
 --   "Mappings migrated" are correct
 --

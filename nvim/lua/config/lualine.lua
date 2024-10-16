@@ -26,7 +26,7 @@ lualine.setup({
 	-- +-------------------------------------------------+
 	-- | A | B | C                             X | Y | Z |
 	-- +-------------------------------------------------+
-	-- Each sections holds its components
+	-- Each section holds its components
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = {
@@ -37,7 +37,7 @@ lualine.setup({
 		lualine_c = {
 			{
 				"filename",
-				file_status = true, -- Displays file status (readonly status, modified status)
+				file_status = true, -- Displays file status (read-only status, modified status)
 				-- Path configurations
 				-- 0: Just the filename
 				-- 1: Relative path

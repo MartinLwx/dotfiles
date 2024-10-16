@@ -12,10 +12,10 @@ npairs.setup({
 	--                             }
 	-- ------------------------------------
 	map_cr = true,
-	check_ts = true, -- check if treesitter is installed
+	check_ts = true, -- check if tree-sitter is installed
 	ts_config = {
-		lua = { "string" }, -- it will not add a pair on that treesitter node
+		lua = { "string" }, -- it will not add a pair on that tree-sitter node
 		javascript = { "template_string" },
-		java = false, -- don't check treesitter on java
+		java = false, -- don't check tree-sitter on java
 	},
 })

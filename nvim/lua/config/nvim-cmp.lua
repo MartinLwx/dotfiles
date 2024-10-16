@@ -27,13 +27,14 @@ cmp.setup({
 		["<C-k>"] = cmp.mapping.select_prev_item(),
 		["<C-j>"] = cmp.mapping.select_next_item(),
 		-- Use <CR>(Enter) to confirm selection
-		-- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+		-- Accept the currently selected item.
+		-- Set `select` to `false` to only confirm explicitly selected items.
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 
 		-- A super tab
-		-- sourc: https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
+		-- Source: https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
 		["<Tab>"] = cmp.mapping(function(fallback)
-			-- Hint: if the completion menu is visible select next one
+			-- Hint: if the completion menu is visible select the next one
 			if cmp.visible() then
 				cmp.select_next_item()
 			elseif luasnip.expand_or_locally_jumpable() then
@@ -59,13 +60,13 @@ cmp.setup({
 	-- Let's configure the item's appearance
 	-- source: https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance
 	formatting = {
-		-- customize the appearance of the completion menu
+		-- Customize the appearance of the completion menu
 		format = lspkind.cmp_format({
-			-- show only symbol annotations
+			-- Show only symbol annotations
 			mode = "symbol_text",
-			-- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+			-- Prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
 			maxwidth = 100,
-			-- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+			-- When the popup menu exceeds maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
 			ellipsis_char = "...",
 
 			-- The function below will be called before any actual modifications from lspkind

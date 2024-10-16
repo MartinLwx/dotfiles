@@ -32,7 +32,7 @@ configs.setup({
 	},
 	-- Install parsers synchronously (only applied to `ensure_installed`)
 	sync_install = false,
-	-- Automatically install missing parsers when entering buffer
+	-- Automatically install missing parsers when entering the buffer
 	-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
 	auto_install = true,
 	-- List of parsers to ignore installing (for "all")
@@ -45,12 +45,12 @@ configs.setup({
 		-- Should we enable this module for all supported languages?
 		enable = true,
 
-		-- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
+		-- NOTE: these are the names of the parsers and not the filetype. (for example, if you want to
 		-- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
 		-- the name of the parser)
-		-- if you want to disable the module for some languages you can pass a list to the `disable` option.
+		-- If you want to disable the module for some languages you can pass a list to the `disable` option.
 		disable = { "c", "rust" },
-		-- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
+		-- Or use a function for more flexibility, e.g. to disable slow tree-sitter highlight for large files
 		-- disable = function(lang, buf)
 		--     local max_filesize = 100 * 1024 -- 100 KB
 		--     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))

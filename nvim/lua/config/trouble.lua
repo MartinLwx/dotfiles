@@ -26,11 +26,11 @@ trouble.setup({
 		["<2-leftmouse>"] = "jump",
 		["<c-s>"] = "jump_split",
 		["<c-v>"] = "jump_vsplit",
-		-- go down to next item (accepts count)
+		-- go down to the next item (accepts count)
 		-- j = "next",
 		["}"] = "next",
 		["]]"] = "next",
-		-- go up to prev item (accepts count)
+		-- go up to the prev item (accepts count)
 		-- k = "prev",
 		["{"] = "prev",
 		["[["] = "prev",
@@ -60,7 +60,7 @@ trouble.setup({
 			focus = false,
 			win = { position = "right" },
 			filter = {
-				-- remove Package since luals uses it for control flow structures
+				-- Remove Package since luals uses it for control flow structures
 				["not"] = { ft = "lua", kind = "Package" },
 				any = {
 					-- all symbol kinds for help / markdown files
