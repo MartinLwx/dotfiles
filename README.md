@@ -36,6 +36,7 @@ Managing dotfiles without a version control system is a chore. That's why I crea
     - Markdown tools:
         - Markdown: [vim-markdown](https://github.com/preservim/vim-markdown)
         - Markdown previewer: [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
+        - Paste image : [img-clip.nvim](https://github.com/HakonHarnes/img-clip.nvim)
     - Programming languages
         - Treesitter integration: [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
         - Syntax aware text-object: [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
