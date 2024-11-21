@@ -65,7 +65,7 @@ local on_attach = function(client, bufnr)
 			-- predicate are included.
 			filter = function(client)
 				-- NOTE: If an LSP contains a formatter, we don't need to use null-ls at all.
-				return client.name == "null-ls" or client.name == "hls"
+				return client.name == "null-ls" or client.name == "hls" or client.name == "rust_analyzer"
 			end,
 		})
 	end, bufopts)
