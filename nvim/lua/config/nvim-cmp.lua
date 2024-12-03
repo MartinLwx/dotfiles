@@ -1,8 +1,7 @@
-local luasnip_ok, luasnip = pcall(require, "luasnip")
 local cmp_ok, cmp = pcall(require, "cmp")
 local lspkind_ok, lspkind = pcall(require, "lspkind")
 
-if not luasnip_ok or not cmp_ok or not lspkind_ok then
+if not cmp_ok or not lspkind_ok then
 	return
 end
 
@@ -16,31 +15,26 @@ cmp.setup({
 	snippet = {
 		-- REQUIRED - you must specify a snippet engine
 		expand = function(args)
-			require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+			-- WARNING: This feature requires Neovim v0.10+
+			vim.snippet.expand(args.body)
 		end,
 	},
 	mapping = cmp.mapping.preset.insert({
-		-- Use <C-b/f> to scroll the docs
+		-- Use <C-b/f> to scroll the docs.
 		["<C-b>"] = cmp.mapping.scroll_docs(-4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
-		-- Use <C-k/j> to switch in items
+		-- Use <C-k/j> to switch in items.
 		["<C-k>"] = cmp.mapping.select_prev_item(),
 		["<C-j>"] = cmp.mapping.select_next_item(),
-		-- Use <CR>(Enter) to confirm selection
-		-- Accept the currently selected item.
-		-- Set `select` to `false` to only confirm explicitly selected items.
+		-- Use <CR> to confirm selection.
+		-- Set select to false to only confirm explicitly selected items.
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 
 		-- A super tab
-		-- Source: https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
 		["<Tab>"] = cmp.mapping(function(fallback)
 			-- Hint: if the completion menu is visible select the next one
 			if cmp.visible() then
 				cmp.select_next_item()
-			elseif luasnip.expand_or_locally_jumpable() then
-				-- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-				-- they way you will only jump inside the snippet region
-				luasnip.expand_or_jump()
 			elseif has_words_before() then
 				cmp.complete()
 			else
@@ -50,9 +44,6 @@ cmp.setup({
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
-			else
 				fallback()
 			end
 		end, { "i", "s" }),
@@ -74,7 +65,6 @@ cmp.setup({
 			before = function(entry, vim_item)
 				vim_item.menu = ({
 					nvim_lsp = "[Lsp]",
-					luasnip = "[Luasnip]",
 					buffer = "[File]",
 					path = "[Path]",
 				})[entry.source.name]
@@ -85,7 +75,6 @@ cmp.setup({
 	-- Set source precedence
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" }, -- For nvim-lsp
-		{ name = "luasnip" }, -- For luasnip user
 		{ name = "buffer" }, -- For buffer word completion
 		{ name = "path" }, -- For path completion
 	}),

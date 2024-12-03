@@ -50,7 +50,6 @@ Managing dotfiles without a version control system is a chore. That's why I crea
         - Easy motion: [leap.nvim](https://github.com/ggandor/leap.nvim)
         - Surrounding: [nvim-surround](https://github.com/kylechui/nvim-surround)
     - Fuzzy finders: [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
-    - Code snippet engine: [Luasnip](https://github.com/L3MON4D3/LuaSnip)
     - File explorer: [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua)
     - Status line: [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
     - Better terminal support: [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)

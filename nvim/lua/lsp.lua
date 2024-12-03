@@ -37,7 +37,7 @@ local on_attach = function(client, bufnr)
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
 	if client.name == "rust_analyzer" then
-		-- WARNING: This feature requires Neovim 0.10 or later.
+		-- WARNING: This feature requires Neovim v0.10+
 		vim.lsp.inlay_hint.enable()
 	end
 

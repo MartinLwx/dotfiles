@@ -72,11 +72,6 @@ require("lazy").setup({
 			require("config.nvim-cmp")
 		end,
 	},
-	-- Code snippet engine
-	{
-		"L3MON4D3/LuaSnip",
-		version = "v2.*",
-	},
 	-- Colorscheme
 	"tanvirtin/monokai.nvim",
 	-- Better UI

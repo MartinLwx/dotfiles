@@ -13,8 +13,6 @@ if not mason_null_ls_ok then
 	return
 end
 
--- Hint:
-
 mason.setup()
 
 mason_null_ls.setup({
