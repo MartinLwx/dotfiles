@@ -19,7 +19,6 @@ mason_null_ls.setup({
 	-- A list of sources to install if they're not already installed.
 	-- This setting has no relation with the `automatic_installation` setting.
 	ensure_installed = {
-		"black",
 		"stylua",
 	},
 	-- Run `require("null-ls").setup`.
@@ -29,15 +28,14 @@ mason_null_ls.setup({
 	automatic_installation = false,
 	-- Sources found installed in mason will automatically be set up for null-ls.
 	automatic_setup = true,
+	-- Providing an empty `handlers` will cause all sources to be automatically
+	-- registered in `null-ls`.
 	handlers = {
 		-- Hint: see https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md
 		--       to see what sources are available
 		-- Hint: see https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTIN_CONFIG.md
 		--       to check what we can configure for each source
 		-- function() end, -- disables automatic setup of all null-ls sources
-		black = function(source_name, methods)
-			null_ls.register(null_ls.builtins.formatting.black)
-		end,
 		stylua = function(source_name, methods)
 			null_ls.register(null_ls.builtins.formatting.stylua)
 		end,
@@ -65,4 +63,9 @@ mason_null_ls.setup({
 	},
 })
 
-null_ls.setup()
+-- Will automatically install masons tools based on selected sources in `null-ls`.
+null_ls.setup({
+	sources = {
+		-- Anything not supported by mason.
+	},
+})

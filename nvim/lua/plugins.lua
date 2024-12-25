@@ -249,9 +249,9 @@ require("lazy").setup({
 	{
 		"pteroctopus/faster.nvim",
 	},
+	-- A pretty list for showing diagnostics, references, telescope results, quickfix and location lists
 	{
 		"folke/trouble.nvim",
-		branch = "dev",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		keys = {
 			{

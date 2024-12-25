@@ -65,7 +65,10 @@ local on_attach = function(client, bufnr)
 			-- predicate are included.
 			filter = function(client)
 				-- NOTE: If an LSP contains a formatter, we don't need to use null-ls at all.
-				return client.name == "null-ls" or client.name == "hls" or client.name == "rust_analyzer"
+				return client.name == "null-ls"
+					or client.name == "hls"
+					or client.name == "rust_analyzer"
+					or client.name == "ruff"
 			end,
 		})
 	end, bufopts)
@@ -75,8 +78,19 @@ end
 -- 1. Use `:Mason` to install the corresponding LSP.
 -- 2. Add the configuration below. The syntax is `lspconfig.<name>.setup(...)`
 -- Hint (find <name> here) : https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+
 lspconfig.pylsp.setup({
 	on_attach = on_attach,
+	settings = {
+		-- configure plugins in pylsp
+		pylsp = {
+			plugins = {
+				pyflakes = { enabled = false },
+				pylint = { enabled = false },
+				pycodestyle = { enabled = false },
+			},
+		},
+	},
 })
 
 lspconfig.gopls.setup({
@@ -139,4 +153,14 @@ lspconfig.clangd.setup({
 
 lspconfig.hls.setup({
 	on_attach = on_attach,
+})
+
+-- src: https://docs.astral.sh/ruff/editors/setup/#neovim
+lspconfig.ruff.setup({
+	on_attach = on_attach,
+	init_options = {
+		settings = {
+			-- Ruff language server settings go here
+		},
+	},
 })
