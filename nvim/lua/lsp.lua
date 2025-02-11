@@ -69,6 +69,7 @@ local on_attach = function(client, bufnr)
 					or client.name == "hls"
 					or client.name == "rust_analyzer"
 					or client.name == "ruff"
+					or client.name == "ts_ls"
 			end,
 		})
 	end, bufopts)
@@ -163,4 +164,8 @@ lspconfig.ruff.setup({
 			-- Ruff language server settings go here
 		},
 	},
+})
+
+lspconfig.ts_ls.setup({
+	on_attach = on_attach,
 })
