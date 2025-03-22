@@ -29,8 +29,7 @@ My Go-to text editor with the following plugins:
         - [mason.nvim](https://github.com/williamboman/mason.nvim)
         - [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)
         - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
-        - [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)
-        - [mason-null-ls.nvim](https://github.com/jay-babu/mason-null-ls.nvim)
+        - [conform.nvim](https://github.com/stevearc/conform.nvim)
 - Git related
     - Git integration: [vim-fugitive](https://github.com/tpope/vim-fugitive)
     - Git decorations: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
