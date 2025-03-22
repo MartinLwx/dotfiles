@@ -116,6 +116,11 @@ require("lazy").setup({
 			require("config.nvim-treesitter")
 		end,
 	},
+	-- Shown context when editing code
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+		opts = {},
+	},
 	-- Nvim-treesitter text objects
 	{
 		"nvim-treesitter/nvim-treesitter-textobjects",

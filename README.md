@@ -38,8 +38,9 @@ My Go-to text editor with the following plugins:
     - Markdown: [vim-markdown](https://github.com/preservim/vim-markdown)
     - Markdown previewer: [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
     - Paste image : [img-clip.nvim](https://github.com/HakonHarnes/img-clip.nvim)
-- Programming languages
+- Programming languages:
     - Treesitter integration: [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+    - Show context at the top: [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context)
     - Syntax aware text-object: [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
 - Stylish
     - Colorscheme: [monokai](https://github.com/tanvirtin/monokai.nvim)
