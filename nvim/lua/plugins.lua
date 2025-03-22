@@ -29,8 +29,8 @@ vim.opt.rtp:prepend(lazypath)
 --     main: string?
 --           Specify the main module to use for config() or opts()
 --           , in case it can not be determined automatically.
---     keys: string? | string[] | LazyKeysSpec table
---           Lazy-load on key mapping
+--     keys: Lazy-load on key mapping (the default mode is 'n', that is normal mode)
+--           e.g., { <key mapping>, mode = {'n'}, <function> }
 --     opts: The table will be passed to the require(...).setup(opts)
 require("lazy").setup({
 	-- LSP manager
@@ -181,28 +181,7 @@ require("lazy").setup({
 			require("config.nvim-tree")
 		end,
 	},
-	-- Smart motion
-	-- Usage: Enter a 2-character search pattern then press a label character to
-	--        pick your target.
-	--        Initiate the sesarch with `s`(forward) or `S`(backward)
-	{
-		"ggandor/leap.nvim",
-		config = function()
-			-- See `:h leap-custom-mappings` for more details
-			require("leap").create_default_mappings()
-		end,
-	},
 	-- Make surrounding easier
-	-- ------------------------------------------------------------------
-	-- Old text                    Command         New text
-	-- ------------------------------------------------------------------
-	-- surr*ound_words             gziw)           (surround_words)
-	-- *make strings               gz$"            "make strings"
-	-- [delete ar*ound me!]        gzd]            delete around me!
-	-- remove <b>HTML t*ags</b>    gzdt            remove HTML tags
-	-- 'change quot*es'            gzc'"           "change quotes"
-	-- delete(functi*on calls)     gzcf            function calls
-	-- ------------------------------------------------------------------
 	{
 		"kylechui/nvim-surround",
 		version = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -211,20 +190,7 @@ require("lazy").setup({
 		event = "VeryLazy",
 		config = function()
 			require("nvim-surround").setup({
-				-- To solve the conflicts with leap.nvim
-				-- See: https://github.com/ggandor/leap.nvim/discussions/59
-				keymaps = {
-					insert = "<C-g>z",
-					insert_line = "gC-ggZ",
-					normal = "gz",
-					normal_cur = "gZ",
-					normal_line = "gzgz",
-					normal_cur_line = "gZgZ",
-					visual = "gz",
-					visual_line = "gZ",
-					delete = "gzd",
-					change = "gzc",
-				},
+				-- Configuration here, or leave empty to use defaults
 			})
 		end,
 	},
@@ -288,5 +254,30 @@ require("lazy").setup({
 		opts = function()
 			require("config.trouble")
 		end,
+	},
+	{
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		opts = {},
+		keys = {
+			{
+				"s",
+				mode = { "n", "x", "o" },
+				function()
+					require("flash").jump({
+						search = { forward = true, wrap = false, multi_window = false },
+					})
+				end,
+				desc = "Flash",
+			},
+			{
+				"S",
+				mode = { "n", "x", "o" },
+				function()
+					require("flash").treesitter()
+				end,
+				desc = "Flash Treesitter",
+			},
+		},
 	},
 })

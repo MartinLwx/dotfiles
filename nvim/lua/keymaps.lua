@@ -26,6 +26,21 @@ vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 -- default leader key: \
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
+-- For flash.nvim
+-- 1. Press `s` and type jump label
+-- 2. Press `S` and type jump label for specefic selection based on tree-sitter.
+--    You can also use `;` or `,` to increase/decrease the selection
+
+-- For nvim-surround
+--     Old text                    Command         New text
+-- --------------------------------------------------------------------------------
+--     surr*ound_words             ysiw)           (surround_words)
+--     *make strings               ys$"            "make strings"
+--     [delete ar*ound me!]        ds]             delete around me!
+--     remove <b>HTML t*ags</b>    dst             remove HTML tags
+--     'change quot*es'            cs'"            "change quotes"
+--     <b>or tag* types</b>        csth1<CR>       <h1>or tag types</h1>
+
 -----------------
 -- Visual mode --
 -----------------

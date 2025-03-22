@@ -48,7 +48,7 @@ My Go-to text editor with the following plugins:
     - A pretty list for showing diagnostics: [trouble.nvim](https://github.com/folke/trouble.nvim)
     - Autopairs: [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
     - Indentation indicator: [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)
-    - Easy motion: [leap.nvim](https://github.com/ggandor/leap.nvim)
+    - Easy motion: [flash.nvim](https://github.com/folke/flash.nvim)
     - Surrounding: [nvim-surround](https://github.com/kylechui/nvim-surround)
 - Fuzzy finders: [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 - File explorer: [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua)
