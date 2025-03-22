@@ -23,7 +23,7 @@ I use the [Hammerspoon](https://www.hammerspoon.org/) to manage windows. The ava
 My Go-to text editor with the following plugins:
 - Package manager: [lazy.nvim](https://github.com/folke/lazy.nvim)
 - Auto-completion 
-    - Completion sources: [blink.nvim](https://github.com/saghen/blink.cmp)
+    - Completion sources: [blink.cmp](https://github.com/saghen/blink.cmp)
     - Vscode-like pictograms: [lspkind.nvim](https://github.com/onsails/lspkind.nvim)
     - LSP support:
         - [mason.nvim](https://github.com/williamboman/mason.nvim)
