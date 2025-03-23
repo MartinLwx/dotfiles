@@ -83,11 +83,15 @@ plugins=(
     git
     autojump
     sudo
-    zsh-autosuggestions
-    zsh-syntax-highlighting
 )
 
-if [[ $(uname) == "Darwin" ]]; then
+if [[ $(uname) == "Linux" ]]; then
+    plugins+=(
+        zsh-autosuggestions
+        zsh-syntax-highlighting
+    )
+elif [[ $(uname) == "Darwin" ]]; then
+    export PATH=$PATH:/opt/homebrew/bin     # For Apple Silicon
     source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
     source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
