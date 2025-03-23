@@ -98,6 +98,12 @@ source $ZSH/oh-my-zsh.sh
 # - $ZSH_CUSTOM/aliases.zsh
 # - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
+alias mv="mv -i"  # prompts before overwrite
+alias rm="rm -i"
+alias mkdir="mkdir -p"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../../"
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
