@@ -33,6 +33,7 @@ My Go-to text editor with the following plugins:
 - Git related
     - Git integration: [vim-fugitive](https://github.com/tpope/vim-fugitive)
     - Git decorations: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
+- Typst tools: [tinymist](https://github.com/Myriad-Dreamin/tinymist?tab=readme-ov-file)
 - Markdown tools:
     - Markdown: [vim-markdown](https://github.com/preservim/vim-markdown)
     - Markdown previewer: [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
