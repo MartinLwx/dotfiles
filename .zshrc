@@ -71,9 +71,26 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # autojump:
-#   Ubuntu: sudo apt-get -y install autojump
+#   ubuntu: sudo apt-get -y install autojump
 #   macOS: brew install autojump
-plugins=(git autojump)
+# zsh-autosuggestions:
+#   ubuntu: git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+#   macOS: brew install zsh-autosuggestions
+# zsh-syntax-highlighting
+#   ubuntu: git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+#   macOS: brew install zsh-syntax-highlighting
+plugins=(
+    git
+    autojump
+    sudo
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+)
+
+if [[ $(uname) == "Darwin" ]]; then
+    source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
 source $ZSH/oh-my-zsh.sh
 
