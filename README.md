@@ -45,6 +45,7 @@ My Go-to text editor with the following plugins:
 - Stylish
     - Colorscheme: [monokai](https://github.com/tanvirtin/monokai.nvim)
     - Better UI for messages/cmdline/popupmenu: [noice.nvim](https://github.com/folke/noice.nvim)
+    - TODO highlighting: [todo-comments.nvim](https://github.com/folke/todo-comments.nvim?tab=readme-ov-file)
 - Code editing
     - A pretty list for showing diagnostics: [trouble.nvim](https://github.com/folke/trouble.nvim)
     - Autopairs: [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
