@@ -7,6 +7,7 @@ return {
 			ocaml = { "ocamlformat" },
 			c = { "clang-format" },
 			cpp = { "clang-format" },
+			elixir = { "elixir-ls" },
 			python = function(bufnr)
 				if require("conform").get_formatter_info("ruff_format", bufnr).available then
 					return { "ruff_format" }
