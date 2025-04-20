@@ -98,6 +98,13 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
+if ! command -v -- "nvim" > /dev/null 2>&1 ; then
+    # src: https://www.visualmode.dev/a-better-man-page-viewer
+    # hint: use q to quit out of man page
+    # hint: use K to follow any man page link
+    export MANPAGER="nvim +Man!"
+fi
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
