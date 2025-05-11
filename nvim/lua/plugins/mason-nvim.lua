@@ -1,1 +1,1 @@
-return { "williamboman/mason.nvim" }
+return { "mason-org/mason.nvim" }
