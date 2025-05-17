@@ -43,7 +43,7 @@ My Go-to text editor with the following plugins:
     - Show context at the top: [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context)
     - Syntax aware text-object: [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
 - Stylish
-    - Colorscheme: [monokai](https://github.com/tanvirtin/monokai.nvim)
+    - Colorscheme: [cyberdream.nvim](https://github.com/scottmckendry/cyberdream.nvim)
     - Better UI for messages/cmdline/popupmenu: [noice.nvim](https://github.com/folke/noice.nvim)
     - TODO highlighting: [todo-comments.nvim](https://github.com/folke/todo-comments.nvim?tab=readme-ov-file)
 - Code editing
