@@ -4,20 +4,12 @@ if not is_ok then
 end
 
 toggleterm.setup({
-	size = 20,
+	size = 12,
 	open_mapping = [[<C-\>]], -- how to open a new terminal
 	hide_numbers = true, -- hide the number column in toggleterm buffers
 	close_on_exit = true, -- close the terminal window when the process exits
 	shell = vim.o.shell, -- change the default shell
-	direction = "float",
-	float_opts = {
-		-- The border key is *almost* the same as 'nvim_open_win'
-		-- see :h nvim_open_win for details on borders however
-		-- the 'curved' border is a custom border type
-		-- not natively supported but implemented in this plugin.
-		border = "single",
-		winblend = 0,
-	},
+	direction = "horizontal",
 })
 
 -- Define key mappings
