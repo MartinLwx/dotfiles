@@ -53,7 +53,7 @@ My Go-to text editor with the following plugins:
     - Easy motion: [flash.nvim](https://github.com/folke/flash.nvim)
     - Surrounding: [nvim-surround](https://github.com/kylechui/nvim-surround)
 - Fuzzy finders: [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
-- File explorer: [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua)
+- File explorer: [mini.files](https://github.com/echasnovski/mini.files)
 - Status line: [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 - Better terminal support: [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)
 - Editor Performance: [faster.nvim](https://github.com/pteroctopus/faster.nvim)
