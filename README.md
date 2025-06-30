@@ -52,6 +52,7 @@ My Go-to text editor with the following plugins:
     - Indentation indicator: [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)
     - Easy motion: [flash.nvim](https://github.com/folke/flash.nvim)
     - Surrounding: [nvim-surround](https://github.com/kylechui/nvim-surround)
+    - Avante: [avante.nvim](https://github.com/yetone/avante.nvim?tab=readme-ov-file)
 - Fuzzy finders: [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 - File explorer: [mini.files](https://github.com/echasnovski/mini.files)
 - Status line: [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
