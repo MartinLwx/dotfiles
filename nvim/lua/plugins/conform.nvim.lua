@@ -1,7 +1,9 @@
 return {
 	"stevearc/conform.nvim",
 	opts = {
+		-- NOTE: Install formatters with Mason
 		formatters_by_ft = {
+			-- Specify the linter for each programming language.
 			lua = { "stylua" },
 			rust = { "rustfmt", lsp_format = "fallback" },
 			ocaml = { "ocamlformat" },

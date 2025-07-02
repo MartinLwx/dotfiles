@@ -29,7 +29,6 @@ My Go-to text editor with the following plugins:
         - [mason.nvim](https://github.com/williamboman/mason.nvim)
         - [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)
         - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
-        - [conform.nvim](https://github.com/stevearc/conform.nvim)
 - Git related
     - Git integration: [vim-fugitive](https://github.com/tpope/vim-fugitive)
     - Git decorations: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
@@ -53,6 +52,8 @@ My Go-to text editor with the following plugins:
     - Easy motion: [flash.nvim](https://github.com/folke/flash.nvim)
     - Surrounding: [nvim-surround](https://github.com/kylechui/nvim-surround)
     - CodeCompanion: [codecompanion.nvim](https://github.com/olimorris/codecompanion.nvim)
+    - Linter: [nvim-lint](https://github.com/mfussenegger/nvim-lint)
+    - Formatter: [conform.nvim](https://github.com/stevearc/conform.nvim)
 - Fuzzy finders: [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 - File explorer: [mini.files](https://github.com/echasnovski/mini.files)
 - Status line: [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
