@@ -35,7 +35,8 @@ My Go-to text editor with the following plugins:
 - Typst tools: [tinymist](https://github.com/Myriad-Dreamin/tinymist?tab=readme-ov-file)
 - Markdown tools:
     - Markdown: [vim-markdown](https://github.com/preservim/vim-markdown)
-    - Markdown previewer: [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
+    - Markdown previewer (in browser): [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
+    - [arkdown previewer (within file): [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim)
     - Paste image : [img-clip.nvim](https://github.com/HakonHarnes/img-clip.nvim)
 - Programming languages:
     - Treesitter integration: [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
