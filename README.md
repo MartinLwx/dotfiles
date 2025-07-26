@@ -55,6 +55,7 @@ My Go-to text editor with the following plugins:
     - CodeCompanion: [codecompanion.nvim](https://github.com/olimorris/codecompanion.nvim)
     - Linter: [nvim-lint](https://github.com/mfussenegger/nvim-lint)
     - Formatter: [conform.nvim](https://github.com/stevearc/conform.nvim)
+    - REPL-Driven Development: [conjure](https://github.com/Olical/conjure)
 - Fuzzy finders: [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 - File explorer: [mini.files](https://github.com/echasnovski/mini.files)
 - Status line: [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
