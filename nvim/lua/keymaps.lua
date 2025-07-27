@@ -29,6 +29,9 @@ vim.keymap.set("n", "<leader>e", "<cmd>lua MiniFiles.open()<CR>", opts)
 -- Open CodeCompanion.nvim
 vim.keymap.set("n", "<leader>aa", "<cmd>CodeCompanionChat Toggle<CR>", opts)
 
+-- For conjure
+vim.g.maplocalleader = ","
+
 -- For flash.nvim
 -- 1. Press `s` and type jump label
 -- 2. Press `S` and type jump label for specefic selection based on tree-sitter.
