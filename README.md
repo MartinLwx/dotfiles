@@ -7,7 +7,7 @@ Managing dotfiles without a version control system is a chore. That's why I crea
 ### Kitty
 My Personal Kitty Configurations
 ### Hammerspoon
-I use the [Hammerspoon](https://www.hammerspoon.org/) to manage windows. The available keymappings are:
+I use the [Hammerspoon](https://www.hammerspoon.org/) to manage windows. The available key mappings are:
 - Full screen  - <kbd>⌘ Command</kbd> + <kbd>⌥ Option</kbd> + <kbd>f</kdb>
 - Center       - <kbd>⌘ Command</kbd> + <kbd>⌥ Option</kbd> + <kbd>c</kdb>
 - Left half    - <kbd>⌘ Command</kbd> + <kbd>⌥ Option</kbd> + <kbd>←</kdb>
@@ -38,24 +38,26 @@ My Go-to text editor with the following plugins:
     - Markdown previewer (in browser): [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
     - [arkdown previewer (within file): [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim)
     - Paste image : [img-clip.nvim](https://github.com/HakonHarnes/img-clip.nvim)
-- Programming languages:
-    - Treesitter integration: [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-    - Show context at the top: [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context)
-    - Syntax aware text-object: [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
 - Stylish
     - Colorscheme: [tokyonight.nvim](https://github.com/folke/tokyonight.nvim)
     - Better UI for messages/cmdline/popupmenu: [noice.nvim](https://github.com/folke/noice.nvim)
     - TODO highlighting: [todo-comments.nvim](https://github.com/folke/todo-comments.nvim?tab=readme-ov-file)
 - Code editing
-    - A pretty list for showing diagnostics: [trouble.nvim](https://github.com/folke/trouble.nvim)
-    - Autopairs: [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
-    - Indentation indicator: [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)
-    - Easy motion: [flash.nvim](https://github.com/folke/flash.nvim)
-    - Surrounding: [nvim-surround](https://github.com/kylechui/nvim-surround)
-    - CodeCompanion: [codecompanion.nvim](https://github.com/olimorris/codecompanion.nvim)
-    - Linter: [nvim-lint](https://github.com/mfussenegger/nvim-lint)
-    - Formatter: [conform.nvim](https://github.com/stevearc/conform.nvim)
-    - REPL-Driven Development: [conjure](https://github.com/Olical/conjure)
+    - General capability
+        - Treesitter integration: [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+        - Show context at the top: [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context)
+        - Syntax aware text-object: [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
+        - A pretty list for showing diagnostics: [trouble.nvim](https://github.com/folke/trouble.nvim)
+        - Autopairs: [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
+        - Indentation indicator: [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)
+        - Easy motion: [flash.nvim](https://github.com/folke/flash.nvim)
+        - Surrounding: [nvim-surround](https://github.com/kylechui/nvim-surround)
+        - CodeCompanion: [codecompanion.nvim](https://github.com/olimorris/codecompanion.nvim)
+        - Linter: [nvim-lint](https://github.com/mfussenegger/nvim-lint)
+        - Formatter: [conform.nvim](https://github.com/stevearc/conform.nvim)
+        - REPL-Driven Development: [conjure](https://github.com/Olical/conjure)
+    - Lisp kind
+        - nvim-parinfer: [nvim-parinfer](https://github.com/gpanders/nvim-parinfer)
 - Fuzzy finders: [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 - File explorer: [mini.files](https://github.com/echasnovski/mini.files)
 - Status line: [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
