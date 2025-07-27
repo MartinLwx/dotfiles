@@ -7,7 +7,7 @@ Managing dotfiles without a version control system is a chore. That's why I crea
 ### Kitty
 My Personal Kitty Configurations
 ### Hammerspoon
-I use the [Hammerspoon](https://www.hammerspoon.org/) to manage windows. The available key mappings are:
+I use [Hammerspoon](https://www.hammerspoon.org/) to manage windows. The available key mappings are:
 - Full screen  - <kbd>⌘ Command</kbd> + <kbd>⌥ Option</kbd> + <kbd>f</kdb>
 - Center       - <kbd>⌘ Command</kbd> + <kbd>⌥ Option</kbd> + <kbd>c</kdb>
 - Left half    - <kbd>⌘ Command</kbd> + <kbd>⌥ Option</kbd> + <kbd>←</kdb>
@@ -48,7 +48,7 @@ My Go-to text editor with the following plugins:
         - Show context at the top: [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context)
         - Syntax aware text-object: [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
         - A pretty list for showing diagnostics: [trouble.nvim](https://github.com/folke/trouble.nvim)
-        - Autopairs: [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
+        - Autopairs: [blink.pairs](https://github.com/Saghen/blink.pairs)
         - Indentation indicator: [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)
         - Easy motion: [flash.nvim](https://github.com/folke/flash.nvim)
         - Surrounding: [nvim-surround](https://github.com/kylechui/nvim-surround)
