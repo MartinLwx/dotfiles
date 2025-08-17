@@ -1,21 +1,33 @@
 {
   description = "MartinLwx nix-darwin system flake";
 
+  # The dependencies of this flake.nix.
+  # Syntax: github:owner/name/reference
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs }:
+  # A Nix function whose parameters come from inputs.
+  outputs = inputs@{ self, nix-darwin, nixpkgs, ... }:
   let
+    # See the full manual here: https://nix-darwin.github.io/nix-darwin/manual/
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
-        [ pkgs.vim
-          pkgs.neovim # Text Editor
-	  pkgs.tldr   # Command cheatsheet
+        [ 
+	  # === General ===
+	  pkgs.vim 
+          pkgs.neovim    # Text Editor
+	  pkgs.tree      # Produce a depth indented directory listing
+	  pkgs.tldr      # Command cheatsheet
+	  pkgs.ncdu      # Disk usage analyzer
+	  pkgs.ripgrep   # Better grep
+	  pkgs.fd        # Better find
+	  pkgs.uv        # Python environment manager
+	  pkgs.autojump  # Cd command that learns
         ];
 
       # Necessary for using flakes on this system.
