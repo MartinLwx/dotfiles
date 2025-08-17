@@ -14,6 +14,8 @@
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
         [ pkgs.vim
+          pkgs.neovim # Text Editor
+	  pkgs.tldr   # Command cheatsheet
         ];
 
       # Necessary for using flakes on this system.
@@ -33,11 +35,31 @@
       nixpkgs.hostPlatform = "aarch64-darwin";
       # Enable Touch ID and Apple Watch with sudo.
       security.pam.services.sudo_local.touchIdAuth = true;
+
+      # macOS system settings
+      system.primaryUser = "MartinLwx";
+      system.defaults = {
+        # Menu bar settings.
+	controlcenter = {
+          BatteryShowPercentage = false;
+        };
+	# Dock settings.
+        dock = {
+	  autohide = false;
+	};
+	# Finder settings.
+        finder = {
+	  AppleShowAllExtensions = true;
+	  FXPreferredViewStyle = "clmv"; # Column View
+	};
+	screencapture.location = "~/Documents/images";
+      };
     };
   in
   {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#simple
+    # TIP: You can refer to the return value of each input here.
+    #      e.g., nix-darwin.lib.darwinSystem
+    # TIP: Build darwin flake using: $ sudo darwin-rebuild build --flake .#mba
     darwinConfigurations."mba" = nix-darwin.lib.darwinSystem {
       modules = [ configuration ];
     };
