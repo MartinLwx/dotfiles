@@ -8,17 +8,17 @@
   # Packages that should be installed to the user profile.
   home.packages = [
     # Databases
-    pkgs.neo4j      # Graph DB
+    pkgs.neo4j # Graph DB
 
     # Python
-    pkgs.uv
+    pkgs.uv # Better pip
 
     # Program analysis
     pkgs.tree-sitter
 
     # Utils
-    pkgs.ripgrep   # Better grep
-    pkgs.fd        # Better find
+    pkgs.ripgrep # Better grep
+    pkgs.fd # Better find
 
     # Blog writing
     pkgs.hugo
@@ -54,7 +54,10 @@
     oh-my-zsh = {
       enable = true;
       theme = "robbyrussell";
-      plugins = ["git" "sudo"];
+      plugins = [
+        "git"
+        "sudo"
+      ];
     };
   };
 
