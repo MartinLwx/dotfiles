@@ -32,18 +32,12 @@
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
         [ 
-	  # === General ===
 	  pkgs.vim 
           pkgs.neovim    # Text Editor
 	  pkgs.tree      # Produce a depth indented directory listing
 	  pkgs.tldr      # Command cheatsheet
 	  pkgs.ncdu      # Disk usage analyzer
-	  pkgs.ripgrep   # Better grep
-	  pkgs.fd        # Better find
-	  pkgs.uv        # Python environment manager
 	  pkgs.autojump  # Cd command that learns
-	  # pkgs.neo4j     # Graph DB
-	  # === macOS  ===
         ];
 
       # Envionrment Variables

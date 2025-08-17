@@ -5,10 +5,28 @@
   # paths it should manage.
   home.username = "martinlwx";
 
-  # # Packages that should be installed to the user profile.
-  # home.packages = [
-  #   pkgs.neo4j   # Graph DB
-  # ];
+  # Packages that should be installed to the user profile.
+  home.packages = [
+    # Databases
+    pkgs.neo4j      # Graph DB
+
+    # Python
+    pkgs.uv
+
+    # Program analysis
+    pkgs.tree-sitter
+
+    # Utils
+    pkgs.ripgrep   # Better grep
+    pkgs.fd        # Better find
+
+    # Blog writing
+    pkgs.hugo
+
+    # Misc
+    pkgs.neofetch
+  ];
+
   # Git settings.
   programs.git = {
     enable = true;
