@@ -31,6 +31,8 @@
 
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
+      # Enable Touch ID and Apple Watch with sudo.
+      security.pam.services.sudo_local.touchIdAuth = true;
     };
   in
   {
