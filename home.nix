@@ -16,6 +16,30 @@
     userEmail = "MartinLwx@163.com";
   };
 
+  # General shellAliases
+  # You should put simple aliases that are compatible across all shells.
+  home.shellAliases = {
+    mv = "mv -i";
+    mkdir = "mkdir -p";
+    rm = "rm -i";
+    ".." = "cd ..";
+    "..." = "cd ../..";
+    "...." = "cd ../../../";
+  };
+
+  # Zsh settings.
+  # See: https://nix-community.github.io/home-manager/options.xhtml#opt-programs.zsh.enable
+  programs.zsh = {
+    enable = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+    oh-my-zsh = {
+      enable = true;
+      theme = "robbyrussell";
+      plugins = ["git" "sudo"];
+    };
+  };
+
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
@@ -28,5 +52,4 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
 }
