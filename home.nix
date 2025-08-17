@@ -9,6 +9,12 @@
   # home.packages = [
   #   pkgs.neo4j   # Graph DB
   # ];
+  # Git settings.
+  programs.git = {
+    enable = true;
+    userName = "MartinLwx";
+    userEmail = "MartinLwx@163.com";
+  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
