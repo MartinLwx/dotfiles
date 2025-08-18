@@ -45,8 +45,7 @@
             pkgs.tree # Produce a depth indented directory listing
             pkgs.tldr # Command cheatsheet
             pkgs.ncdu # Disk usage analyzer
-            pkgs.autojump # Cd command that learns
-            pkgs.nixfmt-rfc-style # .nix files formatter
+            pkgs.nixfmt-rfc-style # The .nix files formatter
           ];
 
           # Envionrment Variables

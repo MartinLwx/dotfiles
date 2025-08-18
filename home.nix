@@ -3,28 +3,56 @@
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
+  # TODO: Replace martinlwx with your name.
   home.username = "martinlwx";
 
   # Packages that should be installed to the user profile.
   home.packages = [
-    # Databases
-    pkgs.neo4j # Graph DB
+    # JavaScript
+    pkgs.nodejs
+
+    # Clojure
+    pkgs.clojure
 
     # Python
     pkgs.uv # Better pip
 
-    # Program analysis
+    # OCaml
+    pkgs.ocaml
+    pkgs.opam # OCaml package manager
+
+    # Rust
+    pkgs.cargo # Rust package manager
+    pkgs.rustc
+
+    # Databases
+    pkgs.neo4j # Graph DB
+    pkgs.postgresql
+
+    # Git
+    pkgs.gitmoji-cli
+
+    # Program analysis tools
     pkgs.tree-sitter
+    pkgs.semgrep
+    pkgs.yara-x
+
+    # Performance profiling
+    pkgs.hyperfine
 
     # Utils
+    pkgs.graphviz # The .dot visualizer
     pkgs.ripgrep # Better grep
     pkgs.fd # Better find
+    pkgs.autojump # Cd command that learns
 
     # Blog writing
     pkgs.hugo
 
     # Misc
+    pkgs.direnv
     pkgs.neofetch
+    pkgs.yt-dlp
   ];
 
   # Git settings.
@@ -40,10 +68,14 @@
     mv = "mv -i";
     mkdir = "mkdir -p";
     rm = "rm -i";
+    v = "nvim";
     ".." = "cd ..";
     "..." = "cd ../..";
     "...." = "cd ../../../";
   };
+
+  # Autojump settings
+  programs.autojump.enable = true;
 
   # Zsh settings.
   # See: https://nix-community.github.io/home-manager/options.xhtml#opt-programs.zsh.enable
