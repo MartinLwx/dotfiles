@@ -21,10 +21,11 @@
       ...
     }:
     let
+      # HINT: import ./lib/mksystem.nix returns a function
+      mkSystem = import ./lib/mksystem.nix {
+        inherit nixpkgs inputs;
+      };
       # See the full manual here: https://nix-darwin.github.io/nix-darwin/manual/
-
-      # TODO: Replace martinlwx with your name.
-      username = "martinlwx";
       configuration =
         { pkgs, ... }:
         {
@@ -97,12 +98,10 @@
       # TIP: You can refer to the return value of each input here.
       #      e.g., nix-darwin.lib.darwinSystem
       # TIP: Build darwin flake using: $ sudo darwin-rebuild build --flake .#mba
-      darwinConfigurations."mba" = nix-darwin.lib.darwinSystem {
-        modules = [
-          configuration
-          ./hosts/mba/home.nix
-        ];
-        specialArgs = { inherit inputs self; };
+      darwinConfigurations."mba" = mkSystem "mba" {
+        system = "aarch64-darwin";
+        user = "martinlwx";
+        darwin = true;
       };
     };
 }
