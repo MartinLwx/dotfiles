@@ -100,23 +100,9 @@
       darwinConfigurations."mba" = nix-darwin.lib.darwinSystem {
         modules = [
           configuration
-          # Ensure that the home-manager will be rebuilt with the nix-darwin generations.
-          home-manager.darwinModules.home-manager
-          {
-            home-manager = {
-              # Use the global pkgs that is configured via the system level nixpkgs options.
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              # TODO: Replace martinlwx with your name.
-              # WARN: Add home.nix to the git to avoid error like Path '.../home.nix' does not exists.
-              #       See: https://discourse.nixos.org/t/flake-based-home-manager-cannot-find-home-nix/18356
-              users.martinlwx = import ./home.nix;
-            };
-
-            # Optionally, use home-manager.extraSpecialArgs to pass
-            # arguments to home.nix
-          }
+          ./hosts/mba/home.nix
         ];
+        specialArgs = { inherit inputs self; };
       };
     };
 }
