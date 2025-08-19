@@ -33,7 +33,6 @@
   security.pam.services.sudo_local.touchIdAuth = true;
 
   # macOS system settings
-  # TODO: Replace martinlwx with your name.
   system.primaryUser = "martinlwx";
   system.defaults = {
     # Menu bar settings.
