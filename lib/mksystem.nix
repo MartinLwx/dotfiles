@@ -11,9 +11,13 @@ name:
   system,
   user,
   darwin ? false,
+  wsl ? false,
 }:
 
 let
+  isWSL = wsl;
+  isLinux = !darwin && !isWSL;
+
   # Config files for different OS
   machineConfig = ../hosts/${name}.nix;
   userOSConfig = ../users/${if darwin then "darwin" else "nixos"}.nix;
@@ -28,6 +32,7 @@ systemFunc {
   # Hint: The submodules can use these special args.
   specialArgs = { inherit inputs ;};
   modules = [
+    (if isWSL then inputs.nixos-wsl.nixosModules.wsl else {})
     machineConfig
     userOSConfig
     home-manager.home-manager

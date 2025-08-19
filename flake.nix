@@ -11,6 +11,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -33,6 +38,11 @@
       };
     in
     {
+      nixosConfigurations.wsl = mkSystem "wsl" {
+        system = "x86_64-linux";
+        user = "martinlwx";
+        wsl = true;
+      };
       # TIP: You can refer to the return value of each input here.
       #      e.g., nix-darwin.lib.darwinSystem
       # TIP: Build darwin flake using: $ sudo darwin-rebuild build --flake .#mba
