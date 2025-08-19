@@ -3,6 +3,22 @@
 
 Managing dotfiles without a version control system is a chore. That's why I created this GitHub repo :)
 
+## Structure of my dotfiles
+
+```
+.
+├── flake.lock
+├── flake.nix
+├── lib                 # utils for Nix
+├── hosts               # hosts (aka. machines) configurations
+├── users               # user-level configurations
+├── hammerspoon         # hammerspoon configurations
+├── kitty               # keymapping configurations
+├── nvim                # neovim configurations
+├── README.md
+└── windows-only        # Windows configurations
+
+```
 ## What is inside?
 ### Kitty
 My Personal Kitty Configurations
