@@ -1,9 +1,26 @@
 { pkgs, ... }:
+
 {
+  imports = [
+    ./hardwares/hardware-configuration.nix
+  ];
+
   wsl = {
     enable = true;
     defaultUser = "martinlwx";
   };
+
+  nix.settings.experimental-features = [ "nix-command" "flakes"];
+
+  environment.systemPackages = with pkgs; [
+    git
+    vim
+    neovim
+    tree
+    tldr
+    ncdu
+    nixfmt-rfc-style
+  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -43,6 +43,7 @@
         user = "martinlwx";
         wsl = true;
       };
+
       # TIP: You can refer to the return value of each input here.
       #      e.g., nix-darwin.lib.darwinSystem
       # TIP: Build darwin flake using: $ sudo darwin-rebuild build --flake .#mba
