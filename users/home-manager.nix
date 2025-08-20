@@ -28,11 +28,13 @@
     pkgs.rustc
 
     # Databases
-    pkgs.neo4j # Graph DB
+    pkgs.neo4j
     pkgs.postgresql
 
     # Git
+    pkgs.git
     pkgs.gitmoji-cli
+    pkgs.delta  # Better git diff
 
     # Program analysis tools
     pkgs.tree-sitter
@@ -62,6 +64,10 @@
     enable = true;
     userName = "MartinLwx";
     userEmail = "MartinLwx@163.com";
+    delta = {
+      # Enable the delta syntax highlighter.
+      enable = true;
+    };
   };
 
   # General shellAliases
