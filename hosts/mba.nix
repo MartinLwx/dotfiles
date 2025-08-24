@@ -8,6 +8,7 @@
     pkgs.tree # Produce a depth indented directory listing
     pkgs.tldr # Command cheatsheet
     pkgs.ncdu # Disk usage analyzer
+    pkgs.tmux # Session manager
     pkgs.nixfmt-rfc-style # The .nix files formatter
   ];
 
@@ -47,6 +48,10 @@
     finder = {
       AppleShowAllExtensions = true;
       FXPreferredViewStyle = "clmv"; # Column View
+    };
+    NSGlobalDomain = {
+      # Do not automatically switch between light and dark mode
+      AppleInterfaceStyleSwitchesAutomatically = false;
     };
     screencapture.location = "~/Documents/images";
   };

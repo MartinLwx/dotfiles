@@ -85,4 +85,10 @@ I use Mac for personal business *but* use a Windows PC at work, so I wrote the `
 
 ### nix-darwin
 
-I have been gradually migrating to Nix flakes because I really appreciate the reproducibility they offer. My Nix configuration structure is largely inspired by [mitchellh'nixos-config](https://github.com/mitchellh/nixos-config).
+I have been *gradually* migrating to Nix flakes because I really appreciate the reproducibility they offer. My Nix configuration structure is largely inspired by [mitchellh'nixos-config](https://github.com/mitchellh/nixos-config).
+
+
+## Appendix
+
+- [Home Manager Configuration Options](https://nix-community.github.io/home-manager/options.xhtml)
+- [The nix-darwin Configuration Options](https://nix-darwin.github.io/nix-darwin/manual/)

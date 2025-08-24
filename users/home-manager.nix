@@ -34,7 +34,7 @@
     # Git
     pkgs.git
     pkgs.gitmoji-cli
-    pkgs.delta  # Better git diff
+    pkgs.delta # Better git diff
 
     # Program analysis tools
     pkgs.tree-sitter
@@ -50,7 +50,7 @@
     pkgs.fd # Better find
     pkgs.autojump # Cd command that learns
 
-    # Blog writing
+    # Writing
     pkgs.hugo
 
     # Misc
@@ -96,6 +96,35 @@
         "sudo"
       ];
     };
+  };
+
+  # Tmux settings.
+  programs.tmux = {
+    enable = true;
+    baseIndex = 1;
+    clock24 = true;
+    escapeTime = 1;
+    keyMode = "vi";
+    mouse = false;
+    prefix = "C-a";
+    extraConfig = ''
+      bind r source-file ~/.tmux.conf \; \
+             display-message "Configrations reloaded"
+      bind | split-window -h -c "#{pane_current_path}"
+      bind - split-window -v -c "#{pane_current_path}"
+      bind h select-pane -L
+      bind j select-pane -D
+      bind k select-pane -U
+      bind l select-pane -R
+      bind -r H resize-pane -L 5
+      bind -r J resize-pane -D 5
+      bind -r K resize-pane -U 5
+      bind -r L resize-pane -R 5
+      bind C-s set-window-option synchronize-panes
+      set -g default-terminal "tmux-256color"
+      set -g window-status-current-style bg=grey
+      set -w -g pane-border-lines heavy
+    '';
   };
 
   # Autojump settings

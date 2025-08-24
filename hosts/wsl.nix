@@ -8,18 +8,24 @@
   wsl = {
     enable = true;
     defaultUser = "martinlwx";
+    # Automatically mount windows drives under /mnt
+    wslConf.automount.enabled = true;
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   environment.systemPackages = with pkgs; [
     git
     vim
-    neovim
-    tree
-    tldr
-    ncdu
-    nixfmt-rfc-style
+    neovim # Text Editor
+    tree # Produce a depth indented directory listing
+    tldr # Command cheatsheet
+    ncdu # Disk usage analyzer
+    tmux # Session manager
+    nixfmt-rfc-style # The .nix files formatter
   ];
 
   # This value determines the NixOS release from which the default
