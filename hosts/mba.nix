@@ -12,16 +12,38 @@
     pkgs.nixfmt-rfc-style # The .nix files formatter
   ];
 
-  # Envionrment Variables
+  # Envionrment variables
   environment.variables = {
     EDITOR = "nvim";
   };
 
+  services = {
+    # PostgreSQL
+    postgresql = {
+      enable = true;
+      dataDir = "/var/lib/postgresql";
+      # FIXME: We still need to create database manually.
+      initdbArgs = [ "--username=martinlwx" "--auth=trust"];
+    };
+  };
+  # WARN: As the time of writing, the initialScript, ensureDatabases, or ensureUsers
+  #       are still unavailable.
+  # workaround: https://github.com/nix-darwin/nix-darwin/issues/339
+  system.activationScripts.preActivation = {
+    # Generate this file!
+    enable = true;
+    # The file content
+    text = ''
+      if [ ! -d "/var/lib/postgresql" ]; then
+        echo "creating PostgreSQL data directory..."
+        sudo mkdir -m 750 -p /var/lib/postgresql
+        chown -R martinlwx:staff /var/lib/postgresql
+      fi
+    '';
+  };
+
   # Necessary for using flakes on this system.
   nix.settings.experimental-features = "nix-command flakes";
-
-  # Enable alternative shell support in nix-darwin.
-  # programs.fish.enable = true;
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
@@ -55,4 +77,5 @@
     };
     screencapture.location = "~/Documents/images";
   };
+
 }
