@@ -72,12 +72,12 @@ My Go-to text editor with the following plugins:
         - Linter: [nvim-lint](https://github.com/mfussenegger/nvim-lint)
         - Formatter: [conform.nvim](https://github.com/stevearc/conform.nvim)
         - REPL-Driven Development: [conjure](https://github.com/Olical/conjure)
+        - Make tracing function call easier: [overlook.nvim](https://github.com/WilliamHsieh/overlook.nvim/)
     - Lisp kind
         - nvim-parinfer: [nvim-parinfer](https://github.com/gpanders/nvim-parinfer)
 - Fuzzy finders: [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 - File explorer: [mini.files](https://github.com/echasnovski/mini.files)
 - Status line: [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
-- Better terminal support: [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)
 - Editor Performance: [faster.nvim](https://github.com/pteroctopus/faster.nvim)
 
 ### Windows-only
