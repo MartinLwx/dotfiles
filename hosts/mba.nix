@@ -5,9 +5,7 @@
   environment.systemPackages = [
     pkgs.vim
     pkgs.neovim # Text Editor
-    pkgs.tree # Produce a depth indented directory listing
     pkgs.tldr # Command cheatsheet
-    pkgs.ncdu # Disk usage analyzer
     pkgs.tmux # Session manager
     pkgs.nixfmt-rfc-style # The .nix files formatter
   ];
@@ -23,7 +21,7 @@
       enable = true;
       dataDir = "/var/lib/postgresql";
       # FIXME: We still need to create database manually.
-      initdbArgs = [ "--username=martinlwx" "--auth=trust"];
+      initdbArgs = [ "--username=martinlwx" ];
     };
   };
   # WARN: As the time of writing, the initialScript, ensureDatabases, or ensureUsers

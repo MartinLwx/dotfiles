@@ -46,9 +46,18 @@
 
     # Utils
     pkgs.graphviz # The .dot visualizer
-    pkgs.ripgrep # Better grep
-    pkgs.fd # Better find
     pkgs.autojump # Cd command that learns
+
+    # Modern CLI
+    pkgs.aria2 # wget & curl
+    pkgs.bat # cat
+    pkgs.btop # top
+    pkgs.duf # df
+    pkgs.eza # ls
+    pkgs.ripgrep # grep
+    pkgs.fd # fd
+    pkgs.gdu # du
+    pkgs.fzf
 
     # Writing
     pkgs.hugo
@@ -70,6 +79,12 @@
     };
   };
 
+  programs.eza = {
+    enable = true;
+    colors = "auto";
+    icons = "auto";
+  };
+
   # General shellAliases
   # You should put simple aliases that are compatible across all shells.
   home.shellAliases = {
@@ -77,6 +92,10 @@
     mkdir = "mkdir -p";
     rm = "rm -i";
     v = "nvim";
+    cat = "bat --paging=never";
+    ls = "eza";
+    ll = "eza -l";
+    tree = "eza --tree";
     ".." = "cd ..";
     "..." = "cd ../..";
     "...." = "cd ../../../";

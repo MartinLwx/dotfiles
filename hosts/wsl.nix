@@ -23,7 +23,6 @@
     neovim # Text Editor
     tree # Produce a depth indented directory listing
     tldr # Command cheatsheet
-    ncdu # Disk usage analyzer
     tmux # Session manager
     nixfmt-rfc-style # The .nix files formatter
   ];
