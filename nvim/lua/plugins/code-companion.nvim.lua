@@ -10,18 +10,20 @@ return {
 			},
 		},
 		adapters = {
-			ollama = function()
-				return require("codecompanion.adapters").extend("ollama", {
-					schema = {
-						model = {
-							default = "gemma3n:e2b",
+			http = {
+				ollama = function()
+					return require("codecompanion.adapters").extend("ollama", {
+						schema = {
+							model = {
+								default = "gemma3n:e2b",
+							},
+							num_ctx = {
+								default = 20000,
+							},
 						},
-						num_ctx = {
-							default = 20000,
-						},
-					},
-				})
-			end,
+					})
+				end,
+			},
 		},
 	},
 	dependencies = {
