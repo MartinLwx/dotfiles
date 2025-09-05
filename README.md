@@ -75,6 +75,8 @@ My Go-to text editor with the following plugins:
         - Make tracing function call easier: [overlook.nvim](https://github.com/WilliamHsieh/overlook.nvim/)
     - Lisp kind
         - nvim-parinfer: [nvim-parinfer](https://github.com/gpanders/nvim-parinfer)
+- Integration
+    - Use `c-h/j/k/l` consistently: [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)
 - Fuzzy finders: [fzf-lua](https://github.com/ibhagwan/fzf-lua)
 - File explorer: [mini.files](https://github.com/echasnovski/mini.files)
 - Status line: [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
@@ -85,7 +87,7 @@ I use Mac for personal business *but* use a Windows PC at work, so I wrote the `
 
 ### nix-darwin
 
-I have been *gradually* migrating to Nix flakes because I really appreciate the reproducibility they offer. My Nix configuration structure is largely inspired by [mitchellh'nixos-config](https://github.com/mitchellh/nixos-config).
+I have been *gradually* migrating to Nix flakes because I really appreciate the reproducibility they offer. My Nix configuration structure is largely inspired by [mitchellh' nixos-config](https://github.com/mitchellh/nixos-config).
 
 
 ## Appendix
