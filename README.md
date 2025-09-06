@@ -41,10 +41,7 @@ My Go-to text editor with the following plugins:
 - Auto-completion 
     - Completion sources: [blink.cmp](https://github.com/saghen/blink.cmp)
     - Vscode-like pictograms: [lspkind.nvim](https://github.com/onsails/lspkind.nvim)
-    - LSP support:
-        - [mason.nvim](https://github.com/williamboman/mason.nvim)
-        - [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)
-        - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
+    - LSP manager: [mason.nvim](https://github.com/williamboman/mason.nvim)
 - Git related
     - Git integration: [vim-fugitive](https://github.com/tpope/vim-fugitive)
     - Git decorations: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
@@ -52,7 +49,7 @@ My Go-to text editor with the following plugins:
 - Markdown tools:
     - Markdown: [vim-markdown](https://github.com/preservim/vim-markdown)
     - Markdown previewer (in browser): [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
-    - [arkdown previewer (within file): [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim)
+    - Markdown previewer (within file): [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim)
     - Paste image : [img-clip.nvim](https://github.com/HakonHarnes/img-clip.nvim)
 - Stylish
     - Colorscheme: [tokyonight.nvim](https://github.com/folke/tokyonight.nvim)
@@ -81,16 +78,10 @@ My Go-to text editor with the following plugins:
 - File explorer: [mini.files](https://github.com/echasnovski/mini.files)
 - Status line: [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 - Editor Performance: [faster.nvim](https://github.com/pteroctopus/faster.nvim)
-
 ### Windows-only
 I use Mac for personal business *but* use a Windows PC at work, so I wrote the `keymappings.ahk` to map keys between Mac and Windows to keep a consistent muscle memory. To use this `.ahk` script, you need to install the [AutoHotKey](https://www.autohotkey.com/) tool and run `keymappings.ahk` *as administrator*. Besides that, you *should* install a third-party Chinese IME and delete the built-in Microsoft Pinyin IME *if* you are also a Chinese user because there is an unfixed [issue](https://answers.microsoft.com/en-us/windows/forum/all/how-to-completely-disable-the-english-mode-in/2dadd3c1-e441-4e35-8049-dbcb5d50fdfc).
-
 ### nix-darwin
-
 I have been *gradually* migrating to Nix flakes because I really appreciate the reproducibility they offer. My Nix configuration structure is largely inspired by [mitchellh' nixos-config](https://github.com/mitchellh/nixos-config).
-
-
 ## Appendix
-
 - [Home Manager Configuration Options](https://nix-community.github.io/home-manager/options.xhtml)
 - [The nix-darwin Configuration Options](https://nix-darwin.github.io/nix-darwin/manual/)
