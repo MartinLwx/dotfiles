@@ -34,7 +34,6 @@ return {
 			-- NOTE: The cmd must be set and the $HOME and ~ are not expanded.
 			cmd = { "/Users/martinlwx/.local/share/nvim/mason/packages/elixir-ls/language_server.sh" },
 		})
-		lspconfig.clojure_lsp.setup({})
 		lspconfig.tinymist.setup({
 			settings = {
 				formatterMode = "typstyle",
