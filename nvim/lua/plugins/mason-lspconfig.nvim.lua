@@ -5,6 +5,6 @@ return {
 		"neovim/nvim-lspconfig",
 	},
 	opts = {
-		ensure_installed = { "pylsp", "bashls" },
+		ensure_installed = { "pylsp" },
 	},
 }

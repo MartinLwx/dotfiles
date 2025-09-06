@@ -33,17 +33,5 @@ return {
 				semanticTokens = "disable",
 			},
 		})
-		lspconfig.pylsp.setup({
-			settings = {
-				-- configure plugins in pylsp
-				pylsp = {
-					plugins = {
-						pyflakes = { enabled = false },
-						pylint = { enabled = false },
-						pycodestyle = { enabled = false },
-					},
-				},
-			},
-		})
 	end,
 }
