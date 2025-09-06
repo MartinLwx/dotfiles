@@ -41,7 +41,7 @@ My Go-to text editor with the following plugins:
 - Auto-completion 
     - Completion sources: [blink.cmp](https://github.com/saghen/blink.cmp)
     - Vscode-like pictograms: [lspkind.nvim](https://github.com/onsails/lspkind.nvim)
-    - LSP manager: [mason.nvim](https://github.com/williamboman/mason.nvim)
+    - LSP registry: [mason.nvim](https://github.com/williamboman/mason.nvim)
 - Git related
     - Git integration: [vim-fugitive](https://github.com/tpope/vim-fugitive)
     - Git decorations: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)

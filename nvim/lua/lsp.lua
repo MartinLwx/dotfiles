@@ -31,3 +31,5 @@ vim.api.nvim_create_autocmd("CursorHold", {
 		vim.diagnostic.open_float(nil, { focusable = false, source = "if_many" })
 	end,
 })
+
+vim.lsp.enable({'clangd', 'clojure_lsp', 'lua_ls', 'ty'})
