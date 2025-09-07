@@ -21,11 +21,15 @@
 
     # OCaml
     pkgs.ocaml
-    pkgs.opam # OCaml package manager
+    pkgs.opam
+    pkgs.ocamlPackages.ocaml-lsp
+    pkgs.ocamlPackages.ocamlformat
+    pkgs.ocamlPackages.dune_3 # dune 3.19.1
+    pkgs.ocamlPackages.utop
 
     # Rust
-    pkgs.cargo # Rust package manager
     pkgs.rustc
+    pkgs.cargo
 
     # Databases
     pkgs.neo4j
@@ -131,10 +135,17 @@
              display-message "Configrations reloaded"
       bind | split-window -h -c "#{pane_current_path}"
       bind - split-window -v -c "#{pane_current_path}"
-      bind h select-pane -L
-      bind j select-pane -D
-      bind k select-pane -U
-      bind l select-pane -R
+
+      # See: https://github.com/christoomey/vim-tmux-navigator
+      vim_pattern='(\S+/)?g?\.?(view|l?n?vim?x?|fzf)(diff)?(-wrapped)?'
+      is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+            | grep -iqE '^[^TXZ ]+ +''${vim_pattern}''$'"
+      # -n = --no-prefix
+      bind -n C-h if-shell "$is_vim" "send-keys C-h" "select-pane -L"
+      bind -n C-j if-shell "$is_vim" "send-keys C-j" "select-pane -D"
+      bind -n C-k if-shell "$is_vim" "send-keys C-k" "select-pane -U"
+      bind -n C-l if-shell "$is_vim" "send-keys C-l" "select-pane -R"
+
       bind -r H resize-pane -L 5
       bind -r J resize-pane -D 5
       bind -r K resize-pane -U 5
