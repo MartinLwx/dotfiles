@@ -21,11 +21,15 @@
 
     # OCaml
     pkgs.ocaml
-    pkgs.opam # OCaml package manager
+    pkgs.opam
+    pkgs.ocamlPackages.ocaml-lsp
+    pkgs.ocamlPackages.ocamlformat
+    pkgs.ocamlPackages.dune_3 # dune 3.19.1
+    pkgs.ocamlPackages.utop
 
     # Rust
-    pkgs.cargo # Rust package manager
     pkgs.rustc
+    pkgs.cargo
 
     # Databases
     pkgs.neo4j

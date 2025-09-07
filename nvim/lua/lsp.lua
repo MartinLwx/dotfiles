@@ -32,4 +32,4 @@ vim.api.nvim_create_autocmd("CursorHold", {
 	end,
 })
 
-vim.lsp.enable({'clangd', 'clojure_lsp', 'lua_ls', 'ty'})
+vim.lsp.enable({ "clangd", "clojure_lsp", "lua_ls", "ty", "ocamllsp" })
