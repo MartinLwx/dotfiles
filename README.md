@@ -66,6 +66,7 @@ My Go-to text editor with the following plugins:
         - Surrounding: [nvim-surround](https://github.com/kylechui/nvim-surround)
         - CodeCompanion: [codecompanion.nvim](https://github.com/olimorris/codecompanion.nvim)
         - Linter: [nvim-lint](https://github.com/mfussenegger/nvim-lint)
+        - Colorful delimiters: [rainbow-delimiters.nvim](https://github.com/HiPhish/rainbow-delimiters.nvim)
         - Formatter: [conform.nvim](https://github.com/stevearc/conform.nvim)
         - REPL-Driven Development: [conjure](https://github.com/Olical/conjure)
         - Make tracing function call easier: [overlook.nvim](https://github.com/WilliamHsieh/overlook.nvim/)
