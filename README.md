@@ -61,7 +61,6 @@ My Go-to text editor with the following plugins:
         - Show context at the top: [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context)
         - Syntax aware text-object: [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
         - A pretty list for showing diagnostics: [trouble.nvim](https://github.com/folke/trouble.nvim)
-        - Autopairs: [blink.pairs](https://github.com/Saghen/blink.pairs)
         - Indentation indicator: [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)
         - Easy motion: [flash.nvim](https://github.com/folke/flash.nvim)
         - Surrounding: [nvim-surround](https://github.com/kylechui/nvim-surround)

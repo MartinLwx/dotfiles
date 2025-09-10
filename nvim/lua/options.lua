@@ -3,6 +3,7 @@ vim.opt.clipboard = "unnamedplus" -- use system clipboard
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.mouse = "a" -- allow the mouse to be used in Nvim
 vim.opt.scrolloff = 10 -- no less than 10 lines even if you keep scrolling down
+vim.opt.swapfile = false -- no .swp file
 
 -- Indentation
 vim.api.nvim_create_autocmd("FileType", {
@@ -32,6 +33,7 @@ vim.opt.splitbelow = true -- open new vertical split bottom
 vim.opt.splitright = true -- open new horizontal splits right
 vim.opt.termguicolors = true -- enable 24-bit RGB color in the TUI
 vim.opt.showmode = false -- we are experienced, and we don't need the "-- INSERT --" mode hint
+vim.opt.winborder = "rounded" -- add rounded border for floating window
 
 -- Searching
 vim.opt.incsearch = true -- search as characters are entered
