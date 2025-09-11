@@ -8,6 +8,8 @@
     pkgs.tldr # Command cheatsheet
     pkgs.tmux # Session manager
     pkgs.nixfmt-rfc-style # The .nix files formatter
+
+    pkgs.iina
   ];
 
   # Envionrment variables
