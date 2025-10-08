@@ -1,6 +1,6 @@
 return {
 	"Olical/conjure",
-	ft = { "clojure" },
+	ft = { "clojure", "fennel" },
 	lazy = true,
 	init = function()
 		-- Set configuration options here

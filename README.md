@@ -73,6 +73,7 @@ My Go-to text editor with the following plugins:
         - Make tracing function call easier: [overlook.nvim](https://github.com/WilliamHsieh/overlook.nvim/)
     - Lisp kind
         - nvim-parinfer: [nvim-parinfer](https://github.com/gpanders/nvim-parinfer)
+        - nvim-paredit: [nvim-paredit](https://github.com/julienvincent/nvim-paredit)
 - Integration
     - Use `c-h/j/k/l` consistently: [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)
 - Fuzzy finders: [fzf-lua](https://github.com/ibhagwan/fzf-lua)
