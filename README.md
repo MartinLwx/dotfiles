@@ -23,6 +23,9 @@ Managing dotfiles without a version control system is a chore. That's why I crea
 ### Kitty
 My Personal Kitty Configurations
 ### Hammerspoon
+> [!TIP]
+> Install the [Fennel](https://fennel-lang.org/setup) and run `make` to get the corresponding `*.lua` files.
+
 I use [Hammerspoon](https://www.hammerspoon.org/) to manage windows. The available key mappings are:
 - Full screen  - <kbd>⌘ Command</kbd> + <kbd>⌥ Option</kbd> + <kbd>f</kdb>
 - Center       - <kbd>⌘ Command</kbd> + <kbd>⌥ Option</kbd> + <kbd>c</kdb>

@@ -12,6 +12,7 @@
   home.packages = [
     # Fennel
     pkgs.fennel
+    pkgs.fnlfmt
 
     # JavaScript
     pkgs.nodejs
