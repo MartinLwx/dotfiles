@@ -10,6 +10,9 @@
 {
   # Packages that should be installed to the user profile.
   home.packages = [
+    # Fennel
+    pkgs.fennel
+
     # JavaScript
     pkgs.nodejs
 
@@ -65,11 +68,13 @@
 
     # Writing
     pkgs.hugo
+    pkgs.typst
 
     # Misc
     pkgs.direnv
     pkgs.neofetch
     pkgs.yt-dlp
+    pkgs.babashka
   ];
 
   # Git settings.
