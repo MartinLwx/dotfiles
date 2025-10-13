@@ -15,7 +15,7 @@ return {
 					return require("codecompanion.adapters").extend("ollama", {
 						schema = {
 							model = {
-								default = "gemma3:1b",
+								default = "qwen3:4b",
 							},
 							num_ctx = {
 								default = 20000,
