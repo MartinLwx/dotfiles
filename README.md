@@ -49,7 +49,9 @@ My Go-to text editor with the following plugins:
     - Git integration: [vim-fugitive](https://github.com/tpope/vim-fugitive)
     - Git decorations: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
     - Git diff: [diffview.nvim](https://github.com/sindrets/diffview.nvim)
-- Typst tools: [tinymist](https://github.com/Myriad-Dreamin/tinymist?tab=readme-ov-file)
+- Typst tools
+    - [tinymist](https://github.com/Myriad-Dreamin/tinymist?tab=readme-ov-file)
+    - [typst-preview](https://github.com/chomosuke/typst-preview.nvim)
 - Markdown tools:
     - Markdown: [vim-markdown](https://github.com/preservim/vim-markdown)
     - Markdown previewer (in browser): [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)

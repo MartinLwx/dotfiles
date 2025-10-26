@@ -9,6 +9,7 @@
     pkgs.tmux # Session manager
     pkgs.nixfmt-rfc-style # The .nix files formatter
 
+    pkgs.darwin.trash
     pkgs.iina
   ];
 
@@ -74,8 +75,9 @@
     NSGlobalDomain = {
       # Do not automatically switch between light and dark mode
       AppleInterfaceStyleSwitchesAutomatically = false;
+      # # Narrow the space between status icons in the menu bar
+      # NSStatusItemSpacing = 8;
     };
     screencapture.location = "~/Documents/images";
   };
-
 }
