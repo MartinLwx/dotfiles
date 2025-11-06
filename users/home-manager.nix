@@ -39,6 +39,9 @@
     pkgs.neo4j
     pkgs.postgresql
 
+    # Data Analysis
+    pkgs.duckdb
+
     # Git
     pkgs.git
     pkgs.gitmoji-cli
