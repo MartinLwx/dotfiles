@@ -11,7 +11,7 @@
   # Packages that should be installed to the user profile.
   home.packages = [
     # Fennel
-    pkgs.fennel
+    pkgs.luaPackages.fennel
     pkgs.fnlfmt
 
     # JavaScript
@@ -44,6 +44,7 @@
 
     # Git
     pkgs.git
+    pkgs.git-lfs
     pkgs.gitmoji-cli
     pkgs.delta # Better git diff
 
