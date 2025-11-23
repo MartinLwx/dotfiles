@@ -85,6 +85,8 @@ My Go-to text editor with the following plugins:
 - File explorer: [mini.files](https://github.com/echasnovski/mini.files)
 - Status line: [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 - Editor Performance: [faster.nvim](https://github.com/pteroctopus/faster.nvim)
+- Misc
+    - [Neovim Tips](https://github.com/saxon1964/neovim-tips)
 ### Windows-only
 I use Mac for personal business *but* use a Windows PC at work, so I wrote the `keymappings.ahk` to map keys between Mac and Windows to keep a consistent muscle memory. To use this `.ahk` script, you need to install the [AutoHotKey](https://www.autohotkey.com/) tool and run `keymappings.ahk` *as administrator*. Besides that, you *should* install a third-party Chinese IME and delete the built-in Microsoft Pinyin IME *if* you are also a Chinese user because there is an unfixed [issue](https://answers.microsoft.com/en-us/windows/forum/all/how-to-completely-disable-the-english-mode-in/2dadd3c1-e441-4e35-8049-dbcb5d50fdfc).
 ### nix-darwin
