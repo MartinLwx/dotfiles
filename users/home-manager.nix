@@ -115,6 +115,27 @@
     "...." = "cd ../../../";
   };
 
+  # ------------------------ #
+  # ------ Home files ------ # 
+  # ------------------------ #
+  home.file.".clojure/deps.edn" = {
+    enable = true;
+    text = ''
+    {:aliases
+      {:repl/conjure
+        {:extra-deps {nrepl/nrepl       {:mvn/version "1.0.0"}
+                      cider/cider-nrepl {:mvn/version "0.42.1"}}
+         :main-opts  ["--main" "nrepl.cmdline"
+                      "--middleware" "[cider.nrepl/cider-middleware]"
+                      "--interactive"]}
+    }}
+    '';
+  };
+
+  # ------------------------- #
+  # Settings for each package # 
+  # ------------------------- #
+
   # Zsh settings.
   # See: https://nix-community.github.io/home-manager/options.xhtml#opt-programs.zsh.enable
   programs.zsh = {
