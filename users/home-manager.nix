@@ -10,6 +10,9 @@
 {
   # Packages that should be installed to the user profile.
   home.packages = [
+    # C/C++
+    pkgs.clang
+
     # Fennel
     pkgs.luaPackages.fennel
     pkgs.fnlfmt
