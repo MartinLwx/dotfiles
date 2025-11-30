@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+  nixpkgs.config.allowUnfree = true;
+
   imports = [
     ./hardwares/hardware-configuration.nix
   ];
@@ -21,10 +23,11 @@
     git
     vim
     neovim # Text Editor
-    tree # Produce a depth indented directory listing
     tldr # Command cheatsheet
     tmux # Session manager
     nixfmt-rfc-style # The .nix files formatter
+    # Nvidia related packages
+    cudatoolkit
   ];
 
   # This value determines the NixOS release from which the default
