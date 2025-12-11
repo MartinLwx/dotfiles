@@ -13,6 +13,9 @@
     # C/C++
     pkgs.clang
 
+    # Zig
+    pkgs.zig
+
     # Fennel
     pkgs.luaPackages.fennel
     pkgs.fnlfmt
