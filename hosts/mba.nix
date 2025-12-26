@@ -27,6 +27,7 @@
       initdbArgs = [ "--username=martinlwx" ];
     };
   };
+
   # WARN: As the time of writing, the initialScript, ensureDatabases, or ensureUsers
   #       are still unavailable.
   # workaround: https://github.com/nix-darwin/nix-darwin/issues/339
