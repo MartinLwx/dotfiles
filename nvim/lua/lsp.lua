@@ -41,5 +41,6 @@ vim.lsp.enable({
 	"fennel_language_server",
 	"tinymist",
 	"roc_ls",
+	"rust_analyzer",
 	"zls",
 })
