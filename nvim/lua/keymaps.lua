@@ -25,6 +25,13 @@ vim.keymap.set("n", "<leader>aa", "<cmd>CodeCompanionChat Toggle<CR>", opts)
 -- For conjure
 vim.g.maplocalleader = ","
 
+-- Toggle Inlay hints
+vim.lsp.inlay_hint.enable(true) -- Enable the Inlay Hints Feature by default.
+vim.keymap.set("n", "<leader>h", function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+	vim.notify(vim.lsp.inlay_hint.is_enabled() and "Inlay Hints Enabled" or "Inlay Hints Disabled")
+end)
+
 -- For flash.nvim
 -- 1. Press `s` and type jump label
 -- 2. Press `S` and type jump label for specefic selection based on tree-sitter.

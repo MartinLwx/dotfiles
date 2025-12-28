@@ -131,6 +131,12 @@ return {
 				run = { enable = true },
 				updateTest = { enable = true },
 			},
+			inlayHints = {
+				chainingHints = { enable = true },
+				closingBraceHints = { enable = true, minLines = 25 },
+				parameterHints = { enable = true },
+				typeHints = { enable = true },
+			},
 		},
 	},
 	before_init = function(init_params, config)

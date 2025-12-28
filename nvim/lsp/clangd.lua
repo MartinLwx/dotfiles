@@ -20,4 +20,13 @@ return {
 		"configure.ac", -- AutoTools
 		".git",
 	},
+	settings = {
+		InlayHints = {
+			Designators = true,
+			Enabled = true,
+			ParameterNames = true,
+			DeducedTypes = true,
+		},
+		fallbackFlags = { "-std=c++20" },
+	},
 }
