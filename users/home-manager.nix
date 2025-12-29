@@ -122,6 +122,12 @@
     "...." = "cd ../../../";
   };
 
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    # This will fix any dynamic link problems in Python Packages with C extensions.
+    LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib/";
+  };
+
   # ------------------------ #
   # ------ Home files ------ # 
   # ------------------------ #
