@@ -27,6 +27,7 @@
     pkgs.clojure
 
     # Python
+    pkgs.python3
     pkgs.uv # Better pip
 
     # OCaml
