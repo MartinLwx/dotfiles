@@ -1,0 +1,39 @@
+patch:
+  style/color_scheme: mac
+  style/color_scheme_dark: mac_dark
+  style/candidate_list_layout: linear
+  style/candidate_format: " [label]  [candidate] [comment] \u200a"
+  style/label_font_point: 8
+  style/font_face: ""
+  style/border_height: -3
+  style/border_width: -3
+  preset_color_schemes:
+    mac:
+      name: macOS Light
+      author: "lonr <https://lonr.eu.org>"
+      back_color: 0xf1f2f2 # background
+      label_color: 0x808080 # label
+      candidate_text_color: 0x494949 # candidate
+      comment_text_color: 0x494949 # comment
+      hilited_candidate_back_color: 0xd85a00
+      hilited_candidate_label_color: 0xffffff
+      hilited_candidate_text_color: 0xffffff
+      hilited_comment_text_color: 0xffffff
+      # text_color: 0x808080                    # 拼音颜色 （inline_preedit: false）
+      # hilited_text_color: 0xEEEEEE            # 选中拼音颜色 （inline_preedit: false）
+      # candidate_back_color:                 # 候选项底色
+      # preedit_back_color:                   # 拼音底色 （inline_preedit: false）
+      # hilited_back_color:                   # 选中拼音底色 （inline_preedit: false）
+      # border_color:                         # 外边框颜色
+
+    mac_dark:
+      name: macOS Dark
+      author: "lonr <https://lonr.eu.org>"
+      back_color: 0x393939
+      label_color: 0x7b7b7b
+      candidate_text_color: 0xebebeb
+      comment_text_color: 0xebebeb
+      hilited_candidate_back_color: 0xd15900
+      hilited_candidate_label_color: 0xffffff
+      hilited_candidate_text_color: 0xffffff
+      hilited_comment_text_color: 0xffffff

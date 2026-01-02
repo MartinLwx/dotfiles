@@ -91,6 +91,9 @@ My Go-to text editor with the following plugins:
 I use Mac for personal business *but* use a Windows PC at work, so I wrote the `keymappings.ahk` to map keys between Mac and Windows to keep a consistent muscle memory. To use this `.ahk` script, you need to install the [AutoHotKey](https://www.autohotkey.com/) tool and run `keymappings.ahk` *as administrator*. Besides that, you *should* install a third-party Chinese IME and delete the built-in Microsoft Pinyin IME *if* you are also a Chinese user because there is an unfixed [issue](https://answers.microsoft.com/en-us/windows/forum/all/how-to-completely-disable-the-english-mode-in/2dadd3c1-e441-4e35-8049-dbcb5d50fdfc).
 ### nix-darwin
 I have been *gradually* migrating to Nix flakes because I really appreciate the reproducibility they offer. My Nix configuration structure is largely inspired by [mitchellh' nixos-config](https://github.com/mitchellh/nixos-config).
+
+### Rime
+The configuration files for [RIME](https://rime.im/) input method in the MacOS.
 ## Appendix
 - [Home Manager Configuration Options](https://nix-community.github.io/home-manager/options.xhtml)
 - [The nix-darwin Configuration Options](https://nix-darwin.github.io/nix-darwin/manual/)

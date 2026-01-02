@@ -1,0 +1,8 @@
+# RIME configuration
+# encoding: utf-8
+
+patch:
+  schema_list:
+    - schema: double_pinyin_flypy # 小鹤双拼
+  menu:
+    page_size: 9 # 每一行显示 9 个候选词

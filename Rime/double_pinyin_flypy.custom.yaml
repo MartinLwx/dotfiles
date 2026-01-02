@@ -1,0 +1,45 @@
+# Rime schema
+# encoding: utf-8
+
+patch:
+  switches:
+    - name: simplification
+      reset: 1 # 默认简中
+      states: [ 漢字, 汉字 ]
+    - name: full_shape
+      reset: 0 # 默认半角
+      states: [ 半角, 全角 ]
+  ascii_composer:
+    switch_key:
+      Shift_L: commit_code # 左 Shift 直接上屏
+  punctuator:
+    import_preset: default
+    half_shape:
+      "$": "￥"
+      "%": "%"  # 半角
+      "*": "*"  # 半角
+      "+": "+"  # 半角
+      "/": "/"  # 半角
+      "<": "《"
+      ">": "》"
+      "[": "【"
+      "\\": "、"
+      "]": "】"
+      "^": "^"  # 半角
+      "{": "『"
+      "|": "|"  # 半角
+      "}": "』"
+      "~": "～"
+  # 启用 emoji
+  # src: https://github.com/rime/rime-emoji/blob/master/emoji_suggestion.yaml
+  switches/@next:
+    name: emoji_suggestion
+    reset: 1
+    states: [ "🈚︎", "🈶️" ]
+  'engine/filters/@before 0':
+    simplifier@emoji_suggestion
+  emoji_suggestion:
+    opencc_config: emoji.json
+    option_name: emoji_suggestion
+    tips: none
+    inherit_comment: false
