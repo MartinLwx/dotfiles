@@ -43,3 +43,6 @@ patch:
     option_name: emoji_suggestion
     tips: none
     inherit_comment: false
+  engine/+:
+    translators/+:
+      - lua_translator@*date_translator
