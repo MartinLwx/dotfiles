@@ -92,12 +92,16 @@
   # Git settings.
   programs.git = {
     enable = true;
-    userName = "MartinLwx";
-    userEmail = "MartinLwx@163.com";
-    delta = {
-      # Enable the delta syntax highlighter.
-      enable = true;
+    settings = {
+      user = {
+        name = "MartinLwx";
+        email = "MartinLwx@163.com";
+      };
     };
+  };
+
+  programs.delta = {
+    enable = true;
   };
 
   programs.eza = {
@@ -125,28 +129,28 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     # This will fix any dynamic link problems in Python Packages with C extensions.
-    LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib/";
+    LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib/";
   };
 
   # ------------------------ #
-  # ------ Home files ------ # 
+  # ------ Home files ------ #
   # ------------------------ #
   home.file.".clojure/deps.edn" = {
     enable = true;
     text = ''
-    {:aliases
-      {:repl/conjure
-        {:extra-deps {nrepl/nrepl       {:mvn/version "1.0.0"}
-                      cider/cider-nrepl {:mvn/version "0.42.1"}}
-         :main-opts  ["--main" "nrepl.cmdline"
-                      "--middleware" "[cider.nrepl/cider-middleware]"
-                      "--interactive"]}
-    }}
+      {:aliases
+        {:repl/conjure
+          {:extra-deps {nrepl/nrepl       {:mvn/version "1.0.0"}
+                        cider/cider-nrepl {:mvn/version "0.42.1"}}
+           :main-opts  ["--main" "nrepl.cmdline"
+                        "--middleware" "[cider.nrepl/cider-middleware]"
+                        "--interactive"]}
+      }}
     '';
   };
 
   # ------------------------- #
-  # Settings for each package # 
+  # Settings for each package #
   # ------------------------- #
 
   # Zsh settings.

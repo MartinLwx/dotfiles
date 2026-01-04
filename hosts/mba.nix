@@ -11,6 +11,7 @@
 
     pkgs.darwin.trash
     pkgs.iina
+    pkgs.alt-tab-macos # Windows-like Alt + Tab
   ];
 
   # Envionrment variables

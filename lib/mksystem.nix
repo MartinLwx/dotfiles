@@ -30,9 +30,9 @@ let
 in
 systemFunc {
   # Hint: The submodules can use these special args.
-  specialArgs = { inherit inputs ;};
+  specialArgs = { inherit inputs; };
   modules = [
-    (if isWSL then inputs.nixos-wsl.nixosModules.wsl else {})
+    (if isWSL then inputs.nixos-wsl.nixosModules.wsl else { })
     machineConfig
     userOSConfig
     home-manager.home-manager
