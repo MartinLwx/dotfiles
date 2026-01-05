@@ -46,3 +46,8 @@ patch:
   engine/+:
     translators/+:
       - lua_translator@*date_translator
+  # 在双拼映射之前，将输入展开为 $1 | $1
+  # 在最后变为 $1(双拼码) | $1(全拼码)
+  # src: https://github.com/rime/rime-double-pinyin/issues/6
+  'translator/preedit_format/@before 0': 'xform/^(.*)$/\U$1\E\t | $1/'
+  'translator/preedit_format/@after last': 'xform/^([A-Z ]*)(.*)$/\L$1$2\E/'
