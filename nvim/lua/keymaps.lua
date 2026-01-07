@@ -61,3 +61,10 @@ vim.keymap.set("v", ">", ">gv", opts)
 -- 3. Press `gsi` to increment selection by AST node. (si = selection incremental)
 -- 4. Press `gsc` to increment selection by scope. (sc = scope)
 -- 5. Press `gsd` to decrement selection. (sd = selection decrement)
+
+-- For CodeCompanion
+vim.keymap.set({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
+vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
+
+-- Expand 'cc' into 'CodeCompanion' in the command line
+vim.cmd([[cab cc CodeCompanion]])

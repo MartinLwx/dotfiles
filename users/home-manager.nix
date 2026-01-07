@@ -87,6 +87,7 @@
     pkgs.neofetch
     pkgs.yt-dlp
     pkgs.babashka
+    pkgs.opencc
   ];
 
   # Git settings.
