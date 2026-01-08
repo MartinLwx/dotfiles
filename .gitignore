@@ -1,2 +1,5 @@
-nvim/plugin/packer_compiled.lua
 .luarc.json
+build
+*.userdb
+.lsp
+.clj-kondo

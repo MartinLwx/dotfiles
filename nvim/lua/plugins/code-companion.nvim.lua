@@ -1,9 +1,21 @@
 return {
 	"olimorris/codecompanion.nvim",
 	opts = {
+		prompt_library = {
+			markdown = {
+				dirs = {
+					"~/.config/nvim/.prompts/",
+				},
+			},
+		},
 		display = {
+			action_palette = {
+				opts = {
+					show_prompt_library_builtins = false, -- Show the default prompt library in the action palette?
+				},
+			},
 			inline = {
-                -- Show diff info in vertical
+				-- Show diff info in vertical
 				layout = "vertical", -- vertical|horizontal|buffer
 			},
 		},

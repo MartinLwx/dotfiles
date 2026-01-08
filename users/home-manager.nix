@@ -16,6 +16,9 @@
     # Zig
     pkgs.zig
 
+    # Lua
+    pkgs.lua
+
     # Fennel
     pkgs.luaPackages.fennel
     pkgs.fnlfmt
