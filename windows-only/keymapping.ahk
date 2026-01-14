@@ -12,13 +12,14 @@ CapsLock::
     Send "#{space}"
 }
 
-#!f::WinMaximize "A"  ; Option + Cmd + f
+#!f::WinMaximize "A"  ; Full screeen
 
-!c::^c ; Cmd + C
-!v::^v ; Cmd + V
-!z::^z ; Cmd + Z
-
-!a::^a ; Select All
+!c::^c ; Copy
+!v::^v ; Paste
+!z::^z ; Undo
+!x::^x ; Clip
+!f::^f ; Search
+!a::^a ; Select all
 
 ; Switch tabs
 !1::^1

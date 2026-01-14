@@ -6,3 +6,23 @@ patch:
     - schema: double_pinyin_flypy # 小鹤双拼
   menu:
     page_size: 9 # 每一行显示 9 个候选词
+  key_binder:
+    # NOTE: 删除所有 Emacs 风格快捷键，各种切换键
+    bindings:
+      # 光标向左一个音节
+      - {accept: ISO_Left_Tab, send: "Shift+Left", when: composing}
+      - {accept: "Shift+Tab", send: "Shift+Left", when: composing}
+      # 光标向右一个音节
+      - {accept: Tab, send: "Shift+Right", when: composing}
+      # -, = 实现候选词翻页
+      - {accept: minus, send: Page_Up, when: has_menu}
+      - {accept: equal, send: Page_Down, when: has_menu}
+  switcher:
+    caption: "方案选择"
+    hotkeys: # 屏蔽 F4（和 Office 的 Redo 快捷键冲突了）
+  ascii_composer/good_old_caps_lock: false # 中文 -> 英文时默认小写
+  ascii_composer/switch_key:
+    Shift_L: noop
+    Shift_R: noop
+    Control_L: noop
+    Control_R: noop
