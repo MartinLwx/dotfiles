@@ -11,6 +11,8 @@ patch:
       states: [ 半角, 全角 ]
   ascii_composer:
     switch_key:
+      Caps_Lock: clear     # 中文模式下经常用 Vim 快捷键被迫输入一堆英文
+                           # 设置切换中英文清空
       Shift_L: commit_code # 左 Shift 直接上屏
   punctuator:
     import_preset: default
