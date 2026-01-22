@@ -1,0 +1,22 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "share": "disabled",
+  "disabled_providers": ["opencode"],
+  "permission": {
+    "bash": "ask",
+  },
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "qwen3:0.6b": {
+          "name": "Qwen3 (0.6b)"
+        }
+      }
+    }
+  }
+}

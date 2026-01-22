@@ -85,6 +85,9 @@
     pkgs.hugo
     pkgs.typst
 
+    # AI
+    pkgs.opencode
+
     # Misc
     pkgs.direnv
     pkgs.neofetch
@@ -121,7 +124,6 @@
     mkdir = "mkdir -p";
     rm = "rm -i";
     v = "nvim";
-    cat = "bat --paging=never";
     ls = "eza";
     ll = "eza -l";
     tree = "eza --tree";

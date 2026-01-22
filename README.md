@@ -73,7 +73,7 @@ My Go-to text editor with the following plugins:
         - Indentation indicator: [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)
         - Easy motion: [flash.nvim](https://github.com/folke/flash.nvim)
         - Surrounding: [nvim-surround](https://github.com/kylechui/nvim-surround)
-        - CodeCompanion: [codecompanion.nvim](https://github.com/olimorris/codecompanion.nvim)
+        - OpenCode: [opencode.nvim](https://github.com/NickvanDyke/opencode.nvim)
         - Linter: [nvim-lint](https://github.com/mfussenegger/nvim-lint)
         - Colorful delimiters: [rainbow-delimiters.nvim](https://github.com/HiPhish/rainbow-delimiters.nvim)
         - Formatter: [conform.nvim](https://github.com/stevearc/conform.nvim)
