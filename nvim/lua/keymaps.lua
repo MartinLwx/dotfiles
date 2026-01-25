@@ -15,13 +15,6 @@ vim.keymap.set("n", "<C-Down>", ":resize +2<CR>", opts)
 vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
--- Open mini.files navigation
--- Default leader key: \
-vim.keymap.set("n", "<leader>e", "<cmd>lua MiniFiles.open()<CR>", opts)
-
--- Open CodeCompanion.nvim
-vim.keymap.set("n", "<leader>aa", "<cmd>CodeCompanionChat Toggle<CR>", opts)
-
 -- For conjure
 vim.g.maplocalleader = ","
 
@@ -61,10 +54,3 @@ vim.keymap.set("v", ">", ">gv", opts)
 -- 3. Press `gsi` to increment selection by AST node. (si = selection incremental)
 -- 4. Press `gsc` to increment selection by scope. (sc = scope)
 -- 5. Press `gsd` to decrement selection. (sd = selection decrement)
-
--- For CodeCompanion
-vim.keymap.set({ "n", "v" }, "<Leader>ca", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
-vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
-
--- Expand 'cc' into 'CodeCompanion' in the command line
-vim.cmd([[cab cc CodeCompanion]])

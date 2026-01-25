@@ -17,15 +17,34 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		keymap.set("n", "gd", lsp.buf.definition, bufopts)
 		keymap.set("n", "<space>rn", lsp.buf.rename, bufopts)
 		keymap.set("n", "K", lsp.buf.hover, bufopts)
-		keymap.set("n", "<space>f", function()
-			require("conform").format({ async = true, lsp_fallback = true })
+		keymap.set({ "n", "v" }, "<space>f", function()
+			local mode = vim.api.nvim_get_mode().mode
+
+			if vim.startswith(string.lower(mode), "v") then
+				require("conform").format({ lsp_fallback = true, async = true, timeout_ms = 1000 }, function(err)
+					if not err then
+						if vim.startswith(string.lower(mode), "v") then
+							vim.api.nvim_feedkeys(
+								vim.api.nvim_replace_termcodes("<Esc>", true, false, true),
+								"n",
+								false
+							)
+						end
+					end
+				end)
+			else
+				require("conform").format({
+					lsp_fallback = true,
+					async = true,
+					timeout_ms = 1000,
+				})
+			end
 		end, bufopts)
 	end,
 })
 
 -- CursorHold: When the user doesn't press a key for the time specified with 'updatetime'
 --             By default, `updatetime` is equal to 4000 ms
---
 vim.api.nvim_create_autocmd("CursorHold", {
 	callback = function()
 		vim.diagnostic.open_float(nil, { focusable = false, source = "if_many" })

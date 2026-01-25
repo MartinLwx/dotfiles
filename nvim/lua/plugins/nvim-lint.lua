@@ -3,7 +3,7 @@ return {
 	config = function()
 		local lint = require("lint")
 
-		-- NOTE: Install formatters with Mason
+		-- NOTE: Install linters with Mason
 		lint.linters_by_ft = {
 			python = { "mypy" },
 		}
