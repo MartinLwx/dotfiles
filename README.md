@@ -56,7 +56,6 @@ My Go-to text editor with the following plugins:
     - [tinymist](https://github.com/Myriad-Dreamin/tinymist?tab=readme-ov-file)
     - [typst-preview](https://github.com/chomosuke/typst-preview.nvim)
 - Markdown tools:
-    - Markdown: [vim-markdown](https://github.com/preservim/vim-markdown)
     - Markdown previewer (in browser): [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
     - Markdown previewer (within file): [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim)
     - Paste image : [img-clip.nvim](https://github.com/HakonHarnes/img-clip.nvim)
@@ -78,7 +77,6 @@ My Go-to text editor with the following plugins:
         - Colorful delimiters: [rainbow-delimiters.nvim](https://github.com/HiPhish/rainbow-delimiters.nvim)
         - Formatter: [conform.nvim](https://github.com/stevearc/conform.nvim)
         - REPL-Driven Development: [conjure](https://github.com/Olical/conjure)
-        - Make tracing function call easier: [overlook.nvim](https://github.com/WilliamHsieh/overlook.nvim/)
     - Lisp kind
         - nvim-parinfer: [nvim-parinfer](https://github.com/gpanders/nvim-parinfer)
         - nvim-paredit: [nvim-paredit](https://github.com/julienvincent/nvim-paredit)

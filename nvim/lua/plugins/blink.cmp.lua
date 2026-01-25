@@ -10,8 +10,8 @@ return {
 	-- If you use Nix, you can build from source using latest nightly rust with:
 	-- build = 'nix run .#build-plugin',
 
-    --- @module 'blink.cmp'
-    --- @type blink.cmp.Config
+	--- @module 'blink.cmp'
+	--- @type blink.cmp.Config
 	opts = {
 		-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
 		-- 'super-tab' for mappings similar to vscode (tab to accept)
@@ -46,12 +46,10 @@ return {
 			nerd_font_variant = "mono",
 		},
 
+		-- Default list of enabled providers defined so that you can extend it
+		-- elsewhere in your config, without redefining it, due to `opts_extend`
 		sources = {
-			-- `lsp`, `buffer`, `snippets`, `path` and `omni` are built-in
-			-- so you don't need to define them in `sources.providers`
 			default = { "lsp", "path", "snippets", "buffer" },
-
-			-- Sources are configured via the sources.providers table
 		},
 
 		-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
