@@ -25,7 +25,7 @@
     neovim # Text Editor
     tldr # Command cheatsheet
     tmux # Session manager
-    nixfmt-rfc-style # The .nix files formatter
+    nixfmt # The .nix files formatter
     # Nvidia related packages
     cudatoolkit
   ];

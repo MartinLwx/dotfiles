@@ -7,7 +7,7 @@
     pkgs.neovim # Text Editor
     pkgs.tldr # Command cheatsheet
     pkgs.tmux # Session manager
-    pkgs.nixfmt-rfc-style # The .nix files formatter
+    pkgs.nixfmt # The .nix files formatter
 
     pkgs.darwin.trash
     pkgs.iina

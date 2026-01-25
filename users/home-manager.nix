@@ -124,6 +124,7 @@
     mkdir = "mkdir -p";
     rm = "rm -i";
     v = "nvim";
+    cat = "bat --style=plain";
     ls = "eza";
     ll = "eza -l";
     tree = "eza --tree";
