@@ -5,6 +5,7 @@ return {
 		formatters_by_ft = {
 			-- Specify the linter for each programming language.
 			lua = { "stylua" },
+			-- You can customize some of the format options for the filetype (:help conform.format)
 			rust = { "rustfmt", lsp_format = "fallback" },
 			ocaml = { "ocamlformat" },
 			c = { "clang-format" },
@@ -15,12 +16,15 @@ return {
 			fsharp = { "fantomas" },
 			python = function(bufnr)
 				if require("conform").get_formatter_info("ruff_format", bufnr).available then
-					return { "ruff_format" }
+					-- Conform will run multiple formatters sequentially
+					return { "isort", "ruff_format" }
 				else
-					return { "black" }
+					-- Conform will run multiple formatters sequentially
+					return { "isort", "black" }
 				end
 			end,
 		},
+		-- NOTE: You can customize each formatter just like this.
 		formatters = {
 			ocamlformat = {
 				prepend_args = {
