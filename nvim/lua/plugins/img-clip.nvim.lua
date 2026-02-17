@@ -1,5 +1,5 @@
 -- Paste image from system clipboard by :PasteImage
--- As suggested by the official README.md, the pngpaste shoule be ins
+-- As suggested by the official README.md, the pngpaste shoule be installed
 -- Requirements (MacOS): pngpaste (optional, but recommended)
 -- Requirements (Linux): xclip (x11) or wl-clipboard (wayland)
 return {

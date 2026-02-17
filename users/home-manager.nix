@@ -31,6 +31,8 @@
 
     # Python
     pkgs.python3
+    # latex -> unicode (for .md file)
+    pkgs.python313Packages.pylatexenc
     pkgs.uv # Better pip
 
     # OCaml
@@ -174,6 +176,10 @@
         "sudo"
       ];
     };
+    initContent = lib.mkIf pkgs.stdenv.isDarwin ''
+      # Disable Caps Lock delay on macOS
+      hidutil property --set '{"CapsLockDelayOverride":0}' >/dev/null 2>&1
+    '';
   };
 
   # Tmux settings.

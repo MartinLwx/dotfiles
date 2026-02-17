@@ -1,3 +1,4 @@
+--- src: https://github.com/neovim/nvim-lspconfig/blob/master/lsp/rust_analyzer.lua
 ---@brief
 ---
 --- https://github.com/rust-lang/rust-analyzer
