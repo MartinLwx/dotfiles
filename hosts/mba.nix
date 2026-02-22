@@ -11,11 +11,14 @@
 
     pkgs.darwin.trash
     pkgs.iina
+    pkgs.pngpaste
   ];
 
   # Envionrment variables
   environment.variables = {
     EDITOR = "nvim";
+    HOMEBREW_CORE_GIT_REMOTE = "https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git";
+    HOMEBREW_BREW_GIT_REMOTE = "https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git";
   };
 
   services = {
@@ -26,6 +29,30 @@
       # FIXME: We still need to create database manually.
       initdbArgs = [ "--username=martinlwx" ];
     };
+  };
+
+  # WARN: We need to install homebrew manually though.
+  homebrew = {
+    # enable nix-darwin to manage installing/updating/upgrading Homebrew taps, formulae, casks, etc.
+    enable = true;
+    casks = [
+      "baidunetdisk"
+      "ghostty"
+      "netnewswire"
+      "raindropio"
+      "wechat"
+      "betterdisplay"
+      "google-chrome"
+      "obsidian"
+      "raycast"
+      "calibre"
+      "hammerspoon"
+      "orbstack"
+      "teamviewer"
+      "font-lxgw-wenkai"
+      "jetbrains-toolbox"
+      "qq"
+    ];
   };
 
   # WARN: As the time of writing, the initialScript, ensureDatabases, or ensureUsers
