@@ -92,7 +92,7 @@
 
     # Misc
     pkgs.direnv
-    pkgs.neofetch
+    pkgs.fastfetch
     pkgs.yt-dlp
     pkgs.babashka
     pkgs.opencc
