@@ -43,14 +43,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
--- CursorHold: When the user doesn't press a key for the time specified with 'updatetime'
---             By default, `updatetime` is equal to 4000 ms
-vim.api.nvim_create_autocmd("CursorHold", {
-	callback = function()
-		vim.diagnostic.open_float(nil, { focusable = false, source = "if_many" })
-	end,
-})
-
 vim.lsp.enable({
 	"clangd",
 	"clojure_lsp",
