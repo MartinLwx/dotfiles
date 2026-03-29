@@ -13,8 +13,8 @@
     # C/C++
     pkgs.clang
 
-    # Zig
-    pkgs.zig
+    # Golang
+    pkgs.go
 
     # Lua
     pkgs.lua

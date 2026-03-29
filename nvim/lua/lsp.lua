@@ -54,4 +54,5 @@ vim.lsp.enable({
 	"roc_ls",
 	"rust_analyzer",
 	"zls",
+	"gopls",
 })
