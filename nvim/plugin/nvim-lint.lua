@@ -1,0 +1,18 @@
+vim.pack.add({
+	{ src = "https://github.com/mfussenegger/nvim-lint", name = "lint" },
+})
+local lint = require("lint")
+
+-- NOTE: Install linters with Mason
+lint.linters_by_ft = {
+	python = { "mypy" },
+}
+
+-- When to trigger lint? I bind it to some events as follows:
+--   BufEnter: enter a buffer.
+--   BufWritePost: save a buffer.
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+	callback = function()
+		lint.try_lint()
+	end,
+})

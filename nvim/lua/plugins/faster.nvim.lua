@@ -1,3 +1,0 @@
-return {
-	"pteroctopus/faster.nvim",
-}
