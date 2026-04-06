@@ -25,6 +25,9 @@ vim.keymap.set("n", "<leader>h", function()
 	vim.notify(vim.lsp.inlay_hint.is_enabled() and "Inlay Hints Enabled" or "Inlay Hints Disabled")
 end)
 
+vim.cmd("packadd nvim.undotree")
+vim.keymap.set("n", "<leader>u", require("undotree").open)
+
 -- For flash.nvim
 -- 1. Press `s` and type jump label
 -- 2. Press `S` and type jump label for specefic selection based on tree-sitter.
