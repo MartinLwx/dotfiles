@@ -7,14 +7,10 @@ require("conform").setup({
 		-- Specify the linter for each programming language.
 		lua = { "stylua" },
 		-- You can customize some of the format options for the filetype (:help conform.format)
-		rust = { "rustfmt", lsp_format = "fallback" },
 		ocaml = { "ocamlformat" },
 		c = { "clang-format" },
 		cpp = { "clang-format" },
-		elixir = { "elixir-ls" },
-		julia = { "jupytext" },
 		clojure = { "cljfmt" },
-		fsharp = { "fantomas" },
 		python = function(bufnr)
 			if require("conform").get_formatter_info("ruff_format", bufnr).available then
 				-- Conform will run multiple formatters sequentially

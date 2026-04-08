@@ -44,7 +44,6 @@
     pkgs.ocamlPackages.utop
 
     # Rust
-    pkgs.rustc
     pkgs.cargo
 
     # Databases
@@ -96,6 +95,7 @@
     pkgs.yt-dlp
     pkgs.babashka
     pkgs.opencc
+    pkgs.tokei
   ];
 
   # Git settings.
