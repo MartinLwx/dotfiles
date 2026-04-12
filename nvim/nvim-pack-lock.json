@@ -134,10 +134,6 @@
       "rev": "ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e",
       "src": "https://github.com/folke/snacks.nvim"
     },
-    "sonokai": {
-      "rev": "b023c5280b16fe2366f5e779d8d2756b3e5ee9c3",
-      "src": "https://github.com/sainnhe/sonokai"
-    },
     "tiny-inline-diagnostic.nvim": {
       "rev": "57a0eb84b2008c76e77930639890d9874195b1e1",
       "src": "https://github.com/rachartier/tiny-inline-diagnostic.nvim"
@@ -145,6 +141,10 @@
     "todo-comments.nvim": {
       "rev": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",
       "src": "https://github.com/folke/todo-comments.nvim"
+    },
+    "token": {
+      "rev": "e089ba6ce8252e60fbb7792708a39f9f0896b2e6",
+      "src": "https://github.com/ThorstenRhau/token"
     },
     "trouble.nvim": {
       "rev": "bd67efe408d4816e25e8491cc5ad4088e708a69a",
