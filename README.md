@@ -11,7 +11,8 @@ Managing dotfiles without a version control system is a chore. That's why I crea
 ├── flake.nix
 ├── hammerspoon         # hammerspoon configurations
 ├── hosts               # hosts (aka. machines) configurations
-├── kitty               # keymapping configurations
+├── ghostty             # ghostty configurations
+├── opencode            # opencode configurations
 ├── lib                 # utils for Nix
 ├── users               # user-level configurations
 ├── nvim                # neovim configurations
@@ -22,8 +23,8 @@ Managing dotfiles without a version control system is a chore. That's why I crea
 
 ```
 ## What is inside?
-### Kitty
-My Personal Kitty Configurations
+### Ghostty
+The configurations for Ghostty Terminal.
 ### Hammerspoon
 
 > [!TIP]
