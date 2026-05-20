@@ -1,7 +1,4 @@
-return {
-	"brianhuster/live-preview.nvim",
-	dependencies = {
-		-- You can choose one of the following pickers
-		"ibhagwan/fzf-lua",
-	},
-}
+vim.pack.add({
+	{ src = "https://github.com/ibhagwan/fzf-lua", name = "fzf-lua" },
+	{ src = "https://github.com/brianhuster/live-preview.nvim", name = "live-preview" },
+})
