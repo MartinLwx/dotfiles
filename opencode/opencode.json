@@ -1,11 +1,10 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "share": "disabled",
-  "disabled_providers": [
-    "opencode"
-  ],
   "permission": {
-    "*": "ask",
+    "edit": {
+      "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/LLMWiki/sources": "deny"
+    },
     "bash": {
       "git commit*": "ask",
       "git add*": "ask",
@@ -19,7 +18,7 @@
       "git log": "allow",
       "git diff": "allow",
       "git branch": "allow",
-      "rm *": "deny"
+      "rm *": "ask"
     }
   },
   "provider": {
@@ -31,10 +30,10 @@
       },
       "models": {
         "qwen3:0.6b": {
-          "name": "Qwen3 (0.6b)"
+          "name": "qwen3:0.6b"
         },
-        "qwen3.5:9b": {
-          "name": "Qwen3.5 (9b)"
+        "qwen3:8b": {
+          "name": "qwen3:8b"
         }
       }
     }

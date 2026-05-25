@@ -88,6 +88,7 @@
 
     # AI
     pkgs.opencode
+    pkgs.openspec
 
     # Misc
     pkgs.direnv
