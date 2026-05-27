@@ -37,6 +37,7 @@ I keep my favorite opencode commands and other configurations here. See the tabl
 | Resource | Type | Note |
 | --- | --- | --- |
 | [`/wiki-ingest`](./opencode/commands/wiki-ingest.md) | command | A slash command for ingesting documents, inspired by the approach described in this [gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) |
+| [`/wiki-query`](./opencode/commands/wiki-query.md) | command | A slash command for querying answer from the wiki system, inspired by the approach described in this [gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) |
 
 ### Hammerspoon
 
