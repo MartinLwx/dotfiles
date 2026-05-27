@@ -1,13 +1,45 @@
 ---
-description: 处理给定文档，总结核心要点，更新相关 Wiki
+description: run health checks on the wiki system to find issues
 agent: plan
-subtask: true
+subtask: false
 ---
 
-扫描 `./wiki` 下的 Markdown 文件，关注已有 Markdown 文件的质量问题并生成修改计划，包括但不限于
-1. 互相矛盾的描述
-2. 过时的描述
-3. “孤儿”页面（没有任何链接指向它）
-4. 重要的知识但还没有在 `./wiki` 里
+Perform these health checks
 
-**重要**：当用户确定没有问题并且处于 Build 模式时才允许编辑
+## Check 1 - Incorrect coverage level mapping
+
+You can use the following three ripgrep commands to find the violations:
+
+```sh
+# high: N >= 5
+$ rg -nP '\[coverage: high -- [0-4] sources?\]'
+
+# medium: 2 <= N <= 4
+$ rg -nP '\[coverage: medium -- (0|1|[5-9]|\d{2,}) sources?\]'
+
+# low: N <= 1
+$ rg -nP '\[coverage: low -- ([2-9]|\d{2,}) sources?\]' 
+```
+
+If the `rg` is absent, fallback to `grep` (the cli flags may vary).
+
+*Action*: Correct each one by the coverage indicator rules.
+
+## Check 2 - Orphan source
+
+Find orphan source document with Obsidian CLI. The detail command is
+
+```sh
+$ obsidian orphans | rg "^sources/.*"
+```
+
+If the `obsidian` is absent, tell the user that he/she should enable it in the Obsidian settings.
+
+*Action*: Delete them with `obsidian delete path=path/to/file` command one by one after the user confirms your plan. Do not use `rm` command
+
+## IMPORTANT
+
+- Respond in Chinese.
+- Present a brief and structured summary on the issues identified. Also shows the actions for each check.
+- Only execute actions after the user enables the Build mode manually and confirm the actions.
+- If the user accept your proposed changes, re-run the checks to make sure the issues are gone.
