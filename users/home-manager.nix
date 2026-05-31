@@ -70,6 +70,7 @@
     # Utils
     pkgs.graphviz # The .dot visualizer
     pkgs.autojump # Cd command that learns
+    pkgs.ffmpeg
 
     # Modern CLI
     pkgs.aria2 # wget & curl
