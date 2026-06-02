@@ -110,11 +110,15 @@ When the user provides a source (URL, file, paste), integrate it into the wiki:
     - *Cross-reference:* Every new or updated page must link to at least 2 other
       pages via `[[wikilinks]]`. Check that existing pages link back. If fewer than 
       two relevant pages exist, create links when additional content is available.
-5. *Update the navigations*
+5. *Run health check* — Before updating navigations, validate the pages touched in this ingest:
+    - Run `references/audit.py` against all new or updated wiki pages
+    - Fix any coverage N mismatches, source_cnt errors, missing wikilinks, or level violations
+    - All pages must pass before proceeding to navigation updates
+6. *Update the navigations*
     - Add new pages to `./wiki/index.md` under the correct section, alphabetically.
     - Append a new record to the `./wiki/log.md` to document the changes.
     - List every file created or updated in the log entry
-6. *Report what changed* — list every file created or updated to the user.
+7. *Report what changed* — list every file created or updated to the user.
 
 A single source can trigger updates across 5-15 wiki pages. This is normal
 and desired — it's the compounding effect.
@@ -138,33 +142,68 @@ Use converage indicators *effectively*.
 - `[coverage: medium]` -- good overview, check raw sources for granular questions.
 - `[coverage: low]` -- read the raw sources listed in that section directly.
 
-### Lint
+### Lint / Health Check
 
 > [!NOTE]
 > Only perform actions after the user confirms
 
-When the user asks to lint, health-check, or audit the wiki:
+When the user asks to lint, health-check, or audit the wiki, run the automated script first,
+then do manual spot-checks.
 
-1. *Incorrect coverage level mapping* - You can use the following three ripgrep commands to find the violations (if the `rg` is absent, fallback to `grep`):
+Run `references/audit.py` against the pages in question to catch coverage N and source_cnt
+mismatches automatically. Then verify the items below manually.
+
+#### 1. Coverage N = unique source documents (STRICT)
+
+For every section with a `[coverage: ... -- N sources]` tag, N MUST equal the number of
+*unique* source documents referenced in that section via footnotes. Common mistakes:
+
+- **Counting footnote references instead of unique sources**: `[^1]`, `[^2]`, `[^3]` all
+  pointing to the same `[[doc]]` → N=1, not 3.
+- **Guessing N instead of computing it**: always count unique footnote → source mappings.
+- **Marking footnote-free sections as N>0**: sections with no `[^N]` at all → `low -- 0 sources`.
+
+#### 2. Coverage level matches N range
+
+| Level | N range |
+|-------|---------|
+| `high` | N ≥ 5 |
+| `medium` | 2 ≤ N ≤ 4 |
+| `low` | 0 ≤ N ≤ 1 |
+
+Quick regex check for level/N mismatches:
 ```sh
 # high: N >= 5
-$ rg -nP '\[coverage: high -- [0-4] sources?\]'
+rg -nP '\[coverage: high -- [0-4] sources?\]'
 
 # medium: 2 <= N <= 4
-$ rg -nP '\[coverage: medium -- (0|1|[5-9]|\d{2,}) sources?\]'
+rg -nP '\[coverage: medium -- (0|1|[5-9]|\d{2,}) sources?\]'
 
 # low: N <= 1
-$ rg -nP '\[coverage: low -- ([2-9]|\d{2,}) sources?\]' 
+rg -nP '\[coverage: low -- ([2-9]|\d{2,}) sources?\]'
 ```
-*Action*: Correct each one by the coverage indicator rules.
+*Action*: Correct each one to match the actual unique source count.
 
-2. *Orphan source* - Find orphan source document with Obsidian CLI. The detail command is
+#### 3. source_cnt matches unique footnotes across entire page
+
+`source_cnt` in frontmatter must equal the number of unique `[[Source Name]]` in the
+footnote definitions (`[^1]: [[Source]]`) at page bottom. The audit script catches this.
+
+#### 4. Wikilinks are inline, not just footer-only
+
+Whenever body text mentions a concept/entity/synthesis that has its own wiki page, link
+it at the point of mention with `[[page]]` or `[[page|display text]]`. Don't relegate
+all links to a "相关页面" footer section — this makes the wiki a flat collection, not a graph.
+
+#### 5. Orphan source documents
+
+Find orphan source documents with Obsidian CLI:
 ```sh
-$ obsidian orphans | rg "^sources/.*"
+obsidian orphans | rg "^sources/.*"
 ```
-If the `obsidian` is absent, tell the user that he/she should enable it in the Obsidian settings.
+If `obsidian` is absent, tell the user to enable it in Obsidian settings.
 
-*Action*: Delete them with `obsidian delete path=path/to/file` command one by one after the user confirms your plan. Do not use `rm` command
+*Action*: Delete them with `obsidian delete path=path/to/file` one by one after the user confirms. Do not use `rm`.
 
 ## Pitfalls
 
