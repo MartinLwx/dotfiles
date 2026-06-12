@@ -40,8 +40,10 @@
     pkgs.opam
     pkgs.ocamlPackages.ocaml-lsp
     pkgs.ocamlPackages.ocamlformat
-    pkgs.ocamlPackages.dune_3 # dune 3.19.1
+    pkgs.ocamlPackages.dune_3
     pkgs.ocamlPackages.utop
+    pkgs.ocamlPackages.core
+    pkgs.ocamlPackages.core_bench
 
     # Rust
     pkgs.cargo

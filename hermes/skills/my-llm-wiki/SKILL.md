@@ -39,6 +39,7 @@ The wiki is just a directory of markdown files. No database, no special tooling 
 When the user has an existing wiki, *always orient yourself before doing anything*:
 
 1. *Read `./wiki/SCHEMA.md`* — understand the domain, conventions, and tag taxonomy.
+   **If SCHEMA.md doesn't exist** (some wikis skip it): note the absence and proceed. Use the existing pages' frontmatter and tag patterns as a de facto schema — infer conventions from what's already there. Never fail the orientation step because of a missing schema.
 2. *Read `./wiki/index.md`* — learn what pages exist and their summaries.
 3. *Scan recent `./wiki/log.md`* — read the last 20-30 entries to understand recent activity.
 
@@ -87,38 +88,42 @@ Side-by-side analyses. Include:
 - Verdict or synthesis
 - Sources
 
+### Cookbook-Style Synthesis Pages
+
+When the user requests a cookbook, reference, or quick-lookup page (common for CLI tools, libraries, frameworks):
+
+1. **Code + shell output pairing is mandatory** — every code example showing a struct definition or API usage MUST be immediately followed by the corresponding `--help` output and/or runtime shell output. The code shows the "how to write it", the shell output shows "what the user sees". Without both, the reader cannot establish the connection between source code and CLI behavior.
+
+2. **Error demonstrations are part of the spec** — for validation, parsing, and constraint features, include shell output showing what happens on **invalid** input (the `❌ error: ...` lines). These are as important as the success cases for a reference page.
+
+4. **Behavioral details in callouts** — use `> [!NOTE]` Obsidian-style callouts (NOT bare `>` blockquotes) for non-obvious behaviors: `-h` vs `--help` differences, doc comment truncation rules, default action mappings (`Vec<T>` → `Append`, `bool` → `SetTrue`), attribute interactions (`propagate_version` + subcommands). Each subsequent paragraph line also prefixed with `>`.
+
+4. **Keep it scannable** — every section should be findable by scanning h2/h3 headers. A speed-reference table at the end (需求 → 写法) is highly valued by the user.
+
+5. **Conciseness over tutorial prose** — the source file already contains the full narrative. The cookbook page is for lookup. Cut explanatory paragraphs ruthlessly; let the code and shell output speak.
+
 ## Core Operations
 
 ### Ingest
 
 When the user provides a source (URL, file, paste), integrate it into the wiki:
+0. *Check if source already captured* — Before fetching anything, search `sources/` for existing files matching the topic.  
+   The user may have already saved it via defuddle, Obsidian clipper, or manual save.
+   ```bash
+   search_files(target='files', pattern='<keyword>', path='sources/')
+   ```
+   If found, use that file as the source — skip the fetch step entirely.
 1. *Capture the source*, and save to corresponding subdirectory in `sources/`.
-    - URL → prefer `defuddle parse <url> --md` (load the `defuddle` skill first). Fallback: use browser tools — `browser_navigate` to the page, then `browser_console` with `document.querySelector('article').innerText` to extract clean text.
+    - URL → prefer `defuddle parse <url> --md` (load the `defuddle` skill first). Fallback: use browser tools — `browser_navigate` to the page, then `browser_console` with `document.querySelector('main')?.innerText || document.querySelector('article')?.innerText` to extract clean text. (docs.rs uses `<main>`, many blogs use `<article>`; try both.)
     - PDF → use `defuddle parse <url> --md` if the PDF is served over HTTP, or `web_extract` if available.
     - Pasted text → save to appropriate subdirectory
     - Name the file descriptively: `sources/blogs/karpathy-llm-wiki-2026.md`
-2. *Discuss takeaways with the user* — what's interesting, what matters for
-   the domain.
-3. *Check what already exists* — search `./wiki/index.md` and use `search_files` to find
-   existing pages for mentioned entities/concepts. This is the difference between
-   a growing wiki and a pile of duplicates.
+2. *Discuss takeaways with the user*
+3. *Check what already exists*
 4. *Write or update wiki pages:*
-    - *New entities/concepts:* Create pages only if they are meaningful that 
-      are suitable as standalone wiki pages.
-    - *Existing pages:* Add new information, update facts, bump `modified_at` date.
-      When new info contradicts existing content, ask users what to do.
-    - *Cross-reference:* Every new or updated page must link to at least 2 other
-      pages via `[[wikilinks]]`. Check that existing pages link back. If fewer than 
-      two relevant pages exist, create links when additional content is available.
-5. *Run health check* — Before updating navigations, validate the pages touched in this ingest:
-    - Run `references/audit.py` against all new or updated wiki pages
-    - Fix any coverage N mismatches, source_cnt errors, missing wikilinks, or level violations
-    - All pages must pass before proceeding to navigation updates
+5. *Run health check*
 6. *Update the navigations*
-    - Add new pages to `./wiki/index.md` under the correct section, alphabetically.
-    - Append a new record to the `./wiki/log.md` to document the changes.
-    - List every file created or updated in the log entry
-7. *Report what changed* — list every file created or updated to the user.
+7. *Report what changed*
 
 A single source can trigger updates across 5-15 wiki pages. This is normal
 and desired — it's the compounding effect.
@@ -145,13 +150,16 @@ Use converage indicators *effectively*.
 ### Lint / Health Check
 
 > [!NOTE]
-> Only perform actions after the user confirms
-
-When the user asks to lint, health-check, or audit the wiki, run the automated script first,
-then do manual spot-checks.
+> Only perform actions after the user confirms. Run health checks proactively on all
+> pages created or modified during an ingest session — don't wait to be asked.
 
 Run `references/audit.py` against the pages in question to catch coverage N and source_cnt
-mismatches automatically. Then verify the items below manually.
+mismatches automatically. If audit.py is absent (common), run the portable health check from
+`references/health-check-script.md` via `execute_code` — it covers the same rules without external dependencies. Then verify any remaining items below manually.
+
+**Expect failures on first pass.** The fix → re-check cycle is normal: run the check,
+fix every issue it finds, re-run until all pages pass. Never ship pages with known health
+check failures — a failing check means the coverage indicators and footnote counts are lies.
 
 #### 1. Coverage N = unique source documents (STRICT)
 
@@ -208,12 +216,22 @@ If `obsidian` is absent, tell the user to enable it in Obsidian settings.
 ## Pitfalls
 
 - *Never modify files in `sources/`* — sources are immutable. Corrections go in wiki pages.
+- *Check `sources/` before fetching (broad patterns!)* — when the user mentions a document they've read, always search `sources/` for an existing source file BEFORE fetching from the web. CRITICAL: use **broad** search patterns (e.g. `*clap*`, `*rust*`, `*<topic>*`) not exact filenames like `Rust.md`. The user may have saved it via defuddle or Obsidian with a compound name like `clap_derive_tutorial - Rust.md`. Narrow searches miss these. If nothing found with broad patterns, also try `search_files` across the entire `/llmwiki` root before assuming the source isn't captured. Fetching a duplicate wastes time and makes the user doubt your thoroughness.
 - *Always orient first* — read SCHEMA + index + recent log before any operation in a new session.
   Skipping this causes duplicates and missed cross-references.
 - *Always update `./wiki/index.md` and `./wiki/log.md`* — skipping this makes the wiki degrade. These are the
   navigational backbone.
+- *Index descriptions ≠ page summaries* — `index.md` entries have their own one-line descriptions that are
+  authored independently of each page's `summary` frontmatter field. When updating the index to add a new page,
+  you must `grep` (or read) the actual index line text to locate existing entries — never assume it matches
+  the page's `summary`. The same page may appear differently in the index vs its own frontmatter.
 - *Don't create pages without cross-references* — isolated pages are invisible. Every page must
   link to at least 2 other pages.
+- *NEVER add `## 相关页面` / `## See also` / `## Related` footer sections* — this is banned.
+  Cross-references MUST be inline wikilinks at the point of mention in body text. A standalone
+  "相关页面" section at the bottom is exactly the anti-pattern: it turns the wiki graph into a flat
+  collection. If a related page isn't naturally mentioned in the body, the body probably doesn't
+  need to link to it — or the body should be rewritten to naturally surface the connection.
 - *Frontmatter is required* — it enables search, filtering, and staleness detection.
 - *Tags must come from the taxonomy* — freeform tags decay into noise. Add new tags to SCHEMA.md
   first, then use them.
@@ -225,9 +243,41 @@ If `obsidian` is absent, tell the user to enable it in Obsidian settings.
   The agent should check log size during lint.
 - *Handle contradictions explicitly* — don't silently overwrite. Note both claims with dates,
   mark in frontmatter, flag for user review.
+- *SCHEMA.md and audit.py are optional* — not every wiki has them. When SCHEMA.md is absent,
+  infer conventions from existing pages' frontmatter and tag patterns. When audit.py is absent,
+  run the manual health check rules (coverage N, level/N match, source_cnt, inline wikilinks).
+  Never block the workflow on missing infrastructure files.
+- *Skip wire-format detail unless asked* — when the source contains protobuf definitions, Thrift
+  IDL, binary layout specs, or other serialization-level detail, do NOT transcribe it into wiki
+  pages. The user wants architectural understanding (how components relate, design rationale,
+  trade-offs), not wire-format specifics. Mention that a field has a schema or a message has
+  properties, but skip the raw definition blocks. If the user wants that level of detail,
+  they'll ask.
+- *Math formulas go in $...$* — Big-O notation, logarithms, exponents, and other mathematical
+  expressions MUST be wrapped in `$...$` (LaTeX math), not backticks. Examples: `$O(\log n)$`
+  not `` `O(log n)` ``, `$O(1)$` not `` `O(1)` ``. Code identifiers and type signatures still
+  use backticks: `` `Vec<Node>` ``.
+- *Link to dedicated pages, not parent section anchors* — when a sub-concept has its own wiki page
+  (e.g., `[[jax-jaxpr]]`, `[[jax-jit]]`), link to THAT page. Do NOT use `[[parent#section]]` anchors
+  that point to a section on the parent page. Section anchors are fragile (headings get renamed)
+  and they prevent the sub-concept from being a first-class node in the wiki graph. If a dedicated
+  page doesn't exist yet but the content warrants one, create it.
 
 ## IMPORTANT
 
 Always use the user's language for all responses and for any content written to the wiki or files.
 
 However, the technical terms should be kept.
+
+When ingesting a book chapter, don't mirror the source's flat section list. Group related sections under `##` thematic headings (e.g. "什么是生命周期", "生命周期在函数中的使用", "生命周期在结构体中的使用") with `###` sub-sections underneath. The goal is scannable concept-first grouping, not source-structure preservation. English heading shorthand like "In Function Signatures" must become descriptive Chinese ("生命周期中的函数使用"), not 1:1 literal translation.
+
+### Page Writing: Synthesize, Don't Translate
+
+**CRITICAL**: Do NOT 1:1 translate the source document's structure into wiki pages. The source is raw material — the wiki page is a curated synthesis. This means:
+
+- **Restructure by conceptual relevance**, not by source section order. Ask: "what does the reader need to know first?" not "what did the original document say first?"
+- **Key takeaways go at the TOP**. If the source ends with a "Sharp Bits" / "Gotchas" / "Limitations" section, those insights belong in the opening "什么是 X" section (or immediately after it), as a `> [!NOTE]` callout. The reader should know the constraints before diving into details — not discover them as an afterthought at the bottom of the page.
+- **Cut and consolidate**. If the source has 5 paragraphs explaining a concept that a 3-line summary + code block can convey, use the latter. Source-proportional page length is a symptom of translation, not synthesis.
+- **Decide what belongs where**. When a section of the source overlaps with another concept that has its own page, move the detail to that page and replace the section with a concise summary + `[[wikilink]]`. Don't duplicate.
+
+The test: would someone who already knows the topic find this page useful? If it reads like a translated tutorial, it failed.

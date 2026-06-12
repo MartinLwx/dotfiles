@@ -28,18 +28,10 @@ Managing dotfiles without a version control system is a chore. That's why I crea
 
 The configurations for Ghostty Terminal.
 
-### Opencode
+### Hermes
 
-> [!WARNING]
-> `/wiki-*` will generate wiki pages and answers in Chinese by default. If you are not a Chinese speaker, delete related sentences that contains `Chinese`.
-
-I keep my favorite opencode commands and other configurations here. See the table below:
-
-| Resource | Type | Note |
-| --- | --- | --- |
-| [`/wiki-ingest`](./opencode/commands/wiki-ingest.md) | command | A slash command for ingesting documents, inspired by the approach described in this [gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) |
-| [`/wiki-query`](./opencode/commands/wiki-query.md) | command | A slash command for querying answers from the wiki system, inspired by the approach described in this [gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) |
-| [`/wiki-lint`](./opencode/commands/wiki-lint.md) | command | A slash command for resolving issues in the wiki system, inspired by the approach described in this [gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) |
+**Skills**
+- [my-llm-wiki](./hermes/skills/my-llm-wiki/): Originally hand-written and later improved with the help of Hermes Agent. The skill reflects my personal note-taking workflow, conventions, and preferences, so it is *not* intended to be used out of the box. If you want to build something similar, I recommend starting from the [official skill](https://hermes-agent.nousresearch.com/docs/user-guide/skills/bundled/research/research-llm-wiki) and adapting it to your own workflow instead of copying this implementation directly.
 
 ### Hammerspoon
 
