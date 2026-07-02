@@ -100,6 +100,9 @@
     pkgs.babashka
     pkgs.opencc
     pkgs.tokei
+
+    # Neovim
+    pkgs.beancount-language-server
   ];
 
   # Git settings.

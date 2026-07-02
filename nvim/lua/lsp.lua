@@ -52,7 +52,9 @@ vim.lsp.enable({
 	"fennel_language_server",
 	"tinymist",
 	"roc_ls",
-	"rust_analyzer",
 	"zls",
 	"gopls",
+    -- These following LSPs are managed by Nix.
+	"rust_analyzer",
+    "beancount",
 })
