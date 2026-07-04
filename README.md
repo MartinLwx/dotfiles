@@ -62,7 +62,7 @@ My Go-to text editor with the following plugins:
 - Git related
     - Git integration: [vim-fugitive](https://github.com/tpope/vim-fugitive)
     - Git decorations: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
-    - Git diff: [diffview.nvim](https://github.com/sindrets/diffview.nvim)
+    - Git diff: [codediff.nvim](https://github.com/esmuellert/codediff.nvim)
 - Typst tools
     - [tinymist](https://github.com/Myriad-Dreamin/tinymist?tab=readme-ov-file)
     - [typst-preview](https://github.com/chomosuke/typst-preview.nvim)
