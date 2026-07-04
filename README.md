@@ -60,7 +60,7 @@ My Go-to text editor with the following plugins:
     - Vscode-like pictograms: [lspkind.nvim](https://github.com/onsails/lspkind.nvim)
     - LSP registry: [mason.nvim](https://github.com/williamboman/mason.nvim)
 - Git related
-    - Git integration: [vim-fugitive](https://github.com/tpope/vim-fugitive)
+    - Git integration: [neogit](https://github.com/neogitorg/neogit)
     - Git decorations: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
     - Git diff: [codediff.nvim](https://github.com/esmuellert/codediff.nvim)
 - Typst tools
