@@ -224,6 +224,38 @@ When the user provides a source (URL, file, paste):
 6. **Update index.md and log.md**.
 7. **Report what changed**.
 
+### Paper Reading Notes
+
+When the user asks to read a paper and create notes, the resulting
+wiki page MUST answer the five key questions documented in
+[[paper-reading]]:
+
+1. **What problem does this paper try to solve?** — One-paragraph
+   summary in your own words, not copied from the abstract.
+2. **Why is this an important and hard problem?** — Context and
+   challenges that make the problem non-trivial.
+3. **Why can't previous work solve this problem?** — Limitations of
+   existing approaches and core assumptions they rely on.
+4. **What is novel in this paper?** — The one-sentence
+   contribution: new architecture, loss, training paradigm, or
+   key engineering insight.
+5. **Does it show good results?** — Critical assessment: are the
+   experiments convincing? Any missing baselines? Could
+   confounding factors explain the improvement?
+
+For single-paper notes, structure the page as: problem statement
+→ significance → prior work limitations → core innovation →
+experimental assessment. Use `[^N]` citations to the paper source
+throughout.
+
+For multi-paper comparisons, use the three-paragraph review
+format: paper 1 summary, paper 2 summary, cross-paper
+connections (compare/apply/synthesize).
+
+When the paper enriches an existing wiki page (e.g., the paper
+is a key work in an existing concept page), update that page
+with a summary + `[[wikilink]]` to the paper's entity page.
+
 ### Query
 
 When the user asks a question about the wiki's domain:

@@ -52,7 +52,11 @@ for idx, s in enumerate(sections):
     
     refs = set()
     for li in range(start - 1, end):
-        refs.update(re.findall(r'\[\^(\d+)\]', lines[li]))
+        line = lines[li]
+        # Skip footnote definitions: [^1]: [[Source]] is a definition, not a citation
+        if re.match(r'\[\^\d+\]:', line):
+            continue
+        refs.update(re.findall(r'\[\^(\d+)\]', line))
     
     actual_n = len(refs)
     ok = "✓" if actual_n == s['reported_n'] else "✗ MISMATCH"
