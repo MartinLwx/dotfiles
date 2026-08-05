@@ -1,6 +1,6 @@
 ---
 name: my-llm-wiki
-description: "Provides access to the user's personal wiki, including notes, research, project documentation, decisions, and archived knowledge. Use this skill whenever the user wants to: ingest a new source into the wiki, find answers from the existing wiki, or perform a health check of the wiki."
+description: "Provides access to the user's personal wiki, including notes, research, project documentation, decisions, and archived knowledge. Use this skill whenever the user wants to: ingest a new source into the wiki, find answers from the existing wiki, perform a health check of the wiki, or apply recurring workflow patterns (book digest planning, base file population, re-digest, taxonomy promotion, survey digests)."
 metadata:
   hermes:
     requires_tools: [web_extract, search_files, read_file]
@@ -75,6 +75,21 @@ When a new functional category is needed, add it to SCHEMA.md's taxonomy table f
 ```
 
 Then use it on the page.
+
+### Promoting a Sub-Category to a New Domain
+
+When a sub-category under an existing domain outgrows its parent
+and warrants its own top-level domain:
+
+1. Add the new domain row to SCHEMA.md's taxonomy table.
+2. Remove the sub-category from the old domain's row.
+3. Migrate all affected pages' functional category tags.
+4. Check if any entity pages need new frontmatter fields for the
+   new domain's base file.
+
+Example: `机器学习系统/课程` promoted to `课程/MLSys` — course
+pages share a common shape (institution, instructor, semester)
+that differs from other `机器学习系统` concept pages.
 
 ## Entity Pages
 
@@ -171,6 +186,29 @@ For CLI tools, libraries, and frameworks:
    headers. Include a speed-reference table at the end.
 5. **Conciseness over tutorial prose** — the source file has the
    narrative; the cookbook page is for lookup.
+6. **Exactly 2 code examples** (user preference) — one 配置思路
+   block exercising ALL ways to set values (single value / array
+   per column / function `(x, y) => value` form), with inline
+   comments showing cell / row / column targeting; one 配置项一览
+   block touching every parameter, followed by speed-reference
+   tables (参数 / 含义 / 取值形式).
+7. **Lead with the unified-syntax insight** — when the API shares
+   one parameter form across options (e.g. grid's
+   `align`/`inset`/`fill`/`stroke` all accept
+   single-value / array / function forms), state that as the core
+   takeaway before any example; the difference is only WHICH
+   property you set.
+8. **Render-verify honestly** — if the toolchain isn't available
+   to verify examples locally, keep them verbatim-close to
+   official doc examples and say so in the report; never invent
+   output you couldn't produce.
+
+For config-heavy libraries (e.g. structlog), the page anatomy is:
+心智模型 section with ASCII architecture diagram + concept table,
+`configure()` parameter table (参数/类型/默认值/说明), API
+reference tables grouped by function with 输入→输出 column, a
+dedicated parameter table for the renderer, recipe sections with
+code + output, best practices, and 相关文档 wikilinks to sources.
 
 ### Research Synthesis Pages
 
@@ -179,6 +217,30 @@ pages. Load `references/research-page-template.md` for the full
 anatomy. Key rules: 3–5 research lines with distinct core ideas
 and representative works; comparison table uses SCHEMA emoji
 conventions.
+
+**Explicit timeliness note** — a survey's search window bounds the
+validity of every stat it reports. On each affected page:
+
+1. State the coverage window up front (e.g. "检索窗口 2018.1–
+   2024.3，58 篇主研究").
+2. Label survey statistics as historical baseline, NOT current
+   SOTA — especially LLM usage distributions and accuracy numbers.
+3. Bridge to newer wiki content: if existing pages cite work that
+   postdates the survey, say so — the newer work realizes the
+   survey's under-explored directions.
+
+Use a `> [!NOTE]` callout at the top of the survey-derived section
+and a dedicated `## 时效性说明` section on single-source pages.
+
+**Never copy the paper's reference numbers** — survey citations
+like "Yang et al. [114]" are dangling noise in the wiki (the
+paper's bibliography is usually absent from the markdown
+conversion) and collide visually with `[^N]` wiki footnotes.
+Strip `[N]` / `[N, M]` tokens entirely; keep author names where
+they add identity ("Du et al. 提出三阶段知识级 RAG"). After a
+regex strip, remove leftover spaces before Chinese punctuation
+(`\s+([，。；：、！？）])`) and between two CJK chars, skipping
+table rows to preserve alignment padding.
 
 ### Obsidian Kanban / Canvas Base Files
 
@@ -205,6 +267,28 @@ views:
 Create a dedicated grouping tag and add it to every page in the
 board. Reference existing boards before creating new ones.
 
+**Creation is two-step** — the `.base` file alone silently shows
+empty columns with no warning:
+
+1. Create the `.base` file with `filters`, `properties`, and
+   `views`.
+2. Populate entity pages — every `property` key declared in the
+   `.base` file's `properties` block MUST be added as a
+   frontmatter field on every page carrying the base-filter tag.
+
+Example: `courses.base` declares `institution`, `instructor`,
+`semester` → each course entity page gets:
+
+```yaml
+institution: CMU
+instructor: Zhihao Jia
+semester: 2025 Fall
+```
+
+**Pitfall**: creating only the `.base` file without backfilling
+entity page frontmatter. Always verify by checking at least one
+tagged page has all declared properties.
+
 ## Core Operations
 
 ### Ingest
@@ -223,6 +307,25 @@ When the user provides a source (URL, file, paste):
 5. **Run health check** on all created/modified pages (don't wait to be asked).
 6. **Update index.md and log.md**.
 7. **Report what changed**.
+
+### Re-Digest After Poor Extraction
+
+When a source was previously ingested but the PDF-to-Markdown
+extraction was poor (noise headers, image refs without
+descriptions, missing slide content):
+
+1. Re-read the raw source file in `sources/` — the content may be
+   richer than what the initial extraction captured.
+2. Compare existing wiki pages against the raw source to identify
+   gaps (missing sections, thin content, uncaptured details).
+3. Enrich existing pages in-place with missing content — add new
+   sections, expand thin ones, add detail to tables.
+4. Run health check on all modified pages.
+5. Update `index.md` descriptions and `log.md`.
+
+Do NOT create duplicate pages. Enrichment goes into the existing
+pages; `source_cnt` stays the same if no new source document is
+added.
 
 ### Paper Reading Notes
 
@@ -324,8 +427,257 @@ Aliases like `"Rust Closures"` and `"rust closures"` on the same
 page cause duplicate Quick Search results. Keep only the Title
 Case variant.
 
+#### Known script false positives
+
+The portable script mis-attributes footnotes in two situations.
+In both, the reported N can exceed the true count — always
+manually verify before trusting a mismatch.
+
+1. **Last section**: footnote definitions (`[^N]: [[Source]]`)
+   at the page bottom are counted as inline citations of the
+   final section. If the script's N > your manual count of
+   inline `[^N]` in that section's body, it's a false positive —
+   do NOT change the coverage tag based on the script. The
+   correct N is the count of unique inline citations in the
+   body, not the script's automatic count.
+2. **Closing paragraph after the last `###` child**: a `##`
+   section whose closing paragraph sits AFTER its last `###`
+   child gets that paragraph attributed to the child, inflating
+   the child's N (e.g. a footnote-free `### 👑` summary table
+   reporting N=2 because the parent's 核心结论 paragraph with
+   `[^1][^2]` trails it). Fix: move the closing paragraph BEFORE
+   the last `###` heading so it sits in the parent's own scope —
+   the parent's N is unchanged, and the child returns to its
+   true count.
+
+### Splitting an Oversized Page
+
+When a page exceeds ~200 lines, split it into a hub + sub-pages.
+Proven workflow (used for research-vulnerability-detection,
+364 lines → hub + 6 sub-pages):
+
+1. **Hub keeps the original filename and path** — every inbound
+   `[[page]]` link keeps resolving. Obsidian allows a folder and
+   a same-named file to coexist; create sub-pages in
+   `page-name/` and link them as `[[page-name/subpage]]`.
+2. **Grep for anchor links first** (`[[page#heading]]` across
+   the wiki) — sections targeted by anchors must stay in the
+   hub or the links break. If an anchored section must move,
+   rewrite the link as `[[page-name/subpage#heading]]`.
+3. **Organize by content nature, not source order**: single-
+   topic depth → its own sub-page; cross-cutting comparison
+   content (e.g. a "challenges and how each line addresses
+   them" section) stays in the hub — it IS the comparison.
+   Give route/taxonomy sub-pages descriptive names WITHOUT
+   sequence numbers (`route-agent-based`, not `route-3-…`):
+   renumbering later leaves stale references everywhere.
+4. **Redistribute footnotes per page**: each sub-page carries
+   only the `[^N]` definitions it cites (keep original
+   numbers), `source_cnt` = its unique sources, and every
+   section's coverage tag is recomputed from its actual
+   citations (footnote-free sections → `low -- 0 sources`).
+   Promote `###` children to `##` when they become top-level,
+   and recompute the parent's accumulated N.
+5. **Strip in-table footnotes during migration** — `[^N]` in
+   table cells never renders; carry the citation in a lead-in
+   sentence before the table instead.
+6. **Finish**: update index.md (hub entry + one entry per
+   sub-page), append log.md, and run the health check on ALL
+   resulting pages — coverage tags, source_cnt, footnote
+   definitions, and wikilink resolution all need re-verifying.
+
+## Book Digest Workflow
+
+Trigger: the user finished a book, exported highlights to
+`source/books/<书名>.md` or `sources/books/<书名>.md`, and says
+「开始 digest」. Also applies to any multi-page wiki ingest with
+page-naming decisions. This is the book-source specialization of
+`### Ingest` above.
+
+### Plan First, Discuss Before Writing
+
+The user requires the full modification plan BEFORE any wiki writes
+for a book digest. Never start creating pages right after reading
+the source. The plan must cover:
+
+1. New pages — entity page + concept pages: name, content scope,
+   tags for each
+2. Chapter → page mapping — every highlighted chapter's fate: new
+   page / enrich existing / fold into entity / merge with sibling
+   chapters
+3. Existing-page enrichment — which pages get enriched, with the
+   source_cnt impact (1→2) spelled out
+4. SCHEMA.md taxonomy extension — new 领域/子类 rows required
+5. Tag normalization — if existing pages carry non-taxonomy English
+   tags
+
+Expect the user to EDIT the plan (drop / merge / rename pages) and
+incorporate the edits verbatim — do not argue for the original names.
+
+**Presenting the plan (CLI)**: deliver as PLAIN TEXT in the message
+body, ending with numbered prose questions. Do NOT end the plan
+message with a `clarify` tool call — in non-TUI/CLI clients the
+dialog can hide the preceding plan text (happened 2026-08-03).
+After the user's edits, restate the REVISED plan briefly, then
+execute in one pass: entity → concepts → enrich → SCHEMA →
+index/log → health check → report.
+
+### Naming Decisions (user preferences)
+
+- Concept pages take the concept name, not the chapter title:
+  「为什么你不应该购买个股」→ `个股投资`
+- The author's personal rules of thumb never get their own page:
+  两倍法则 was dropped, kept as one line in the entity page's
+  章节结构
+- Concepts measuring the same thing merge into one page:
+  4%法则 + 交叉点 → `财富自由`, formulas in LaTeX ($...$ / $$...$$)
+- Pages are named around the thesis, not the vehicle: 个股与指数基金
+  → `个股投资`, focused on why 选股很难 work
+- Thin chapters fold into the entity page (芒格语录、时间资产) or
+  into a sibling topic page (第十三+十六章 → `择时`; 第五+七章 →
+  `储蓄`)
+- Book entity page: Chinese-title filename, tag [书籍/理财]
+  (books.base's hasTag("书籍") matches hierarchically), frontmatter
+  author/pages/price/publisher/published_at/read_at
+- Douban metadata goes into a standalone 「## 豆瓣元数据」 section at
+  the END of the clippings file (workflow since 2026-08-03 — do NOT
+  create `<书名>-豆瓣.md`); footnotes point at the clippings source
+  itself (`[^1]: [[<书名>]]`), so the entity page's source_cnt is
+  usually 1 (see references/book-entity-template.md; this supersedes
+  the old "separate source file" practice)
+- Page titles are English (2026-08 preference, established in the
+  security/AI-engineering domains): new pages get an English
+  `title` (`AppSec Remediation Bottleneck`, `Snyk Studio`) with the
+  Chinese name in `aliases` (`[AppSec 修复瓶颈]`) — user's words:
+  「wiki 总是英文，中文可以放在 aliases 里」. Chinese titles on
+  legacy pages (`llm-zero-day-discovery`, `/security-review 命令`,
+  investment book pages) are historical residue — propose
+  normalization when passing by, never mass-rename unilaterally.
+  Exception: new concept pages in the investment/finance domain
+  keep Chinese filenames (2026-08-05《解读基金》digest: user
+  explicitly chose Chinese, e.g. `开放式基金`, `基金净值`)
+
+### Page Structure: Hierarchy First, No Flat Layout (user preference 2026-08-05)
+
+The first-pass 《解读基金》digest was rejected as 「过于平铺，让人
+抓不到重点」 and rebuilt under these rules (full before/after
+walkthrough in references/解读基金-digest-example.md):
+
+- **Sibling content groups under a parent section**: when ≥3
+  sibling `##` sections exist, layer them as one `##` parent +
+  `###` children. User's example: the two rebalancing strategies →
+  `## 再平衡策略` + `### 积累型再平衡：买入低配资产` /
+  `### 定投驱动的再平衡：切换定投标的` (child headings use colon +
+  subtitle — they highlight the point better than a bare strategy
+  name).
+- **Narrow sub-topics get their own page**: if a sub-topic only
+  merits a small section inside the parent but carries an
+  independent thesis, create a standalone concept page and reduce
+  the parent's mention to one natural sentence + bidirectional
+  wikilink. Examples: FOF split out of `基金评价`; `波段操作`
+  (user: 「它是一种特殊的择时」) split out of `择时`. Signal:
+  variant / special form → own page.
+- **Logic chain over source order**: organize by progression
+  (现象→手段→后果→误区→根源; `基金净值` uses a five-part chain);
+  evidence-style content gathers under a `## 数据证据` parent
+  (`一次性投入与分批买入`: A 股回测 / 根因 / 美股数据).
+- **Parent coverage = union of child footnotes**: a `##` parent
+  with a coverage tag takes N = the union of all its `###` child
+  footnotes (children citing [^1] and [^2] → parent
+  `medium -- 2 sources`); each child is tagged by its own actual
+  citations. Recompute N section by section after restructuring —
+  do not reuse old values.
+- **Give the page skeleton in the plan phase**: the digest plan
+  must list each new page's 父节/子节 skeleton and the
+  split-into-own-page list, so the user isn't asked to rework
+  after the fact.
+
+### Douban Metadata Fallback
+
+The sandbox often cannot reach douban.com (DNS blackholed to
+198.18.x). Ask the user to paste 出版社/ISBN/定价/页数/出版日期/评分
+in chat. Mark missing fields as 待补充 in BOTH the source file and
+the 书籍信息 table — never fabricate metadata.
+
+### Vendor-Viewpoint Articles（供应商视角博客）
+
+Established practice when digesting a vendor's own blog (e.g. the
+Snyk position piece):
+
+- Single-source treatment: external benchmarks cited inside the
+  article (BaxBench, CodeRabbit, Veracode, etc.) still count as
+  that ONE article source — all footnotes point at the article
+  itself; no separate source or page is created for them
+- Marketing content never gets pages: TL;DR, trial prompts,
+  「What this means for you」, screenshots — skip all of it
+- Sub-topics the user doesn't care about are omitted wholesale
+  (the Snyk article's Evo/AI-stack security was dropped after the
+  user said 「不是很关注」) — never pad for completeness
+- One-sided comparisons (vendor product vs competitors) live as a
+  comparison table INSIDE the entity page; do not build a synthesis
+  page — synthesis needs ≥2 entities with independent sources; ask
+  the user when in doubt
+- Architecture arguments that overlap an existing concept page
+  (e.g. ai-driven-sast's hybrid architecture) get one
+  cross-reference line in the existing page instead of duplicated
+  content
+
+### Health Check on Many Pages: Tool-Call Cap False Positive
+
+The portable health-check script reads each wikilink via the
+read_file TOOL (≤3 calls per link); running it over 10+ pages in
+one execute_code can hit the 50-tool-call cap and report false
+❌ NOT FOUND for the LAST file checked.
+
+- Before "fixing" a flagged page, re-verify with a tiny targeted
+  script (read_file on the exact path) — the failure is usually the
+  cap, not the page.
+- For big batches, read files with `open(path).read()` inside
+  execute_code instead of the read_file tool (no tool-call budget).
+
+### Book-Digest Pitfalls
+
+- Enriching an existing page (source_cnt 1→2): new inline [^N]
+  citation + footnote definition at page bottom + frontmatter
+  source_cnt + recompute coverage on affected sections (US-market
+  section citing two sources → `medium -- 2 sources`)
+- Clippings directory ambiguity: BOTH `source/` (singular) and
+  `sources/` (plural) exist under the wiki root; new clippings may
+  land in either (2026-08-05: 《解读基金》 landed in the singular
+  `source/books/`, other books in the plural `sources/books/`).
+  Glob BOTH directories before reading — never assume one;
+  `[[书名]]` footnotes resolve by basename, unaffected by directory
+- Tag normalization: [investment, asset-allocation, ...] →
+  [investment, 投资/资产配置]; [behavioral-finance, cognitive-bias]
+  → [behavioral-finance, 投资/行为金融]; update modified_at too
+- index.md Chinese entries sort by pinyin — insert new entries at
+  their pinyin position
+- Page scale follows precedent: 《资产配置行动指南》digest = 1
+  entity + 7 concepts
+- NO second-person 「你」 in body text — rewrite rhetorical
+  questions from the book too (「怎么知道自己是否擅长挑选个股？」→
+  「选股者难以事先确认自己是否擅长」)
+- Enriching old pages may surface historical gaps in the health
+  check (0 wikilinks, illegal multi-tags) — fix them on the spot
+  (cross-links, tag normalization), don't leave them; new pages
+  must satisfy ≥2 inbound links from the start
+
+### Book Digest Verification
+
+1. Health check on ALL new/modified pages (see cap pitfall above)
+2. Re-read log.md first ~12 lines after patching near frontmatter
+3. Confirm index.md entries and SCHEMA.md taxonomy rows landed
+4. Worked examples: references/持续买入-digest-example.md,
+   references/解读基金-digest-example.md
+
 ## Pitfalls
 
+- **Splitting a page: the hub must keep the original
+  filename** — moving sections into `page-name/` sub-pages is
+  fine, but the hub stays at the original path so inbound
+  `[[page]]` links and `[[page#anchor]]` links keep resolving.
+  Grep for `page#` anchors wiki-wide before deciding what may
+  leave the hub.
 - **Never modify files in `sources/`** — sources are
   immutable. Corrections go in wiki pages.
 - **Check `sources/` before fetching with broad patterns**
@@ -343,6 +695,15 @@ Case variant.
   ≥3 lines before AND after the insertion point in
   `old_string`. Always `read_file` the affected range
   after patching to verify no entries were lost.
+- **V4A patch can swallow frontmatter `---`** — when a
+  hunk's context includes a blank line adjacent to the
+  frontmatter closing `---`, the fuzzy matcher may treat
+  `---` as the blank line and replace it (log.md corrupts
+  silently, YAML never closes). Anchor hunks on unique
+  content lines (e.g. the first log entry) instead of
+  blank-line context, and after any patch near frontmatter
+  verify the `---` delimiter survives (read the first ~12
+  lines of the file).
 - **Entity page chapter-tracking checklist** — when adding
   a chapter to a book entity page, update: (a) table row,
   (b) `source_cnt`, (c) footnote definition, (d) coverage
@@ -350,16 +711,32 @@ Case variant.
 - **Source injection into existing pages** — when a new
   source enriches existing pages, update `source_cnt`, add
   `[^N]` refs and footnote definitions, and update every
-  affected section's coverage indicator.
+  affected section's coverage indicator. When `[^N]` goes
+  into a child `###` section, parent `##` sections with
+  coverage tags accumulate ALL child footnotes — recompute
+  the parent's N too (e.g. low 1 → medium 2), and re-run
+  the health check after all fixes.
 - **Standalone `[^N]` lines are FORBIDDEN** — footnotes
   MUST be inline at the end of a sentence or paragraph,
   never floating alone between elements.
+- **Every inline `[^N]` needs a definition; every
+  definition must be cited inline** — verify both
+  directions independently after writing a page. (a)
+  Inline citations without the page-bottom definition
+  block make the health check report `source_cnt: 1`
+  while computing `unique sources: 0` — the page is
+  INVALID per SCHEMA. (b) Unused footnote definitions are
+  the classic orphan. Multi-page ingests are where (a)
+  slips through: the first page gets its definition, later
+  pages (e.g. a concept page created alongside a cookbook)
+  don't.
 - **`[^N]` on heading lines is FORBIDDEN** — the coverage
   indicator (`[coverage: low -- 1 sources]`) belongs on
   the heading line; footnote references (`[^1]`) do NOT.
   Pattern: `## Section [coverage: low -- 1 sources]`
   followed by `Body text.[^1]`. Never:
-  `## Section [coverage: low -- 1 sources][^1]`.\n- **Tables and lists without footnotes cause predictable
+  `## Section [coverage: low -- 1 sources][^1]`.
+- **Tables and lists without footnotes cause predictable
   health check failures** — when a section's only content
   is a markdown table or bulleted/ordered list derived
   from the source, it's easy to forget inline `[^1]`
@@ -434,10 +811,6 @@ Case variant.
 - **Wikilink consistency in taxonomy/tables** — ALL items
   in the same class must get wikilinks uniformly. Ghost
   links (pages not yet created) are valid in Obsidian.
-- **Health check false-positive on last section** — the
-  script counts footnote definitions at page bottom as
-  part of the last section's scope. Manually verify before
-  trusting a mismatch on the final section.
 - **Non-leaf `##` sections without coverage tags leak
   scope** — add coverage tags to non-leaf headings to
   restore section boundaries in the health check.
@@ -459,10 +832,13 @@ Case variant.
   `[[page|display]]` breaks table layout. Bare `[[page]]`
   in table cells, `[[page|display]]` OK elsewhere.
 - **Wikilinks inside code blocks don't render** — never
-  use `[[wikilinks]]` inside ``` ``` blocks in Obsidian.
-  Use bare filenames (`kubernetes-api-server`) so users
-  can Ctrl-O navigate quickly. Use ASCII art or mermaid
-  for showing structural relationships between pages.
+  use `[[wikilinks]]` inside any fenced code block,
+  including ```text``` architecture chain diagrams like
+  `A → B → C` — the temptation is strongest there. Use
+  bare filenames (`kubernetes-api-server`) so users can
+  Ctrl-O navigate quickly, and link concepts in the
+  surrounding prose. Use ASCII art or mermaid for showing
+  structural relationships between pages.
 - **Patch tool: `old_string` must match FILE content, not
   `read_file` display format** — strip the `LINENUM|`
   prefix before constructing `old_string`.
@@ -579,3 +955,23 @@ Technical terms should be kept in their original form (English or otherwise).
 Wiki page content (body text, headings, callouts) should be in
 the user's language. Filenames and frontmatter keys are in
 English (kebab-case).
+
+## Chinese Writing Conventions
+
+- **Bold only, no italics** — Chinese typography does not use
+  italics for emphasis; italics read as foreign/translation-ese.
+  Use `**加粗**` for emphasis; never `*斜体*` / `_斜体_` for
+  labels, emphasis, or terminology. Nested structural labels
+  under a bold parent carry NO markdown decoration — a plain
+  `- 子类名：` reads cleaner than double-nested bold.
+- **Scannable distributions: bullets, not prose** — enumerable
+  data (percentage distributions, rankings, granularity/usage
+  breakdowns) must be bullet lists or tables, never
+  顿号/comma-separated prose. One bullet per item
+  (`- encoder-only：47.8%（44/92）`), with the lead-in sentence
+  carrying the `[^N]` footnote before each bullet group. ≥3
+  parallel items or any ranked data → bullets; short narrative
+  conclusions (2 items + a verdict) may stay as prose. The rule
+  applies to the whole page being edited, not just new
+  sections — convert pre-existing prose too (flag large edits
+  to the user).

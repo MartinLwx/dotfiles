@@ -65,14 +65,19 @@ board for column display.
 
 ## Douban Metadata Source
 
-Save Douban metadata as a separate source file:
-- Path: `sources/documents/<book-title>-豆瓣.md`
-- Content: title, author, publisher, year, ISBN, pages, binding, price, rating, URL, 内容简介, 作者简介
-- Footnote target: `[^1]: [[<book-title>-豆瓣]]`
+Douban metadata is merged INTO the clippings file as an
+independent section (user preference, 2026-08-03). Do NOT
+create a separate `<book-title>-豆瓣.md` file:
 
-This keeps the Douban data out of the clippings source file
-(which lives under `sources/books/`) and provides a clean
-footnote target for metadata-only facts.
+- Append `## 豆瓣元数据` at the end of
+  `sources/books/<book-title>.md`
+- Content: 书名, 作者, 译者, 原作名, 出版社, 出版年, ISBN,
+  装帧, 定价, 豆瓣链接, 评分
+- Footnote target: the clippings file itself
+  (`[^1]: [[<book-title>]]`) — the 书籍信息 section and the
+  clippings-derived sections share the same source, so the
+  entity page typically has `source_cnt = 1` unless other
+  independent sources exist.
 
 ## Base File
 
@@ -120,9 +125,9 @@ forms a bidirectional graph.
 
 ## Pitfalls
 
-- Don't put all metadata in the clippings source — keep
-  Douban metadata in a separate file so `source_cnt`
-  accurately reflects what each page draws from.
+- Douban metadata lives in the clippings file's `## 豆瓣元数据`
+  section — the 书籍信息 section cites the clippings source
+  itself; don't create a separate `<title>-豆瓣.md` file.
 - The `书籍信息` section has `coverage: low -- 1 source`
   (only Douban), not medium, unless the clippings also
   confirm metadata facts.
