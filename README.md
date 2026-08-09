@@ -100,7 +100,6 @@ My Go-to text editor with the following plugins:
 - Editor Performance: [faster.nvim](https://github.com/pteroctopus/faster.nvim)
 - Misc
     - [Neovim Tips](https://github.com/saxon1964/neovim-tips)
-    - [Hardtime.nvim](https://github.com/m4xshen/hardtime.nvim)
 
 ### Windows-only
 

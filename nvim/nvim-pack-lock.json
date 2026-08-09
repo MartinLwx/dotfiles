@@ -30,7 +30,7 @@
       "src": "https://github.com/folke/flash.nvim"
     },
     "fzf-lua": {
-      "rev": "28440c741e927592877514fba3db21eb188caec8",
+      "rev": "8671012a7b2a1648595952c655039d51fb301c14",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitsigns": {
@@ -44,10 +44,6 @@
     "graph_view_yaml_parser": {
       "rev": "ecc5ba0a0b8c3a6eb3e7fa5a2caeeee2263729c3",
       "src": "https://github.com/Owen-Dechow/graph_view_yaml_parser"
-    },
-    "hardtime.nvim": {
-      "rev": "244753782b945def87472d8f4e9e6a9d4ec18689",
-      "src": "https://github.com/m4xshen/hardtime.nvim"
     },
     "ibl": {
       "rev": "d28a3f70721c79e3c5f6693057ae929f3d9c0a03",
@@ -119,7 +115,7 @@
       "src": "https://github.com/kylechui/nvim-surround"
     },
     "nvim-treesitter": {
-      "rev": "7b6cc8949f9999c5ed91436cbe24aa5f99c42025",
+      "rev": "c9f9ed6c1892f629ea399f4ee7905f2686fa13f2",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-context": {
@@ -163,7 +159,7 @@
       "src": "https://github.com/folke/todo-comments.nvim"
     },
     "token": {
-      "rev": "1020e10d7e0df1c72b224f5d858fbda103ad2534",
+      "rev": "42841b6638c0eed4c024f28e12d9aa87f7747d10",
       "src": "https://github.com/ThorstenRhau/token"
     },
     "trouble.nvim": {
