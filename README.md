@@ -28,10 +28,19 @@ Managing dotfiles without a version control system is a chore. That's why I crea
 
 The configurations for Ghostty Terminal.
 
-### Hermes
+### Skills
 
-**Skills**
-- [my-llm-wiki](./hermes/skills/my-llm-wiki/): Originally hand-written and later improved with the help of Hermes Agent. The skill reflects my personal note-taking workflow, conventions, and preferences, so it is *not* intended to be used out of the box. If you want to build something similar, I recommend starting from the [official skill](https://hermes-agent.nousresearch.com/docs/user-guide/skills/bundled/research/research-llm-wiki) and adapting it to your own workflow instead of copying this implementation directly.
+#### /my-llm-wiki
+
+Originally hand-written and later improved with the help of Hermes Agent. The skill reflects my personal note-taking workflow, conventions, and preferences, so it is *not* intended to be used out of the box. If you want to build something similar, I recommend starting from the [official skill](https://hermes-agent.nousresearch.com/docs/user-guide/skills/bundled/research/research-llm-wiki) and adapting it to your own workflow instead of copying this implementation directly.
+
+#### /grill-*
+
+The famous `/grill-me` and its successor `/grill-with-docs`. (credits to [Matt Pocock](https://github.com/mattpocock))
+
+#### /handoff
+
+Another useful skill created by [Matt Pocock](https://github.com/mattpocock). Sometimes you want to move on to another task withouting current session (or `/compact`).
 
 ### Hammerspoon
 
@@ -122,3 +131,4 @@ The configuration files for [RIME](https://rime.im/) input method in the macOS.
 ## Appendix
 - [Home Manager Configuration Options](https://nix-community.github.io/home-manager/options.xhtml)
 - [The nix-darwin Configuration Options](https://nix-darwin.github.io/nix-darwin/manual/)
+- [Matt Pocock's skills repo](https://github.com/mattpocock/skills)
