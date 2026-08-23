@@ -23,6 +23,10 @@ raw material — the wiki page is a curated synthesis:
   replace with a summary + `[[wikilink]]`.
 - **Examples: few but essential** — 3–5 representative examples,
   not one per feature variant.
+- **Examples must be generic** — only reusable, dependency-light
+  patterns belong in the wiki. Domain-coupled examples (specific
+  file formats, niche ecosystem libs like glob+image thumbnail
+  pipelines) stay out even when the source documents them.
 
 The test: would someone who already knows the topic find this
 page useful? If it reads like a translated tutorial, it failed.

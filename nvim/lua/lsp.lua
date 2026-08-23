@@ -54,7 +54,8 @@ vim.lsp.enable({
 	"roc_ls",
 	"zls",
 	"gopls",
-    -- These following LSPs are managed by Nix.
+	-- These following LSPs are managed by Nix.
 	"rust_analyzer",
-    "beancount",
+	"beancount",
+	"tsc",
 })

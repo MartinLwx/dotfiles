@@ -82,6 +82,40 @@ print(f"Unique sources: {set(defs.values())}")
 
 # Additional Checks (run after the main script)
 
+## Missing Coverage Tags on Leaf Headings
+
+SCHEMA mandates that every LEAF section (a heading with no
+lower-level headings beneath it) carry `[coverage: ...]`. The
+main script only validates headings that ALREADY have a tag —
+a leaf heading without one is invisible to it, so a "clean"
+run can still hide untagged sections. Run this completeness
+check before trusting the result:
+
+```python
+heading_re = re.compile(r'^(#{2,4})\s+')
+heads = []
+for i, line in enumerate(lines, 1):
+    m = heading_re.match(line)
+    if m:
+        heads.append({"line": i, "level": len(m.group(1)),
+                      "tagged": bool(re.search(
+                          r'\[coverage:\s*\w+\s*--\s*\d+\s*sources?\]', line))})
+missing = []
+for idx, h in enumerate(heads):
+    is_leaf = True
+    for h2 in heads[idx + 1:]:
+        if h2["level"] <= h["level"]:
+            break
+        is_leaf = False  # deeper child exists → non-leaf, tag optional
+    if is_leaf and not h["tagged"]:
+        missing.append(h)
+for h in missing:
+    print(f"✗ L{h['line']}: leaf heading missing coverage tag: "
+          f"{lines[h['line']-1].strip()}")
+if not missing:
+    print("✓ all leaf headings carry coverage tags")
+```
+
 ## 4. Banned footer sections
 
 ```python
@@ -178,10 +212,12 @@ if unused:
   for footnote definitions assumes the format
   `[^1]: [[Source Name]]`. If the wiki uses a different
   format, adjust accordingly.
-- Sections with no `[^N]` refs at all should report N=0,
+- **Sections with no `[^N]` refs at all should report N=0,
   but the script only catches sections that HAVE a coverage
-  tag. If a section is missing its tag entirely, this
-  script won't flag it — that's a manual check.
+  tag. If a section is missing its tag entirely, the main
+  script won't flag it — use the "Missing Coverage Tags on
+  Leaf Headings" completeness check above, not just the main
+  script.
 - **Wikilink check only verifies `concept/`, `entity/`,
   `synthesis/` subdirectories**. Extend the `subdir` list
   if the wiki has additional page types.

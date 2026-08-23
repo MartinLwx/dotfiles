@@ -23,8 +23,9 @@
     pkgs.luaPackages.fennel
     pkgs.fnlfmt
 
-    # JavaScript
-    pkgs.nodejs
+    # TypeScript
+    pkgs.nodejs_latest
+    pkgs.typescript-go
 
     # Clojure
     pkgs.clojure
@@ -90,7 +91,6 @@
     pkgs.typst
 
     # AI
-    pkgs.opencode
     pkgs.openspec
 
     # Misc
@@ -186,6 +186,10 @@
     initContent = lib.mkIf pkgs.stdenv.isDarwin ''
       # Disable Caps Lock delay on macOS
       hidutil property --set '{"CapsLockDelayOverride":0}' >/dev/null 2>&1
+
+      # orbstack
+      export PATH=~/.local/bin:$PATH
+      source ~/.orbstack/shell/init.zsh 2>/dev/null || :
     '';
   };
 
