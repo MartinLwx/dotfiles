@@ -12,23 +12,26 @@ When the user provides a source (URL, file, paste):
 
 0. **Check if source already captured** — search `sources/` with
    broad patterns (`*topic*`, not exact filenames) before
-   fetching. Also try `search_files` across `/llmwiki` root
-   before concluding a source isn't captured.
+   fetching.
 1. **Capture the source** to the appropriate `sources/`
    subdirectory.
-   - URL → `defuddle parse <url> --md` (load the `defuddle` skill
-     first). Fallback: browser tools.
-   - PDF → `defuddle parse <url> --md` or `web_extract`.
+   - URL → `defuddle parse <url> --md`.
+   - PDF → `defuddle parse <url> --md`
    - Pasted text → save directly.
    - Name descriptively: `sources/blogs/author-topic-year.md`.
 2. **Discuss takeaways** with the user.
-3. **Check what already exists** in the wiki.
-4. **Write or update wiki pages** — one source can trigger
+3. **Present the modification plan before any write** — if the
+   ingest would create/update ≥2 pages, list the new pages (name
+   + skeleton), the pages to enrich, and any taxonomy changes,
+   then wait for confirmation. Single-page updates need only a
+   one-line plan.
+4. **Check what already exists** in the wiki.
+5. **Write or update wiki pages** — one source can trigger
    updates across 5–15 pages.
-5. **Run health check** on all created/modified pages (don't wait
+6. **Run health check** on all created/modified pages (don't wait
    to be asked) — load `health-check.md`.
-6. **Update index.md and log.md**.
-7. **Report what changed**.
+7. **Update index.md and log.md**.
+8. **Report what changed**.
 
 ### log.md conventions
 
@@ -37,8 +40,7 @@ When the user provides a source (URL, file, paste):
   adjacent to other same-day entries — never append at the file
   end. Read the existing entry order before picking the insertion
   point.
-- index.md Chinese entries sort by pinyin — insert new entries at
-  their pinyin position.
+- index.md entries are inserted at the end of their section
 - Rotate the log: when `./wiki/log.md` exceeds 500 entries, rename
   it to `log-YYYY.md` and start fresh.
 
@@ -99,12 +101,10 @@ When the user asks a question about the wiki's domain:
 
 1. Read `./wiki/index.md` and identify the 1–3 most relevant
    pages.
-2. For large wikis, also `search_files` across all `.md` files
-   for key terms.
-3. Read the relevant pages.
-4. Synthesize an answer with proper citations.
-5. File substantial answers back to `./wiki/synthesis/`.
-6. Update `./wiki/log.md` and `./wiki/index.md` if filed.
+2. Read the relevant pages.
+3. Synthesize an answer with proper citations.
+4. File substantial answers back to `./wiki/synthesis/`.
+5. Update `./wiki/log.md` and `./wiki/index.md` if filed.
 
 Use coverage indicators effectively:
 

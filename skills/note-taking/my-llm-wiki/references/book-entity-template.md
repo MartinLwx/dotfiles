@@ -7,7 +7,7 @@ When creating a book entity page for a `books.base` board:
 ```yaml
 ---
 title: <书名>
-tags: [book, <domain-tags>]
+tags: [书籍/理财]
 aliases: []
 author: <作者名>
 pages: <页数>
@@ -65,19 +65,16 @@ board for column display.
 
 ## Douban Metadata Source
 
-Douban metadata is merged INTO the clippings file as an
-independent section (user preference, 2026-08-03). Do NOT
-create a separate `<book-title>-豆瓣.md` file:
+Douban metadata is captured manually: ask the user for it
+(pasted in chat), then write it into the frontmatter of the
+single clipping file `sources/books/<book-title>.md`.
 
-- Append `## 豆瓣元数据` at the end of
-  `sources/books/<book-title>.md`
-- Content: 书名, 作者, 译者, 原作名, 出版社, 出版年, ISBN,
-  装帧, 定价, 豆瓣链接, 评分
-- Footnote target: the clippings file itself
-  (`[^1]: [[<book-title>]]`) — the 书籍信息 section and the
-  clippings-derived sections share the same source, so the
-  entity page typically has `source_cnt = 1` unless other
-  independent sources exist.
+- A book has exactly ONE source page: the clipping file —
+  frontmatter carries metadata, body carries highlights.
+- Ask the user for the Douban metadata (书名, 作者, 译者,
+  原作名, 出版社, 出版年, ISBN, 装帧, 定价, 豆瓣链接,
+  评分); on receipt add them as frontmatter fields of the
+  clipping file. No separate `-豆瓣.md` file is ever created.
 
 ## Base File
 
@@ -125,15 +122,17 @@ forms a bidirectional graph.
 
 ## Pitfalls
 
-- Douban metadata lives in the clippings file's `## 豆瓣元数据`
-  section — the 书籍信息 section cites the clippings source
-  itself; don't create a separate `<title>-豆瓣.md` file.
+- The clipping file `sources/books/<title>.md` is the ONE
+  source document for the book: its frontmatter carries the
+  Douban metadata, its body carries the highlights. No separate
+  `-豆瓣.md` file is created; all sections cite `[[<title>]]`
+  and `source_cnt` is 1.
 - The `书籍信息` section has `coverage: low -- 1 source`
-  (only Douban), not medium, unless the clippings also
-  confirm metadata facts.
+  (the clipping file), not medium, unless another source also
+  confirms metadata facts.
 - The `核心思想` section typically has `coverage: low -- 1
   source` (only clippings) since the ideas come from the
-  book itself, not Douban.
+  book itself, not metadata.
 - Custom frontmatter keys (author, pages, etc.) go between
   the standard AGENTS.md required fields and the first
   standard field (source_cnt). Order: title, tags, aliases,

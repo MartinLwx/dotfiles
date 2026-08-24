@@ -40,21 +40,21 @@ names.
   4%法则 + 交叉点 → `财富自由`, formulas in LaTeX ($...$ / $$...$$)
 - Pages are named around the thesis, not the vehicle: 个股与指数基金
   → `个股投资`, focused on why 选股很难 work
-- Book entity page: Chinese-title filename, tag [书籍/理财]
-  (books.base's hasTag("书籍") matches hierarchically), frontmatter
+- Book entity page: Chinese-title filename (the only exception to
+  the English-kebab-case filename rule — see
+  references/writing-style.md), tag [书籍/理财] (books.base's
+  hasTag("书籍") matches hierarchically), frontmatter
   author/pages/price/publisher/published_at/read_at
-- Douban metadata goes into a standalone 「## 豆瓣元数据」 section at
-  the END of the clippings file (workflow since 2026-08-03 — do NOT
-  create `<书名>-豆瓣.md`); footnotes point at the clippings source
-  itself (`[^1]: [[<书名>]]`), so the entity page's source_cnt is
-  usually 1 (see references/book-entity-template.md; this
-  supersedes the old "separate source file" practice)
+- Douban metadata is captured manually: ask the user to provide it
+  (pasted in chat), then write it as frontmatter fields of the
+  single clipping file `sources/books/<书名>.md` — one book has
+  ONE source page (metadata frontmatter + clippings body), never a
+  separate `-豆瓣.md` file.
 
 ## Page Structure: Hierarchy First, No Flat Layout (user preference 2026-08-05)
 
 The first-pass 《解读基金》digest was rejected as 「过于平铺，让人
-抓不到重点」 and rebuilt under these rules (full before/after
-walkthrough in references/解读基金-digest-example.md):
+抓不到重点」 and rebuilt under these rules:
 
 - **Sibling content groups under a parent section**: when ≥3
   sibling `##` sections exist, layer them as one `##` parent +
@@ -113,8 +113,7 @@ Snyk position piece):
 - Tag normalization: [investment, asset-allocation, ...] →
   [investment, 投资/资产配置]; [behavioral-finance, cognitive-bias]
   → [behavioral-finance, 投资/行为金融]; update modified_at too
-- index.md Chinese entries sort by pinyin — insert new entries at
-  their pinyin position
+- index.md entries are inserted at the end of their section
 - Enriching old pages may surface historical gaps in the health
   check (0 wikilinks, illegal multi-tags) — fix them on the spot
   (cross-links, tag normalization), don't leave them; new pages

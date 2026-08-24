@@ -18,10 +18,6 @@ style → `writing-style.md`; page splitting → `splitting-pages.md`.
 
 ## Patch / Edit Tooling
 
-- **Patch into index.md needs extra context** — include ≥3 lines
-  before AND after the insertion point in `old_string`. Always
-  `read_file` the affected range after patching to verify no
-  entries were lost.
 - **V4A patch can swallow frontmatter `---`** — when a hunk's
   context includes a blank line adjacent to the frontmatter
   closing `---`, the fuzzy matcher may treat `---` as the blank
@@ -30,9 +26,6 @@ style → `writing-style.md`; page splitting → `splitting-pages.md`.
   log entry) instead of blank-line context, and after any patch
   near frontmatter verify the `---` delimiter survives (read the
   first ~12 lines of the file).
-- **Patch tool: `old_string` must match FILE content, not
-  `read_file` display format** — strip the `LINENUM|` prefix
-  before constructing `old_string`.
 - **Adding table rows: never use the adjacent row as `old_string`
   boundary** — include both old and new row in `new_string`, and
   use only the insertion point as `old_string`. Always re-read to

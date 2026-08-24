@@ -118,8 +118,10 @@ Technical terms should be kept in their original form (English or
 otherwise).
 
 Wiki page content (body text, headings, callouts) should be in
-the user's language. Filenames and frontmatter keys are in
-English (kebab-case).
+the user's language. **Filenames and frontmatter keys are in
+English (kebab-case)** — the single authoritative rule. The ONLY
+exception: book entity pages use the Chinese book title as
+filename (`references/book-digest.md`).
 
 ## Chinese Writing Conventions
 

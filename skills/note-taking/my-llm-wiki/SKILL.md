@@ -2,13 +2,17 @@
 name: my-llm-wiki
 description: "Provides access to the user's personal wiki, including notes, research, project documentation, decisions, and archived knowledge. Use this skill whenever the user wants to: ingest a new source into the wiki, find answers from the existing wiki, perform a health check of the wiki, or apply recurring workflow patterns (book digest planning, base file population, re-digest, taxonomy promotion, survey digests)."
 metadata:
-  hermes:
-    requires_tools: [web_extract, search_files, read_file]
+  requires_tools: [read, bash, edit, write]
+compatibility: |
+  Requires optional CLIs: `defuddle` (web capture), `obsidian` (orphan/vault
+  queries), `python3` (health-check audit script). Operations degrade
+  gracefully when any is absent.
 ---
 
 ## Wiki Location
 
-Set via `WIKI_PATH` environment variable. Defaults to `/llmwiki`.
+Set via `WIKI_PATH` environment variable. Defaults to current
+directory. Raise warning if current'directory is not satisfied.
 
 The wiki is a directory of markdown files. No database, no special
 tooling required.
@@ -38,6 +42,10 @@ tooling required.
 
 Always orient yourself before any operation:
 
+0. **Locate the wiki** — resolve `WIKI_PATH`; if unset, default to
+   current directory. If it's unsatisfieid, ask the user for 
+   the path before anything else — never guess or operate on 
+   an empty directory.
 1. **Read `./wiki/SCHEMA.md`** — domain, conventions, tag
    taxonomy. If absent: note it and infer conventions from
    existing pages' frontmatter and tag patterns. Never block on a
@@ -51,16 +59,13 @@ Only after orientation should you ingest, query, or lint. This
 prevents duplicate pages, missing cross-references, schema
 contradictions, and repeated work.
 
-For large wikis (100+ pages), also `search_files` for the topic
-at hand before creating anything new.
-
 ## The Two-Tag Rule
 
 Every page carries **exactly 2 tags**, no more:
 
 1. **Base-filter tag** — powers Obsidian `.base` file
    `file.hasTag()` filters. Examples: `rust-crate`, `rust-trait`,
-   `book`, `python-feature`, `container-runtime`.
+   `书籍`, `python-feature`, `container-runtime`.
 2. **Functional category tag** — nested `domain/subcategory`
    format. Examples: `软件包/日志`, `语言特性/并发`,
    `容器技术/运行时`, `深度学习/内存优化`.
@@ -99,7 +104,8 @@ failures on first pass; fix → re-check until all pages pass.
   corrections go in wiki pages.
 - **Always update index.md and log.md** — the navigational
   backbone. Log entries are newest-first (top of body, after
-  frontmatter). Index Chinese entries sort by pinyin.
+  frontmatter). New index entries are inserted at the end of
+  their section.
 - **Every page links to ≥2 other pages** — isolated pages are
   invisible.
 - **Exactly 2 tags per page** — base-filter + functional
@@ -126,6 +132,3 @@ Supporting files, loaded on demand:
 | `pitfalls.md` | Canonical tooling/discipline checklist |
 | `book-entity-template.md` | Book entity page template |
 | `research-page-template.md` | Research synthesis page anatomy |
-| `health-check-script.md` | Portable health check script |
-| `持续买入-digest-example.md` | Worked book-digest example |
-| `解读基金-digest-example.md` | Worked book-digest example (hierarchy-first rebuild) |

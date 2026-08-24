@@ -1,9 +1,7 @@
 # Health Check
 
 Run on all pages created or modified during an ingest session.
-Use `references/audit.py` if present; otherwise use the portable
-health check from `references/health-check-script.md` via
-`execute_code`.
+Use `references/audit.py` if present
 
 **Expect failures on first pass.** Fix → re-check until all pages
 pass.
@@ -114,39 +112,20 @@ Case variant.
   source_cnt + recompute coverage on affected sections (a
   US-market section citing two sources → `medium -- 2 sources`).
 
-## Known Script False Positives
+## Script Accuracy Notes
 
-The portable script mis-attributes footnotes in two situations.
-In both, the reported N can exceed the true count — always
-manually verify before trusting a mismatch.
+The rewritten `references/audit.py` handles the two historical
+false positives in its scoping logic:
 
-1. **Last section**: footnote definitions (`[^N]: [[Source]]`)
-   at the page bottom are counted as inline citations of the
-   final section. If the script's N > your manual count of inline
-   `[^N]` in that section's body, it's a false positive — do NOT
-   change the coverage tag based on the script. The correct N is
-   the count of unique inline citations in the body, not the
-   script's automatic count.
-2. **Closing paragraph after the last `###` child**: a `##`
-   section whose closing paragraph sits AFTER its last `###`
-   child gets that paragraph attributed to the child, inflating
-   the child's N (e.g. a footnote-free `### 👑` summary table
-   reporting N=2 because the parent's 核心结论 paragraph with
-   `[^1][^2]` trails it). Fix: move the closing paragraph BEFORE
-   the last `###` heading so it sits in the parent's own scope —
-   the parent's N is unchanged, and the child returns to its true
-   count.
+1. **Last section**: footnote definitions (`[^N]: [[Source]]`) at
+   the page bottom are never counted as inline citations of the
+   final section.
+2. **Closing paragraph after the last `###` child**: when ≥2
+   blank-line-separated blocks follow the last `###` of a `##`
+   section and the final block carries inline refs, the final
+   block belongs to the parent `##`, not the child. No manual
+   paragraph moving is needed.
 
-## Tool-Call Cap False Positive
-
-The portable health-check script reads each wikilink via the
-read_file TOOL (≤3 calls per link); running it over 10+ pages in
-one execute_code can hit the 50-tool-call cap and report false
-❌ NOT FOUND for the LAST file checked.
-
-- Before "fixing" a flagged page, re-verify with a tiny targeted
-  script (read_file on the exact path) — the failure is usually
-  the cap, not the page.
-- For big batches, read files with `open(path).read()` inside
-  execute_code instead of the read_file tool (no tool-call
-  budget).
+If the script still reports an N that contradicts your manual
+count, trust the manual count and re-verify before changing any
+coverage tag.
