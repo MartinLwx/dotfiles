@@ -5,6 +5,25 @@ apply while writing. Load when planning page structure for an
 ingest or when writing/editing pages. For body-text style and
 Chinese typography, load `writing-style.md`.
 
+## Outline Approval Gate (MANDATORY)
+
+Before creating a new page or rewriting/restructuring an existing
+one, present the page outline and **wait for the user's explicit
+approval** before writing any content:
+
+- **Frontmatter**: title, exactly 2 tags, aliases, planned
+  `source_cnt`, summary.
+- **Section skeleton**: every `##`/`###` heading in order, each
+  with its planned `[coverage: level -- N]` tag and the
+  footnote(s) it will cite; state N as planned unique sources.
+- **Source→footnote mapping**: which source gets which `[^N]`
+  number, so one-number-per-source holds from the start.
+- **Cross-links**: planned `[[wikilinks]]` to ≥2 other pages.
+
+The approved outline is the contract — deviations discovered
+while writing (e.g. a section needs an extra source) must be
+re-confirmed with the user before proceeding.
+
 ## Entity Pages
 
 One page per persistent entity: books, projects, products,

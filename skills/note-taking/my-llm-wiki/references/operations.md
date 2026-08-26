@@ -20,11 +20,14 @@ When the user provides a source (URL, file, paste):
    - Pasted text → save directly.
    - Name descriptively: `sources/blogs/author-topic-year.md`.
 2. **Discuss takeaways** with the user.
-3. **Present the modification plan before any write** — if the
-   ingest would create/update ≥2 pages, list the new pages (name
-   + skeleton), the pages to enrich, and any taxonomy changes,
-   then wait for confirmation. Single-page updates need only a
-   one-line plan.
+3. **Present the modification plan before any write** — for
+   every **new page or full rewrite/restructure**, present the
+   page **outline** (frontmatter fields; complete section
+   skeleton with planned coverage tags and the source→footnote
+   mapping; planned cross-links) and **WAIT for explicit user
+   approval** before writing. Enrichment of existing pages: list
+   the pages to touch and their intended changes; single small
+   edits need only a one-line plan. Never write unannounced.
 4. **Check what already exists** in the wiki.
 5. **Write or update wiki pages** — one source can trigger
    updates across 5–15 pages.
@@ -41,8 +44,19 @@ When the user provides a source (URL, file, paste):
   end. Read the existing entry order before picking the insertion
   point.
 - index.md entries are inserted at the end of their section
-- Rotate the log: when `./wiki/log.md` exceeds 500 entries, rename
-  it to `log-YYYY.md` and start fresh.
+- Rotate the log **by quarter**: `./wiki/log.md` is the ACTIVE log
+  for the current quarter; archived quarters live in
+  `./wiki/logs/log-YYYY-qN.md` (e.g., `log-2026-q2.md`).
+- **Trigger (calendar)**: when writing the FIRST entry dated in a
+  new quarter, archive first — move the current `log.md` body into
+  `wiki/logs/log-YYYY-qN.md` (frontmatter: `title: LOG YYYY QN`,
+  `created_at` = that quarter's first entry date, `modified_at` =
+  archive day), reset `log.md` to frontmatter + nav line, then
+  write the new entry.
+- **Navigation**: the active `log.md` body starts with a
+  `> 历史日志：[[log-YYYY-qN]]` line (add new links as quarters are
+  archived); archived files link back via
+  `> 当前季度活跃日志：[[log]]`.
 
 ## Re-Digest After Poor Extraction
 

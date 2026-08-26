@@ -35,7 +35,8 @@ tooling required.
     ├── synthesis/        # Comparative analyses of ≥2 entities
     ├── SCHEMA.md         # Conventions, structure rules, tag taxonomy
     ├── index.md          # Sectioned content catalog
-    └── log.md            # Chronological action log (newest-first)
+    ├── log.md            # ACTIVE log for the current quarter (newest-first)
+    └── logs/             # Archived quarterly logs (log-YYYY-qN.md)
 ```
 
 ## Orientation — Every Session (CRITICAL)
@@ -53,7 +54,7 @@ Always orient yourself before any operation:
 2. **Read `./wiki/index.md`** — what pages exist and their
    summaries.
 3. **Scan recent `./wiki/log.md`** — last 20–30 entries for
-   recent activity.
+   recent activity. (Historical quarters: `./wiki/logs/`.)
 
 Only after orientation should you ingest, query, or lint. This
 prevents duplicate pages, missing cross-references, schema
@@ -114,6 +115,14 @@ failures on first pass; fix → re-check until all pages pass.
   `references/health-check.md` for the full rules.
 - **Keep pages scannable** — readable in 30 seconds; split pages
   over ~200 lines (`references/splitting-pages.md`).
+- **Outline approval before any page write** — creating a new
+  page or rewriting/restructuring an existing one requires
+  presenting the page outline first (frontmatter fields; complete
+  section skeleton with planned coverage tags and the
+  source→footnote mapping; planned cross-links) and **waiting for
+  explicit user approval**. No write until approved. Small
+  additive edits still need a one-line plan before writing —
+  never write unannounced.
 - **Ask before mass-updating** — confirm scope if an ingest would
   touch 10+ existing pages.
 
