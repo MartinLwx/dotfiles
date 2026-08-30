@@ -95,6 +95,20 @@ Case variant.
   counts unique footnote numbers, not unique source documents
   behind them) and creates unnecessary cleanup work.
 
+## 7. Nested List Indentation (Check 8 in audit.py)
+
+- **Rule**: nested list items (ordered and unordered) must be
+  indented **4 spaces per nesting level** — indent must be a
+  multiple of 4 (0, 4, 8, ...).
+- The check skips YAML frontmatter (block-style `tags:`/`aliases:`
+  lists legitimately use 2-space indents), fenced code blocks, and
+  blockquotes.
+- Common failures: 2-space or 3-space nested bullets; ordered
+  sub-lists (`1.`/`2.`) indented like bullets.
+- Fix by re-indenting to the next multiple of 4 — the target level
+  is the nearest preceding parent item's indent + 4 (sometimes the
+  correct fix is 0, e.g. a mis-indented sibling).
+
 ## Coverage Recompute Rules
 
 - **Non-leaf `##` sections without coverage tags leak scope** —

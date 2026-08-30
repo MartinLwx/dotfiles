@@ -180,6 +180,35 @@ def audit_page(filepath: str) -> list[str]:
                     f"  {title}: level={cov_level} should_be={expected} (N={actual_n})"
                 )
 
+    # --- Check 8: nested list indentation (4 spaces per level) ---------
+    # YAML block-style lists in frontmatter (tags/aliases) legitimately use
+    # 2-space indents — skip the frontmatter region entirely.
+    fm_end = 0
+    if lines and lines[0].strip() == "---":
+        for j in range(1, len(lines)):
+            if lines[j].strip() == "---":
+                fm_end = j + 1
+                break
+
+    in_code = False
+    for i, line in enumerate(lines):
+        if i < fm_end:
+            continue
+        if line.lstrip().startswith("```"):
+            in_code = not in_code
+            continue
+        if in_code:
+            continue
+        m = re.match(r"^(\s*)(?:[-*+]|\d+[.)])\s+", line)
+        if not m:
+            continue
+        indent = len(m.group(1))
+        if indent > 0 and indent % 4 != 0:
+            issues.append(
+                f"line {i+1}: nested list item indented {indent} spaces "
+                "(must be a multiple of 4 — 4 spaces per nesting level)"
+            )
+
     name = Path(filepath).name
     if issues:
         return [f"✗ {name}"] + issues

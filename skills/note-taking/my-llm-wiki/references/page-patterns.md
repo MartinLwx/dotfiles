@@ -120,35 +120,11 @@ For CLI tools, libraries, and frameworks:
    `--help` or runtime shell output.
 2. **Error demonstrations** — include shell output for invalid
    input (the `❌ error:` lines).
-3. **Behavioral details in callouts** — use `> [!NOTE]` for
-   non-obvious behaviors.
+3. **Behavioral details in callouts** for non-obvious behaviors.
 4. **Keep it scannable** — every section findable by scanning
-   headers. Include a speed-reference table at the end.
+   headers.
 5. **Conciseness over tutorial prose** — the source file has the
    narrative; the cookbook page is for lookup.
-6. **Exactly 2 code examples** (user preference) — one 配置思路
-   block exercising ALL ways to set values (single value / array
-   per column / function `(x, y) => value` form), with inline
-   comments showing cell / row / column targeting; one 配置项一览
-   block touching every parameter, followed by speed-reference
-   tables (参数 / 含义 / 取值形式).
-7. **Lead with the unified-syntax insight** — when the API shares
-   one parameter form across options (e.g. grid's
-   `align`/`inset`/`fill`/`stroke` all accept
-   single-value / array / function forms), state that as the core
-   takeaway before any example; the difference is only WHICH
-   property you set.
-8. **Render-verify honestly** — if the toolchain isn't available
-   to verify examples locally, keep them verbatim-close to
-   official doc examples and say so in the report; never invent
-   output you couldn't produce.
-
-For config-heavy libraries (e.g. structlog), the page anatomy is:
-心智模型 section with ASCII architecture diagram + concept table,
-`configure()` parameter table (参数/类型/默认值/说明), API
-reference tables grouped by function with 输入→输出 column, a
-dedicated parameter table for the renderer, recipe sections with
-code + output, best practices, and 相关文档 wikilinks to sources.
 
 ### Research Synthesis Pages
 
@@ -262,6 +238,27 @@ Example: `机器学习系统/课程` promoted to `课程/MLSys` — course
 pages share a common shape (institution, instructor, semester)
 that differs from other `机器学习系统` concept pages.
 
+## Algorithm Flow Sections (MANDATORY)
+
+Pages that describe an algorithm or procedure MUST include a
+dedicated `## 算法流程` section (placed after 核心思想). The
+section contains exactly three labeled parts:
+
+- **输入** — declare every variable in LaTeX math notation, e.g.
+  `**输入**: 按 x 升序的 $N$ 个数据点 $p_1, p_2, \ldots, p_N$，
+  目标点数 $M$（$2 < M < N$）`. Math variables defined here are
+  the single source of truth for the section.
+- **输出** — the result in the same notation, e.g.
+  `**输出**: 降采样后的 $M$ 个点，恒含首点 $p_1$ 与末点 $p_N$`.
+- **算法处理流程** — numbered steps of the procedure. Reference
+  the variables defined in 输入 in math form (`$N$`, `$M$`,
+  `$B$`) throughout — never prose synonyms like "数据量" or
+  "目标点数". Intermediate quantities derived from them (e.g.
+  bucket size $B = (N-2)/(M-2)$) are also declared in LaTeX.
+
+If the algorithm is one section of a larger page, the same
+输入/输出/算法处理流程 structure applies at that section level.
+
 ## Page-Level Rules
 
 - **Every page must link to ≥2 other pages** — isolated pages
@@ -272,6 +269,12 @@ that differs from other `机器学习系统` concept pages.
   minimum 2-wikilink requirement.
 - **Frontmatter is required** — enables search, filtering, and
   staleness detection.
+- **Aliases with special characters must be fully double-quoted**
+  — YAML plain scalars cannot start with reserved indicators
+  (`@`, backtick), so any alias containing such symbols must be
+  wrapped entirely in double quotes: `aliases: [Typer 回调,
+  "@app.callback"]`. An unquoted `@app.callback` in a flow
+  sequence is invalid YAML and breaks alias parsing in Obsidian.
 - **Tags must come from the taxonomy** — add new tags to
   SCHEMA.md first, then use them.
 - **Tag sprawl is a failure mode** — exactly 2 tags per page

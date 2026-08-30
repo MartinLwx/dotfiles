@@ -13,6 +13,12 @@ raw material — the wiki page is a curated synthesis:
 
 - **Restructure by conceptual relevance**, not source section
   order.
+- **No source-framing sentences** — the page-bottom footnote
+  definition (`[^1]: [[source-note]]`) already identifies the
+  source; it needs no sentence-level announcement. Forbidden
+  patterns: "本文基于《X》编写"、"本页根据 X 整理"、"X 译自
+  ..."。Never wikilink the source in the body — the source
+  wikilink belongs ONLY in the footnote definition block.
 - **Key takeaways go at the TOP** — if the source has a
   gotchas/limitations section, those insights belong in the
   opening section as a `> [!NOTE]` callout.
@@ -22,7 +28,9 @@ raw material — the wiki page is a curated synthesis:
   another concept that has its own page, move detail there and
   replace with a summary + `[[wikilink]]`.
 - **Examples: few but essential** — 3–5 representative examples,
-  not one per feature variant.
+  not one per feature variant. Multiple examples must be
+  organized by logic, never laid out flat — see「Code Example
+  Organization (MANDATORY)」below.
 - **Examples must be generic** — only reusable, dependency-light
   patterns belong in the wiki. Domain-coupled examples (specific
   file formats, niche ecosystem libs like glob+image thumbnail
@@ -36,6 +44,26 @@ thematic `##` headings with `###` sub-sections. Don't mirror the
 source's flat section list. English heading shorthand like "In
 Function Signatures" must become descriptive, not a literal
 translation.
+
+## Natural Wikilink Placement
+
+Wikilinks should arise naturally from the prose, not as orphaned
+parenthetical afterthoughts:
+
+- ❌ Forbidden: standalone parenthetical link sentences —
+  「（相关机制见 [[x]]。）」「（另一框架的类似机制见 [[y]]。）」—
+  removing them changes nothing, which means the link was forced
+  navigation, not content.
+- ✅ Correct: embed the link in a sentence that carries real
+  information on its own — a comparison, a scope caveat, a
+  practice pointer (e.g. 「StructLogMiddleware 的异常兜底设计见
+  [[fastapi-structlog-integration]]」).
+- If a candidate page has nothing natural to say, drop the link
+  rather than force it; forced links hurt readability and defeat
+  the point of making pages visible.
+- Cross-page fact delegation: a fact recorded on another page can
+  be referenced via wikilink without inventing a local source
+  footnote here — the linked page carries its own citation.
 
 ## Translation-Ese Anti-Patterns (FORBIDDEN)
 
@@ -98,6 +126,14 @@ JAX for a PyTorch user), annotate code with emoji markers:
    equivalent (if any)**.
 4. Explain key API parameters — don't assume framework
    familiarity.
+5. **Conceptual sections stay code-free** — 定义/核心思想
+   sections describe what and why without inlining code; code
+   lives in a dedicated 示例/关键设置 section. Bullets point
+   there with「具体写法见下方示例」instead of pasting snippets.
+   Only identifiers that ARE the concept (e.g. `OcrMode.FULL_PAGE`)
+   may appear inline — multi-identifier call chains like
+   `DocumentConverter(format_options={...})` belong in the code
+   block, not the prose.
 
 Include a cross-framework correspondence table at the end of each
 concept page:
@@ -108,6 +144,25 @@ concept page:
 | `jax.remat(fn)` | `torch.utils.checkpoint.checkpoint(fn)` |
 | `jax.grad(loss_fn)` | `loss.backward()` |
 ```
+
+## Code Example Organization (MANDATORY)
+
+Code examples must be organized by logic — never laid out flat
+(平铺) as a series of sibling examples scattered through the
+page body.
+
+- **Multiple examples → one `##` section with `###` subsections**
+  — the simplest and default structure: `## 示例` containing one
+  `###` per example. The parent `##` is non-leaf and may omit
+  the coverage indicator; each `###` keeps its own coverage tag,
+  lead-in sentence and inline citations.
+- **Name `###` headings by the logic they demonstrate**, not by
+  ordinal — forbidden: `### 示例 1` / `### Example 1` / `### 用例一`.
+  The title states what the example shows (e.g. `### 全局选项与
+  共享状态`, `### 创建时指定与覆盖 callback`).
+- **Group by theme when examples span multiple topics** — split
+  into multiple `##` sections (one per theme) instead of one
+  long flat list.
 
 ## Language Policy
 

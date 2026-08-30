@@ -91,6 +91,8 @@
     pkgs.typst
 
     # AI
+    pkgs.defuddle
+    pkgs.pi-coding-agent
     pkgs.openspec
 
     # Misc
