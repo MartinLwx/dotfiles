@@ -100,6 +100,16 @@ Include:
 page still coherently explain a single concept? If NO → it's
 synthesis, not concept.
 
+**Current State: one paragraph per source, time-first,
+chronological (2026-09-10, user rule)** — in a synthesis page's
+`## Current State`, unify ALL claims from the SAME source into
+ONE prose paragraph (NOT bullets) that opens with that source's
+evidence time: 「2026 年 02 月，GLiNER-2 推出了，……」; sort
+paragraphs chronologically — earliest first, newest last. No
+展望/未来方向 padding. Papers → publication time;
+blogs/industry reports → publish time. Ask the user when a date
+is uncertain. See `research-page-template.md` for the full rule.
+
 ### Tutorial-Digest Synthesis Pages
 
 When a single tutorial covers multiple distinct techniques,
@@ -162,26 +172,12 @@ table rows to preserve alignment padding.
 ### Obsidian Kanban / Canvas Base Files
 
 Base files (`.base` extension) in `wiki/base/` are read-only
-views aggregating pages by tag.
-
-**Format** — YAML with `filters`, `views`, and optional
-`properties`:
-
-```yaml
-filters:
-  and:
-    - file.hasTag("<tag>")
-properties:
-  <frontmatter_key>:
-    displayName: 中文列名
-views:
-  - type: table
-    name: <board name>
-    order:
-      - file.name
-      - summary
-      - tags
-```
+views aggregating pages by tag. For `.base` file syntax
+(filters, properties, views, formulas), load the
+`obsidian-bases` skill — this section only records
+wiki-specific conventions. Read board results with
+`obsidian base:query file=<base>` — never edit the `.base` file
+itself.
 
 Create a dedicated grouping tag and add it to every page in the
 board. Reference existing boards before creating new ones.
@@ -207,6 +203,16 @@ semester: 2025 Fall
 **Pitfall**: creating only the `.base` file without backfilling
 entity page frontmatter. Always verify by checking at least one
 tagged page has all declared properties.
+
+**Pitfall: base-filter tags are page-type tags** — a `.base`
+board's filter tag must appear ONLY on pages of the matching
+type (entity for `Python软件包`/`rust-crate`; concept for
+`algorithm`/`python-feature`). Concept pages dissecting a
+library's internals (e.g. `altair-chart`, `altair-encoding`)
+must carry ONLY the functional tag (`软件包/可视化`) — adding the
+entity-type base-filter tag (`Python软件包`) silently pollutes
+the board. Before tagging a new page, ask:"would the board that filters on this tag want this page?" — if
+not, drop the tag.
 
 ## Tag Taxonomy Extensions
 
@@ -268,13 +274,28 @@ If the algorithm is one section of a larger page, the same
   an empty domain, create 1 concept + 2 entity stubs for the
   minimum 2-wikilink requirement.
 - **Frontmatter is required** — enables search, filtering, and
-  staleness detection.
+  staleness detection. Write fields with `obsidian property:set`
+  (existing keys update in place) or include them in the
+  `create` content; `property:set` appends NEW keys at the end —
+  order-sensitive fields go in `create` (see `pitfalls.md`).
 - **Aliases with special characters must be fully double-quoted**
   — YAML plain scalars cannot start with reserved indicators
   (`@`, backtick), so any alias containing such symbols must be
   wrapped entirely in double quotes: `aliases: [Typer 回调,
   "@app.callback"]`. An unquoted `@app.callback` in a flow
   sequence is invalid YAML and breaks alias parsing in Obsidian.
+- **Aliases must be globally unambiguous, scoped by product** —
+  an alias is a claim that "searching this term means this page".
+  Never alias a qualifier-free generic term ("json 类型",
+  "jsonb 类型") on a product-specific page — the same concept
+  exists in other systems (MySQL, DuckDB, MongoDB). Scope with
+  the product name: "PostgreSQL JSON Types", "PG jsonb". A bare
+  generic term is allowed only when it uniquely identifies the
+  page across the whole wiki.
+- **Frontmatter `summary` ≤ 20 characters** (spaces excluded) —
+  one-line description only; anything longer belongs in the page
+  body. `index.md` entries stay ≤ 50 chracters per line, whole
+  line including `- [[page]] - ` prefix.
 - **Tags must come from the taxonomy** — add new tags to
   SCHEMA.md first, then use them.
 - **Tag sprawl is a failure mode** — exactly 2 tags per page

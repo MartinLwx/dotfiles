@@ -49,6 +49,26 @@ Aliases like `"Rust Closures"` and `"rust closures"` on the same
 page cause duplicate Quick Search results. Keep only the Title
 Case variant.
 
+## CLI Link-Graph Checks (after any write)
+
+The text-level checks above are complemented by Obsidian's own
+link index — run the relevant ones after writes:
+
+- `obsidian unresolved` — every `[[wikilink]]` must resolve
+  (catches typos that text grep misses).
+- `obsidian orphans` — 0 inbound links violates the ≥2-link rule
+  (see §5 for the `sources/` orphan variant).
+- `obsidian deadends` — 0 outbound links; the cheap first pass
+  for the ≥2-outgoing-links rule (1-link pages still need a
+  manual check).
+- `obsidian backlinks counts file=<page>` — confirm a new
+  cross-link actually landed on the other side.
+- `obsidian property:read name=source_cnt path=<page>` — verify
+  frontmatter writes landed correctly.
+
+audit.py stays authoritative for coverage / source_cnt / footnote
+rules — those are text-level; the CLI cannot check them.
+
 ## Footnote Writing Rules (what the check enforces)
 
 - **Standalone `[^N]` lines are FORBIDDEN** — footnotes MUST be

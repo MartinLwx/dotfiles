@@ -57,8 +57,8 @@ One `###` subsection per research line. Each follows this shape:
 **劣势**：
 - Bullet list of weaknesses
 
-**SOTA 工作** / **代表工作**：
-- **Work Name** (Authors, Year): one-line description
+**SOTA 工作** / **代表工作** (wiki-only, see below)：
+- [[work-page]] (Authors, Year): one-line description
 ```
 
 ## 路线对比 / 范式对比
@@ -78,8 +78,31 @@ Comparison table with emoji annotations per SCHEMA.md conventions:
 
 ## Current State [coverage: ... -- N sources]
 
-One paragraph per research line summarizing current maturity.
-End with future directions paragraph.
+One paragraph per source (chronological by publication time),
+summarizing current maturity.
+
+**One paragraph per source, time-first, chronological** — Current State is written as
+independent prose paragraphs (NOT bullet lists). ALL claims from
+the SAME source are unified into ONE paragraph, which opens with
+that source's evidence time, then states the claims:
+
+    2026 年 02 月，GLiNER-2 推出了，……
+
+- One paragraph per source — never scatter one source's claims
+  across several Current State paragraphs; merge them (进展、
+  短板等用分号串联), footnote at paragraph end.
+- No 展望/未来方向 padding in Current State — the old "end with
+  future directions paragraph" guidance is retired; future
+  directions live in the source entity pages.
+- Sort paragraphs chronologically by opening time: earliest
+  first, newest last.
+- Paper-derived conclusions open with the paper's publication
+  time (「2023 年 11 月，GLiNER 论文确立了……」).
+- Blogs / industry reports open with their publish time
+  (「2025 年 10 月，Sease 的实战评测……」).
+- Never append dates as trailing parentheticals on bullets —
+  time leads, prose follows.
+- Ask the user when the date is uncertain — never guess.
 
 [^1]: [[Source Name]]
 ```
@@ -93,8 +116,15 @@ the paper's coverage is clearly incomplete.
 
 Each research line must have:
 1. Core idea (distinct from other lines)
-2. At least one representative work cited in the source paper
-3. Clear strengths and weaknesses relative to other lines
+2. Clear strengths and weaknesses relative to other lines
+
+**Representative-work lists are wiki-only**: the
+「**SOTA 工作** / **代表工作**」block may only list works that
+have their own page in this wiki — wikilink every entry. Works
+cited in the source paper but lacking a wiki page must NOT
+appear in the block; weave them into cited prose or describe
+them at category level. Omit the block when no wiki-backed
+work exists.
 
 Avoid creating lines that are just "the paper being
 ingested" — the research page should contextualize the

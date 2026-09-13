@@ -78,40 +78,12 @@ single clipping file `sources/books/<book-title>.md`.
 
 ## Base File
 
-For the `books.base` board:
-
-```yaml
-filters:
-  and:
-    - file.hasTag("book")
-properties:
-  author:
-    displayName: 作者
-  tags:
-    displayName: 标签
-  pages:
-    displayName: 页数
-  price:
-    displayName: 定价
-  publisher:
-    displayName: 出版社
-  published_at:
-    displayName: 出版日期
-  read_at:
-    displayName: 阅读日期
-views:
-  - type: table
-    name: 阅读过的书籍
-    order:
-      - file.name
-      - author
-      - tags
-      - pages
-      - price
-      - publisher
-      - published_at
-      - read_at
-```
+Book entity pages feed the `books.base` board (filter:
+`file.hasTag("书籍")`, hierarchical tag matching — see
+`book-digest.md`). The authoritative property list lives in
+`wiki/base/books.base`: read the actual file before creating a
+book page, and backfill every declared property as frontmatter
+(two-step creation rule — see `page-patterns.md`).
 
 ## Cross-referencing
 

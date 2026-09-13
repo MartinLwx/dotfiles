@@ -25,7 +25,7 @@
 
     # TypeScript
     pkgs.nodejs_latest
-    pkgs.typescript-go
+    pkgs.typescript
 
     # Clojure
     pkgs.clojure
@@ -185,7 +185,7 @@
         "sudo"
       ];
     };
-    initContent = lib.mkIf pkgs.stdenv.isDarwin ''
+    initContent = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin ''
       # Disable Caps Lock delay on macOS
       hidutil property --set '{"CapsLockDelayOverride":0}' >/dev/null 2>&1
 

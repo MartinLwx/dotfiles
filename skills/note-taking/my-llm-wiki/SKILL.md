@@ -4,9 +4,11 @@ description: "Provides access to the user's personal wiki, including notes, rese
 metadata:
   requires_tools: [read, bash, edit, write]
 compatibility: |
-  Requires optional CLIs: `defuddle` (web capture), `obsidian` (orphan/vault
-  queries), `python3` (health-check audit script). Operations degrade
-  gracefully when any is absent.
+  Primary interface: the `obsidian` CLI against the wiki's vault
+  (requires Obsidian running). Optional CLIs: `defuddle` (web
+  capture), `python3` (health-check audit script). When Obsidian
+  is not running, vault operations degrade to file tools
+  (read/write/edit) with identical semantics.
 ---
 
 ## Wiki Location
@@ -14,8 +16,75 @@ compatibility: |
 Set via `WIKI_PATH` environment variable. Defaults to current
 directory. Raise warning if current'directory is not satisfied.
 
-The wiki is a directory of markdown files. No database, no special
-tooling required.
+The wiki lives inside an Obsidian vault (plain markdown files — no
+database). All vault operations go through the `obsidian` CLI; the
+file tools (`read`/`write`/`edit`) are the FALLBACK, not the
+default.
+
+## Obsidian CLI — Primary Interface (CRITICAL)
+
+Full command syntax: the `obsidian-cli` skill. Session-specific
+rules:
+
+### Session startup — resolve vault + path prefix (once, before Orientation)
+
+1. **Probe**: `obsidian vault`. Not installed / no app running →
+   CLI unavailable this session: use file tools for everything
+   and say so once. Do not re-probe per command.
+2. **Resolve the vault**: `WIKI_PATH` set → match against
+   `obsidian vaults` paths; the vault whose root contains
+   `WIKI_PATH` wins, and REL = `WIKI_PATH` relative to that root
+   (usually empty — the vault root is normally the wiki repo).
+   `WIKI_PATH` unset → the focused vault (`obsidian vault`) is
+   the wiki vault and REL is empty (its root contains `wiki/` and
+   `sources/`); warn if the cwd doesn't look like a wiki.
+3. **Pin it**: pass `vault="<name>"` on EVERY command — the
+   default "most recently focused vault" changes under you.
+4. **Paths are vault-root-relative**: `path=wiki/entity/foo.md`;
+   prepend REL when non-empty.
+
+### Operation → command mapping
+
+| Operation | Command |
+|:----------|:--------|
+| Read page / SCHEMA / index / log | `read path=...` |
+| Create a page | `create path=... content=... silent` |
+| Body edit (whole-file rewrite) | `read` → transform → `create ... overwrite silent` |
+| Frontmatter fields | `property:set` / `property:read` / `property:remove` |
+| log.md entry (newest-first) | `prepend path=wiki/log.md content=...` |
+| Tail append | `append` |
+| Dedupe / locate content | `search` / `search:context` |
+| Link-graph checks | `links` / `backlinks` / `orphans` / `deadends` / `unresolved` |
+| Rename / move | `rename` / `move` — auto-update inbound wikilinks |
+| Delete | `delete` — user confirmation first |
+| Query a `.base` board | `base:query` |
+
+### Body-edit discipline
+
+The CLI has no surgical mid-file edit — body changes are always
+`read` → transform → `create overwrite`. Therefore:
+
+- **`read` immediately before every `overwrite`** (keep the
+  pre-image in context for diff review + recovery) and re-read
+  after to verify the landed content.
+- **Single-quote `content` values**: newlines as literal `\n`,
+  tabs as `\t` (CLI-interpreted), embedded `'` as `'\''`.
+  Frontmatter via `property:set` avoids most escaping exposure.
+- **Fallback to the `edit` tool** when the page exceeds ~300
+  lines or a whole-file rewrite is risky; `write` is for
+  capturing new `sources/` files only.
+
+### Guardrails
+
+- **`sources/` is CLI-read-only** — `read` / `search` / `files`
+  only; never `create` / `append` / `delete` / `move` / `rename`
+  with a `sources/...` target. Exception: the one-time capture of
+  a NEW source file (defuddle output, douban metadata) as part of
+  ingest.
+- **`silent` on every non-interactive `create`** — don't yank the
+  user's Obsidian focus.
+- **`delete` needs prior user confirmation**; `permanent` only
+  for files created within the same session (cleanup).
 
 ## Architecture
 
@@ -67,6 +136,11 @@ Every page carries **exactly 2 tags**, no more:
 1. **Base-filter tag** — powers Obsidian `.base` file
    `file.hasTag()` filters. Examples: `rust-crate`, `rust-trait`,
    `书籍`, `python-feature`, `container-runtime`.
+   **It is a page-TYPE tag**: only pages of that type may carry it
+   (e.g. `Python软件包` belongs ONLY on entity pages of Python
+   packages — concept pages about a library's internals (channels,
+   encodings, grammars) must NOT take it, or the `.base` board
+   wrongly collects them).
 2. **Functional category tag** — nested `domain/subcategory`
    format. Examples: `软件包/日志`, `语言特性/并发`,
    `容器技术/运行时`, `深度学习/内存优化`.
@@ -94,6 +168,8 @@ need 1–2 references, not the whole skill.
 | Split a page over ~200 lines | `references/splitting-pages.md` |
 | Write body text / Chinese style | `references/writing-style.md` |
 | Debug a patch or tooling failure | `references/pitfalls.md` |
+| Create / edit an Obsidian `.base` file | `obsidian-bases` skill (external) |
+| Obsidian CLI command syntax / flags | `obsidian-cli` skill (external) |
 
 **After any page write: run the health check** (load
 `references/health-check.md`) — don't wait to be asked. Expect
@@ -105,16 +181,29 @@ failures on first pass; fix → re-check until all pages pass.
   corrections go in wiki pages.
 - **Always update index.md and log.md** — the navigational
   backbone. Log entries are newest-first (top of body, after
-  frontmatter). New index entries are inserted at the end of
-  their section.
+  frontmatter) and strictly ONE line each:
+  `- YYYY-MM-DD | 基于 [[source]] 创建 [[page]]、[[page]]` — date,
+  source(s), page names; never expand page contents (see
+  `references/operations.md` log.md conventions). New index
+  entries are inserted at the end of their section.
 - **Every page links to ≥2 other pages** — isolated pages are
   invisible.
 - **Exactly 2 tags per page** — base-filter + functional
   category (Two-Tag Rule above).
+- No space in the tag
+- **代表工作 lists are wiki-only** — on research pages,
+  「代表工作 / SOTA 工作」lists may only contain works that have
+  their own page in this wiki (wikilink-able). Works without a
+  wiki page stay out of the list — cite them in prose with a
+  footnote or describe them at category level.
 - **Footnotes: inline `[^N]` + page-bottom definitions** — see
   `references/health-check.md` for the full rules.
 - **Keep pages scannable** — readable in 30 seconds; split pages
   over ~200 lines (`references/splitting-pages.md`).
+- **Summary ≤ 20 chars; INDEX lines ≤ 50 chars** — frontmatter
+  `summary` stays within ~20 characters (spaces excluded); each
+  `index.md` entry line stays within 50 characters (whole line,
+  wikilink and prefix included).
 - **Outline approval before any page write** — creating a new
   page or rewriting/restructuring an existing one requires
   presenting the page outline first (frontmatter fields; complete
@@ -125,6 +214,9 @@ failures on first pass; fix → re-check until all pages pass.
   never write unannounced.
 - **Ask before mass-updating** — confirm scope if an ingest would
   touch 10+ existing pages.
+- **CLI writes aren't done until verified** — after `create
+  overwrite` / `prepend` / `property:set`, re-read the affected
+  region before moving on.
 
 ## References
 

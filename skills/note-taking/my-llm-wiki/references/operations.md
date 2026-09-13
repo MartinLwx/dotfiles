@@ -10,11 +10,13 @@ specialization of Ingest.
 
 When the user provides a source (URL, file, paste):
 
-0. **Check if source already captured** — search `sources/` with
-   broad patterns (`*topic*`, not exact filenames) before
-   fetching.
+0. **Check if source already captured** — before fetching:
+   `obsidian files folder=sources/<subdir>` + name match, and
+   `obsidian search query=<topic> path=sources` for full text.
+   Broad patterns (`*topic*`), not exact filenames.
 1. **Capture the source** to the appropriate `sources/`
-   subdirectory.
+   subdirectory — this one-time write uses file tools (see the
+   SKILL.md guardrail: `sources/` is otherwise CLI-read-only).
    - URL → `defuddle parse <url> --md`.
    - PDF → `defuddle parse <url> --md`
    - Pasted text → save directly.
@@ -28,12 +30,17 @@ When the user provides a source (URL, file, paste):
    approval** before writing. Enrichment of existing pages: list
    the pages to touch and their intended changes; single small
    edits need only a one-line plan. Never write unannounced.
-4. **Check what already exists** in the wiki.
+4. **Check what already exists** in the wiki — `obsidian search`
+   for keyword hits, `obsidian read` the candidates.
 5. **Write or update wiki pages** — one source can trigger
-   updates across 5–15 pages.
+   updates across 5–15 pages. New pages: `create`; body updates:
+   `read` → `overwrite` (whole-file, SKILL.md body-edit
+   discipline); frontmatter: `property:set`.
 6. **Run health check** on all created/modified pages (don't wait
    to be asked) — load `health-check.md`.
-7. **Update index.md and log.md**.
+7. **Update index.md and log.md** — log entries via
+   `obsidian prepend path=wiki/log.md`; index entries go at
+   section end (mid-file) → `read` → `create overwrite`.
 8. **Report what changed**.
 
 ### log.md conventions
@@ -43,6 +50,20 @@ When the user provides a source (URL, file, paste):
   adjacent to other same-day entries — never append at the file
   end. Read the existing entry order before picking the insertion
   point.
+- **CLI insertion**: `obsidian prepend` lands exactly after the
+  frontmatter closing `---` — i.e. ABOVE the `> 历史日志` nav
+  line. Accepted: the nav line sinks below newer entries and is
+  restored to the top at quarterly rotation.
+- **One line per entry**:
+  format `- YYYY-MM-DD | 基于 [[source]] 创建 [[a]]、[[b]]`. Record
+  ONLY the date, the source(s), and the page names created or
+  updated (as wikilinks; multiple sources/pages stay on the same
+  line, separated by 、). NEVER expand what each page contains —
+  no section inventories, no source_cnt/coverage deltas, no
+  rationale or user-feedback narration. Non-page activities
+  (SCHEMA taxonomy, .base boards, skill rule updates, audits,
+  refactors) get one short clause; routine `更新 index.md`
+  follow-ups are implied and NOT logged.
 - index.md entries are inserted at the end of their section
 - Rotate the log **by quarter**: `./wiki/log.md` is the ACTIVE log
   for the current quarter; archived quarters live in
@@ -64,8 +85,10 @@ When a source was previously ingested but the PDF-to-Markdown
 extraction was poor (noise headers, image refs without
 descriptions, missing slide content):
 
-1. Re-read the raw source file in `sources/` — the content may be
-   richer than what the initial extraction captured.
+1. Re-read the raw source file in `sources/` (CLI `read` is
+   always allowed there — only writes are restricted) — the
+   content may be richer than what the initial extraction
+   captured.
 2. Compare existing wiki pages against the raw source to identify
    gaps (missing sections, thin content, uncaptured details).
 3. Enrich existing pages in-place with missing content — add new
@@ -131,6 +154,9 @@ Use coverage indicators effectively:
 
 - **Ask before mass-updating** — confirm scope if an ingest would
   touch 10+ existing pages.
+- **CLI content escaping** — single-quote `content` values; `\n`
+  for newlines, `'\''` for embedded quotes. Full rules in
+  SKILL.md body-edit discipline.
 - **SCHEMA.md and audit.py are optional** — infer conventions
   from existing pages when absent. Never block on a missing
   schema.

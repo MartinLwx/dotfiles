@@ -47,9 +47,11 @@ names.
   author/pages/price/publisher/published_at/read_at
 - Douban metadata is captured manually: ask the user to provide it
   (pasted in chat), then write it as frontmatter fields of the
-  single clipping file `sources/books/<书名>.md` — one book has
-  ONE source page (metadata frontmatter + clippings body), never a
-  separate `-豆瓣.md` file.
+  single clipping file `sources/books/<书名>.md` (one-time
+  capture write — file tools permitted here, see the SKILL.md
+  guardrail exception) — one book has ONE source page (metadata
+  frontmatter + clippings body), never a separate `-豆瓣.md`
+  file.
 
 ## Page Structure: Hierarchy First, No Flat Layout (user preference 2026-08-05)
 
@@ -134,5 +136,5 @@ Snyk position piece):
 
 1. Health check on ALL new/modified pages (see `health-check.md`
    for the tool-call cap pitfall)
-2. Re-read log.md first ~12 lines after patching near frontmatter
+2. Re-read log.md first ~12 lines after `prepend` near frontmatter
 3. Confirm index.md entries and SCHEMA.md taxonomy rows landed

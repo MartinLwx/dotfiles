@@ -16,7 +16,11 @@ style → `writing-style.md`; page splitting → `splitting-pages.md`.
   navigational backbone. Index descriptions are authored
   independently of page `summary` fields.
 
-## Patch / Edit Tooling
+## Patch / Edit Tooling (file-tool fallback only)
+
+Applies when a write falls back to file tools per SKILL.md
+body-edit discipline (page >~300 lines, escaping risk, or CLI
+unavailable):
 
 - **V4A patch can swallow frontmatter `---`** — when a hunk's
   context includes a blank line adjacent to the frontmatter
@@ -47,3 +51,31 @@ style → `writing-style.md`; page splitting → `splitting-pages.md`.
 - **Unicode smart quotes in source filenames** — macOS/Obsidian
   often produce smart quotes (`'` U+2019). Use shell globbing via
   terminal to handle them.
+
+## Obsidian CLI
+
+- **`create overwrite` is destructive and whole-file** — always
+  `read` immediately before (keep the pre-image in context) and
+  re-read after. `obsidian history` / `history:restore` is the
+  backup of last resort.
+- **Single-quote `content` values** — double quotes expose `$`,
+  backticks, and history expansion; newlines go in as literal
+  `\n` (CLI-interpreted), embedded `'` as `'\''`.
+- **Prefer `path=` over `file=`** — `file=` resolves like a
+  wikilink and is ambiguous with duplicate basenames; `path=` is
+  exact, vault-root-relative (prepend the session REL prefix from
+  SKILL.md vault resolution).
+- **`property:set` appends NEW keys at the end of frontmatter**
+  (existing keys update in place) — order-sensitive fields
+  (`tags`, `aliases`, book-template ordering) must be written in
+  the `create` content, not patched in afterwards. Lists come out
+  as block YAML, numbers stay scalars.
+- **`prepend` lands directly after the frontmatter closing `---`**
+  — verified; in log.md this is ABOVE the `> 历史日志` nav line
+  (accepted; see `operations.md` log.md conventions).
+- **CLI needs Obsidian running** — probe `obsidian vault` at
+  session start; on failure switch to file tools for the whole
+  session (no per-command retrying).
+- **Pass `vault="<name>"` explicitly on every command** — the
+  default "most recently focused vault" changes under you; pin
+  the wiki vault resolved at session start.
