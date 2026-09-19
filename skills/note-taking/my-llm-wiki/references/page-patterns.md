@@ -267,12 +267,6 @@ If the algorithm is one section of a larger page, the same
 
 ## Page-Level Rules
 
-- **Every page must link to ≥2 other pages** — isolated pages
-  are invisible. New pages must satisfy ≥2 inbound links from the
-  start.
-- **New domain needs companion entities** — when ingesting into
-  an empty domain, create 1 concept + 2 entity stubs for the
-  minimum 2-wikilink requirement.
 - **Frontmatter is required** — enables search, filtering, and
   staleness detection. Write fields with `obsidian property:set`
   (existing keys update in place) or include them in the

@@ -215,8 +215,6 @@ failures on first pass; fix → re-check until all pages pass.
 - **Ask before mass-updating** — confirm scope if an ingest would
   touch 10+ existing pages.
 - **CLI writes aren't done until verified** — after `create
-  overwrite` / `prepend` / `property:set`, re-read the affected
-  region before moving on.
 
 ## References
 
