@@ -61,6 +61,16 @@ unavailable):
 - **Single-quote `content` values** — double quotes expose `$`,
   backticks, and history expansion; newlines go in as literal
   `\n` (CLI-interpreted), embedded `'` as `'\''`.
+- **CLI `content=` interprets `\t`/`\n` escape sequences — LaTeX
+  gets corrupted** — verified 2026-09-19: `r_{\text{KL}}` landed
+  as `r_{<TAB>ext{KL}}` (`\t` → TAB); `\theta` → `<TAB>heta`.
+  Only `\n` and `\t` are interpreted (table pipe `\|` survives
+  literally), but any content containing backslash sequences —
+  LaTeX like `\text`, `\theta`, `\nabla`, `\neq` — is unsafe.
+  Use the file-tool fallback (`write` for new pages, `edit` for
+  surgical changes) whenever body content contains backslashes;
+  reserve CLI `content=` for frontmatter-only or backslash-free
+  text (log.md one-liners).
 - **Prefer `path=` over `file=`** — `file=` resolves like a
   wikilink and is ambiguous with duplicate basenames; `path=` is
   exact, vault-root-relative (prepend the session REL prefix from

@@ -18,7 +18,7 @@ approval** before writing any content:
   footnote(s) it will cite; state N as planned unique sources.
 - **Source→footnote mapping**: which source gets which `[^N]`
   number, so one-number-per-source holds from the start.
-- **Cross-links**: planned `[[wikilinks]]` to ≥2 other pages.
+- **Cross-links**: planned `[[wikilinks]]`
 
 The approved outline is the contract — deviations discovered
 while writing (e.g. a section needs an extra source) must be

@@ -118,8 +118,7 @@ Snyk position piece):
 - index.md entries are inserted at the end of their section
 - Enriching old pages may surface historical gaps in the health
   check (0 wikilinks, illegal multi-tags) — fix them on the spot
-  (cross-links, tag normalization), don't leave them; new pages
-  must satisfy ≥2 inbound links from the start
+  (cross-links, tag normalization), don't leave them;
 - Enriching an existing page changes coverage too — full 
   recompute rules in `health-check.md`
 

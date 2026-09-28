@@ -186,10 +186,6 @@ failures on first pass; fix → re-check until all pages pass.
   source(s), page names; never expand page contents (see
   `references/operations.md` log.md conventions). New index
   entries are inserted at the end of their section.
-- **Every page links to ≥2 other pages** — isolated pages are
-  invisible.
-- **Exactly 2 tags per page** — base-filter + functional
-  category (Two-Tag Rule above).
 - No space in the tag
 - **代表工作 lists are wiki-only** — on research pages,
   「代表工作 / SOTA 工作」lists may only contain works that have
@@ -214,7 +210,8 @@ failures on first pass; fix → re-check until all pages pass.
   never write unannounced.
 - **Ask before mass-updating** — confirm scope if an ingest would
   touch 10+ existing pages.
-- **CLI writes aren't done until verified** — after `create
+- Spot any violations when touching exist wiki pages. Suggest improvements
+  with rationale.
 
 ## References
 
