@@ -50,8 +50,6 @@
       "orbstack"
       "teamviewer"
       "font-lxgw-wenkai"
-      "jetbrains-toolbox"
-      "qq"
       "stats"
     ];
   };

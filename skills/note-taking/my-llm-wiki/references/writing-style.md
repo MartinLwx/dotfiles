@@ -5,15 +5,19 @@
 Do NOT 1:1 translate the source into wiki pages. The source is
 raw material — the wiki page is a curated synthesis:
 
-- **Restructure by conceptual relevance**, not source section
-  order.
-- **Key takeaways go at the TOP** — put a informational summary
-  using callout at the top, such as gotchas/limitations
-- **Cut and consolidate** — if paragraphs can be replaced by a
-  3-line summary + code block, use the latter.
-- **Examples: few but essential** — do not copy the examples in
-  the source if they are lengthy and unrepresentive. Always try
-  to abstract the details and write generic examples.
+- **Rewrite from scratch**, Do not preserve the source's
+  - sentence structure or wording
+  - section order
+  - unnecessary explanations or repetition
+  - examples merely because they appear in the source
+- **technical writing**, explain the core idea in 2–3 sentences first. 
+  State what it does, why it exists, and the key constraint or trade-off.
+  Avoid metaphors, analogies, storytelling, and marketing language
+  unless they are genuinely necessary to explain the concept.
+- **callouts for gotchas**, put important caveats following the section title
+  , preferably in a short callout rather than interrupting the main explanation.
+
+The final page should be understandable even if the reader never sees the original source.
 
 ## Natural Wikilink Placement
 
@@ -50,7 +54,7 @@ Annotate code with emoji markers:
 ## Code Example Organization
 
 Code examples must be organized by logic — never laid out flat as 
-a series of sibling examples in the top-level.
+a series of sibling examples (`##` section).
 
 Group code examples under one `##` section if they are related.
 Be specific in the title s.t. the user can know what the code

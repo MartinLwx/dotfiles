@@ -6,3 +6,6 @@ require("keymaps")
 
 -- Set LSP
 require("lsp")
+
+-- event Callback
+require("events")
