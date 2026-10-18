@@ -26,6 +26,7 @@
     # TypeScript
     pkgs.nodejs_latest
     pkgs.typescript
+    pkgs.oxfmt # Formatter
 
     # Clojure
     pkgs.clojure

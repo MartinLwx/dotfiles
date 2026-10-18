@@ -11,6 +11,7 @@ require("conform").setup({
 		c = { "clang-format" },
 		cpp = { "clang-format" },
 		clojure = { "cljfmt" },
+		typescript = { "oxfmt" },
 		python = function(bufnr)
 			if require("conform").get_formatter_info("ruff_format", bufnr).available then
 				-- Conform will run multiple formatters sequentially
